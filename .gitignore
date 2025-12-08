@@ -1,0 +1,3 @@
+trawl-env/
+__pycache__/
+*.egg-info/
