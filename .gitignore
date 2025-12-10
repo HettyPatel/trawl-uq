@@ -1,3 +1,27 @@
-trawl-env/
+# Experiment results
+results/
+*.pkl
+
+# Python cache
 __pycache__/
+*.pyc
+*.pyo
 *.egg-info/
+
+# Logs
+*.log
+
+# Environment
+trawl-env/
+venv/
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
