@@ -1,12 +1,18 @@
-# Experiment results
-results/
-*.pkl
+# Experiment results (but keep directory structure)
+results/**/*
+!results/.gitkeep
+!results/baseline/.gitkeep
+!results/component_search/.gitkeep
+!results/figures/.gitkeep
 
 # Python cache
 __pycache__/
 *.pyc
 *.pyo
 *.egg-info/
+
+# Pickle files
+*.pkl
 
 # Logs
 *.log
@@ -15,13 +21,3 @@ __pycache__/
 trawl-env/
 venv/
 .env
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS
-.DS_Store
-Thumbs.db
