@@ -87,8 +87,8 @@ class CoQADataset(QADataset):
                 'context' : story, # Original context
             })
 
-            self.data = processed_data
-            return self # return self for chaining.
+        self.data = processed_data
+        return self # return self for chaining.
         
 class HotpotQADataset(QADataset):
     """
@@ -107,33 +107,33 @@ class HotpotQADataset(QADataset):
 
             processed_data = []
 
-            for idx, item in enumerate(dataset):
+        for idx, item in enumerate(dataset):
 
-                question = item['question']
-                answer = item['answer']
+            question = item['question']
+            answer = item['answer']
 
-                # HotpotQA has multiple context paragraphs from different wikipedia articles
-                # Each has a title and list of sentences
-                # We combine them into one context (taking first 4 sentences to avoid too long inputs)
+            # HotpotQA has multiple context paragraphs from different wikipedia articles
+            # Each has a title and list of sentences
+            # We combine them into one context (taking first 4 sentences to avoid too long inputs)
 
-                context_sentences = []
-                for title, sentences in zip(item['context']['title'], item['context']['sentences']):
-                    context_sentences.extend(sentences)
-                context = " ".join(context_sentences[:5]) # take first 5 sentences
+            context_sentences = []
+            for title, sentences in zip(item['context']['title'], item['context']['sentences']):
+                context_sentences.extend(sentences)
+            context = " ".join(context_sentences[:5]) # take first 5 sentences
 
-                # Format prompt
-                prompt = f"Context: {context}\nQuestion: {question}\nAnswer:"
+            # Format prompt
+            prompt = f"Context: {context}\nQuestion: {question}\nAnswer:"
 
-                processed_data.append({
-                    'id': f"hotpotqa_{idx}",
-                    'prompt': prompt,
-                    'question': question,
-                    'answer': answer,
-                    'context': context
-                })
+            processed_data.append({
+                'id': f"hotpotqa_{idx}",
+                'prompt': prompt,
+                'question': question,
+                'answer': answer,
+                'context': context
+            })
 
-                self.data = processed_data
-                return self # return self for chaining.
+        self.data = processed_data
+        return self # return self for chaining.
             
 
 
