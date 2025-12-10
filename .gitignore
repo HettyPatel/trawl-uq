@@ -1,6 +1,7 @@
-# Experiment results (but keep directory structure)
-results/**/*
-!results/.gitkeep
+# Experiment results
+results/baseline/*
+results/component_search/*
+results/figures/*
 !results/baseline/.gitkeep
 !results/component_search/.gitkeep
 !results/figures/.gitkeep
@@ -21,3 +22,13 @@ __pycache__/
 trawl-env/
 venv/
 .env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
