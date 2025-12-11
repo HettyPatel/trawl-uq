@@ -35,12 +35,12 @@ def main():
     # ========== Configuration ==========
     SEED = 42
     DATASET_NAME = "coqa"
-    NUM_SAMPLES = 10  # Use small subset for testing
+    NUM_SAMPLES = 200  # Proper baseline - subset of validation set
     NUM_GENERATIONS = 20
 
     # Models
-    MAIN_MODEL = "gpt2" # For testing meta-llama/Llama2-7b-hf for larger runs
-    KNOWLEDGE_MODEL = "gpt2" # For testing use meta-llama/Llama2-7b-hf for larger runs
+    MAIN_MODEL = "meta-llama/Llama-2-7b-hf"
+    KNOWLEDGE_MODEL = "meta-llama/Llama-2-7b-hf"  # For testing use meta-llama/Llama2-7b-hf for larger runs
     NLI_MODEL = "microsoft/deberta-large-mnli"
 
     DEVICE = "cuda"  # or "cpu"
