@@ -45,7 +45,7 @@ def decompose_fc_layer(
     weights_stacked = torch.stack([fc_in_weight, fc_out_transposed], dim=0)
 
     #moveto CPU for tensorly (better with numpy)
-    weights_np = weights_stacked.detach().cpu().numpy()
+    weights_np = weights_stacked.detach().cpu().float().numpy()
 
     #Set tensorly backend
     tl.set_backend('numpy')
