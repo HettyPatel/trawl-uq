@@ -61,21 +61,21 @@ def measure_uncertainty_and_blockiness(
         Dictionnary with metrics
     """
     # Build semantic similarity matrix
-    S_semnatic = build_semantic_similarity_matrix(
+    S_semantic = build_semantic_similarity_matrix(
         responses=responses,
         nli_calculator=nli_calculator,
         device=device
     )
 
     # Extract knowledge using KnowledgeExtractor
-    knowledge_reponses = knowledge_extractor.extract_knowledge_batch(
+    knowledge_responses = knowledge_extractor.extract_knowledge_batch(
         question=question,
         responses=responses
     )
 
     # Build knowledge similarity matrix
     S_knowledge = build_semantic_similarity_matrix(
-        responses=knowledge_reponses,
+        responses=knowledge_responses,
         nli_calculator=nli_calculator,
         device=device
     )
@@ -84,7 +84,7 @@ def measure_uncertainty_and_blockiness(
     blockiness_results = {}
     for rank in ranks:
         blockiness = compute_blockiness_score(
-            S_semantic=S_semnatic,
+            S_semantic=S_semantic,
             S_knowledge=S_knowledge,
             rank=rank,
             decomposition_type='tucker'
@@ -96,9 +96,9 @@ def measure_uncertainty_and_blockiness(
     uncertainty = compute_uncertainty_score(blockiness_results['rank_10'])
 
     return {
-        'semantic_similarity': S_semnatic,
+        'semantic_similarity': S_semantic,
         'knowledge_similarity': S_knowledge,
-        'knowledge_responses': knowledge_reponses,
+        'knowledge_responses': knowledge_responses,
         'blockiness_by_rank': blockiness_results,
         'uncertainty_score': uncertainty
     }
