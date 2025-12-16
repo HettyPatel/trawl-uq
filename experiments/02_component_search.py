@@ -33,8 +33,12 @@ from src.uncertainty.metrics import (
     compute_blockiness_score,
     compute_uncertainty_score
 )
-from src.decomposition.tucker import decompose_fc_layer, get_fc_layer_weights
-from src.decomposition.component_removal import remove_component, reconstruct_weights
+from src.decomposition.tucker import (
+    decompose_fc_layer,
+    get_fc_layer_weights,
+    remove_component,
+    reconstruct_weights
+)
 from src.decomposition.model_utils import update_fc_layer_weights
 
 

@@ -7,9 +7,7 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from src.decomposition.tucker import (
     decompose_fc_layer,
-    get_fc_layer_weights
-)
-from src.decomposition.component_removal import (
+    get_fc_layer_weights,
     remove_component,
     reconstruct_weights
 )

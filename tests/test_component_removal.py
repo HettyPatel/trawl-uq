@@ -6,9 +6,7 @@ sys.path.append('.')
 import torch
 from src.decomposition.tucker import (
     decompose_fc_layer,
-    compute_reconstruction_error
-)
-from src.decomposition.component_removal import (
+    compute_reconstruction_error,
     remove_component,
     remove_multiple_components,
     reconstruct_weights,
