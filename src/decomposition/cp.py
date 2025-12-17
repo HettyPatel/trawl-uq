@@ -94,14 +94,22 @@ def reconstruct_from_cp(
         reconstructed: Reconstructed tensor [2, hidden_size, intermediate_size]
     """
 
-    # Use tensorly for reconstruction
-    tl.set_backend('pytorch')
+    # Use numpy backend to avoid GPU OOM on large tensors
+    tl.set_backend('numpy')
+
+    # Convert to numpy
+    weights_np = weights.detach().cpu().numpy()
+    factors_np = [f.detach().cpu().numpy() for f in factors]
 
     # Create CP tensor tuple
-    cp_tensor = (weights, factors)
+    cp_tensor = (weights_np, factors_np)
 
     # Reconstruct tensor
-    reconstructed = tl.cp_to_tensor(cp_tensor)
+    reconstructed_np = tl.cp_to_tensor(cp_tensor)
+
+    # Convert back to torch on same device as input
+    device = weights.device
+    reconstructed = torch.from_numpy(reconstructed_np).to(device)
 
     return reconstructed
 
