@@ -56,8 +56,10 @@ def decompose_fc_layer_cp(
         weights_np,
         rank=rank,
         init='random',
-        random_sate=42,
+        random_state=42,
         n_iter_max=100,
+        tol=1e-6,
+        verbose=1
     )
 
     # Extract weights and factors
