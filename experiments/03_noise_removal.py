@@ -37,6 +37,7 @@ from src.uncertainty.metrics import (
     compute_blockiness_score,
     compute_uncertainty_score
 )
+from src.evaluation.metrics import compute_evaluation_metrics
 from src.decomposition.cp import (
     decompose_fc_layer_cp,
     remove_cp_component,
@@ -202,6 +203,7 @@ def generate_analysis_figures(
 def generate_topk_removal_figures(
         progressive_results,
         baseline_avg_uncertainty,
+        baseline_results,
         output_dir,
         decomposition_type,
         layer_name
@@ -219,6 +221,12 @@ def generate_topk_removal_figures(
     k_values = [pr['num_noise_removed'] for pr in progressive_results]
     avg_uncertainties = [pr['avg_uncertainty'] for pr in progressive_results]
     avg_changes = [pr['avg_uncertainty_change'] for pr in progressive_results]
+    avg_f1s = [pr['avg_f1'] for pr in progressive_results]
+    avg_perplexities = [pr['avg_perplexity'] for pr in progressive_results]
+
+    # Baseline evaluation metrics
+    baseline_avg_f1 = np.mean([r['evaluation_metrics']['f1'] for r in baseline_results])
+    baseline_avg_ppl = np.mean([r['evaluation_metrics']['perplexity'] for r in baseline_results])
 
     # Plot 1: Uncertainty vs Number of Noise Components Removed
     fig, ax = plt.subplots(figsize=(12, 6))
@@ -271,6 +279,63 @@ def generate_topk_removal_figures(
     plt.tight_layout()
     plt.savefig(output_dir / 'topk_percentage_reduction.png', dpi=300, bbox_inches='tight')
     print(f"Saved: {output_dir / 'topk_percentage_reduction.png'}")
+    plt.close()
+
+    # Plot 4: F1 Score vs K
+    fig, ax = plt.subplots(figsize=(12, 6))
+    ax.axhline(y=baseline_avg_f1, color='red', linestyle='--', linewidth=2,
+               alpha=0.7, label=f'Baseline F1 ({baseline_avg_f1:.3f})')
+    ax.plot(k_values, avg_f1s, 'b-o', linewidth=2, markersize=8, label='F1 After Noise Removal')
+    ax.set_xlabel('Number of Noise Components Removed (Top-K)', fontsize=12)
+    ax.set_ylabel('Average F1 Score', fontsize=12)
+    ax.set_title(f'{layer_name} ({decomp_label}): F1 Score vs Top-K Noise Removal', fontsize=14)
+    ax.legend(fontsize=11)
+    ax.grid(alpha=0.3)
+    plt.tight_layout()
+    plt.savefig(output_dir / 'topk_f1_score.png', dpi=300, bbox_inches='tight')
+    print(f"Saved: {output_dir / 'topk_f1_score.png'}")
+    plt.close()
+
+    # Plot 5: Perplexity vs K
+    fig, ax = plt.subplots(figsize=(12, 6))
+    ax.axhline(y=baseline_avg_ppl, color='red', linestyle='--', linewidth=2,
+               alpha=0.7, label=f'Baseline PPL ({baseline_avg_ppl:.1f})')
+    ax.plot(k_values, avg_perplexities, 'b-o', linewidth=2, markersize=8, label='PPL After Noise Removal')
+    ax.set_xlabel('Number of Noise Components Removed (Top-K)', fontsize=12)
+    ax.set_ylabel('Average Perplexity', fontsize=12)
+    ax.set_title(f'{layer_name} ({decomp_label}): Perplexity vs Top-K Noise Removal', fontsize=14)
+    ax.legend(fontsize=11)
+    ax.grid(alpha=0.3)
+    plt.tight_layout()
+    plt.savefig(output_dir / 'topk_perplexity.png', dpi=300, bbox_inches='tight')
+    print(f"Saved: {output_dir / 'topk_perplexity.png'}")
+    plt.close()
+
+    # Plot 6: Combined metrics - Uncertainty vs F1 tradeoff
+    fig, ax1 = plt.subplots(figsize=(14, 6))
+
+    # Uncertainty on left axis
+    ax1.set_xlabel('Number of Noise Components Removed (Top-K)', fontsize=12)
+    ax1.set_ylabel('Uncertainty', fontsize=12, color='blue')
+    line1 = ax1.plot(k_values, avg_uncertainties, 'b-o', linewidth=2, markersize=8, label='Uncertainty')
+    ax1.tick_params(axis='y', labelcolor='blue')
+    ax1.grid(alpha=0.3)
+
+    # F1 on right axis
+    ax2 = ax1.twinx()
+    ax2.set_ylabel('F1 Score', fontsize=12, color='green')
+    line2 = ax2.plot(k_values, avg_f1s, 'g-s', linewidth=2, markersize=8, label='F1 Score')
+    ax2.tick_params(axis='y', labelcolor='green')
+
+    # Combined legend
+    lines = line1 + line2
+    labels = [l.get_label() for l in lines]
+    ax1.legend(lines, labels, loc='best', fontsize=11)
+
+    ax1.set_title(f'{layer_name} ({decomp_label}): Uncertainty vs F1 Tradeoff', fontsize=14)
+    plt.tight_layout()
+    plt.savefig(output_dir / 'topk_uncertainty_f1_tradeoff.png', dpi=300, bbox_inches='tight')
+    print(f"Saved: {output_dir / 'topk_uncertainty_f1_tradeoff.png'}")
     plt.close()
 
 
@@ -348,7 +413,12 @@ def generate_report(
 
     report.append("TOP-K NOISE REMOVAL RESULTS")
     report.append("="*80)
-    report.append(f"{'K':<6} {'Avg Uncertainty':<18} {'Change':<15} {'% Reduction':<15}")
+
+    # Compute baseline evaluation metrics
+    baseline_avg_f1 = np.mean([r['evaluation_metrics']['f1'] for r in baseline_results])
+    baseline_avg_ppl = np.mean([r['evaluation_metrics']['perplexity'] for r in baseline_results])
+
+    report.append(f"{'K':<6} {'Uncertainty':<14} {'Unc Δ':<10} {'F1':<10} {'F1 Δ':<10} {'PPL':<10} {'PPL Δ':<10}")
     report.append("-"*80)
 
     if progressive_results:
@@ -357,14 +427,22 @@ def generate_report(
         for pr in progressive_results:
             k = pr['num_noise_removed']
             if k in milestones or k == len(progressive_results):
-                pct_reduction = (baseline_avg - pr['avg_uncertainty']) / baseline_avg * 100
-                report.append(f"{k:<6} {pr['avg_uncertainty']:<18.4f} {pr['avg_uncertainty_change']:+.4f}         {pct_reduction:+.1f}%")
+                report.append(
+                    f"{k:<6} "
+                    f"{pr['avg_uncertainty']:<14.4f} "
+                    f"{pr['avg_uncertainty_change']:+.4f}     "
+                    f"{pr['avg_f1']:<10.3f} "
+                    f"{pr['avg_f1_change']:+.3f}     "
+                    f"{pr['avg_perplexity']:<10.1f} "
+                    f"{pr['avg_perplexity_change']:+.1f}"
+                )
 
         # Find optimal K
         best_k = min(progressive_results, key=lambda x: x['avg_uncertainty'])
         best_reduction = (baseline_avg - best_k['avg_uncertainty']) / baseline_avg * 100
+        f1_retention = (best_k['avg_f1'] / baseline_avg_f1) * 100
         report.append("")
-        report.append(f"OPTIMAL: K={best_k['num_noise_removed']} achieves {best_reduction:.1f}% uncertainty reduction")
+        report.append(f"OPTIMAL: K={best_k['num_noise_removed']} achieves {best_reduction:.1f}% uncertainty reduction with {f1_retention:.1f}% F1 retention")
     else:
         report.append("No noise components found for removal")
 
@@ -498,8 +576,9 @@ def run_noise_removal(
 
     for idx, sample in enumerate(tqdm(samples, desc="Baseline")):
         question = sample['question']
+        gold_answer = sample['answer']
 
-        # Generate responses
+        # Generate sampled responses for uncertainty measurement
         responses = generate_responses(
             model=model,
             tokenizer=tokenizer,
@@ -509,6 +588,17 @@ def run_noise_removal(
             temperature=1.0,
             top_p=0.95
         )
+
+        # Generate greedy response for quality evaluation
+        greedy_response = generate_responses(
+            model=model,
+            tokenizer=tokenizer,
+            prompt=question,
+            num_generations=1,
+            max_new_tokens=100,
+            temperature=0.0,
+            do_sample=False
+        )[0]
 
         # Measure uncertainty
         metrics = measure_uncertainty_and_blockiness(
@@ -520,12 +610,23 @@ def run_noise_removal(
             device=device
         )
 
+        # Measure downstream task performance
+        eval_metrics = compute_evaluation_metrics(
+            response=greedy_response,
+            gold_answer=gold_answer,
+            model=model,
+            tokenizer=tokenizer,
+            device=device
+        )
+
         baseline_results.append({
             'sample_id': idx,
             'question': question,
-            'answer': sample['answer'],
+            'answer': gold_answer,
             'responses': responses,
-            **metrics
+            'greedy_response': greedy_response,
+            **metrics,
+            'evaluation_metrics': eval_metrics
         })
 
     # Save baseline
@@ -568,8 +669,9 @@ def run_noise_removal(
 
         for idx, sample in enumerate(tqdm(samples, desc=f"Component {component_idx}", leave=False)):
             question = sample['question']
+            gold_answer = sample['answer']
 
-            # Generate responses with modified model
+            # Generate sampled responses for uncertainty measurement
             responses = generate_responses(
                 model=model,
                 tokenizer=tokenizer,
@@ -579,6 +681,17 @@ def run_noise_removal(
                 temperature=1.0,
                 top_p=0.95
             )
+
+            # Generate greedy response for quality evaluation
+            greedy_response = generate_responses(
+                model=model,
+                tokenizer=tokenizer,
+                prompt=question,
+                num_generations=1,
+                max_new_tokens=100,
+                temperature=0.0,
+                do_sample=False
+            )[0]
 
             # Measure uncertainty
             metrics = measure_uncertainty_and_blockiness(
@@ -590,16 +703,32 @@ def run_noise_removal(
                 device=device
             )
 
+            # Measure downstream task performance
+            eval_metrics = compute_evaluation_metrics(
+                response=greedy_response,
+                gold_answer=gold_answer,
+                model=model,
+                tokenizer=tokenizer,
+                device=device
+            )
+
             # Compute changes from baseline
             baseline = baseline_results[idx]
             uncertainty_change = metrics['uncertainty_score'] - baseline['uncertainty_score']
+            f1_change = eval_metrics['f1'] - baseline['evaluation_metrics']['f1']
+            perplexity_change = eval_metrics['perplexity'] - baseline['evaluation_metrics']['perplexity']
 
             component_results.append({
                 'sample_id': idx,
                 'component_removed': component_idx,
                 'uncertainty_score': metrics['uncertainty_score'],
                 'uncertainty_change': uncertainty_change,
-                'metrics': metrics
+                'f1': eval_metrics['f1'],
+                'f1_change': f1_change,
+                'perplexity': eval_metrics['perplexity'],
+                'perplexity_change': perplexity_change,
+                'metrics': metrics,
+                'evaluation_metrics': eval_metrics
             })
 
         # Compute average uncertainty change for this component
@@ -744,8 +873,9 @@ def run_noise_removal(
 
             for idx, sample in enumerate(tqdm(samples, desc=f"Remove top {num_noise_to_remove}", leave=False)):
                 question = sample['question']
+                gold_answer = sample['answer']
 
-                # Generate responses with signal-only model
+                # Generate sampled responses for uncertainty measurement
                 responses = generate_responses(
                     model=model,
                     tokenizer=tokenizer,
@@ -755,6 +885,17 @@ def run_noise_removal(
                     temperature=1.0,
                     top_p=0.95
                 )
+
+                # Generate greedy response for quality evaluation
+                greedy_response = generate_responses(
+                    model=model,
+                    tokenizer=tokenizer,
+                    prompt=question,
+                    num_generations=1,
+                    max_new_tokens=100,
+                    temperature=0.0,
+                    do_sample=False
+                )[0]
 
                 # Measure uncertainty
                 metrics = measure_uncertainty_and_blockiness(
@@ -766,9 +907,20 @@ def run_noise_removal(
                     device=device
                 )
 
+                # Measure downstream task performance
+                eval_metrics = compute_evaluation_metrics(
+                    response=greedy_response,
+                    gold_answer=gold_answer,
+                    model=model,
+                    tokenizer=tokenizer,
+                    device=device
+                )
+
                 # Compute changes from baseline
                 baseline = baseline_results[idx]
                 uncertainty_change = metrics['uncertainty_score'] - baseline['uncertainty_score']
+                f1_change = eval_metrics['f1'] - baseline['evaluation_metrics']['f1']
+                perplexity_change = eval_metrics['perplexity'] - baseline['evaluation_metrics']['perplexity']
 
                 removal_results.append({
                     'sample_id': idx,
@@ -776,23 +928,37 @@ def run_noise_removal(
                     'components_removed': components_to_remove.copy(),
                     'uncertainty_score': metrics['uncertainty_score'],
                     'uncertainty_change': uncertainty_change,
+                    'f1': eval_metrics['f1'],
+                    'f1_change': f1_change,
+                    'perplexity': eval_metrics['perplexity'],
+                    'perplexity_change': perplexity_change,
                     'responses': responses,
-                    'metrics': metrics
+                    'greedy_response': greedy_response,
+                    'metrics': metrics,
+                    'evaluation_metrics': eval_metrics
                 })
 
             # Compute average uncertainty for this removal level
             avg_uncertainty = np.mean([r['uncertainty_score'] for r in removal_results])
             avg_uncertainty_change = np.mean([r['uncertainty_change'] for r in removal_results])
+            avg_f1 = np.mean([r['f1'] for r in removal_results])
+            avg_f1_change = np.mean([r['f1_change'] for r in removal_results])
+            avg_perplexity = np.mean([r['perplexity'] for r in removal_results])
+            avg_perplexity_change = np.mean([r['perplexity_change'] for r in removal_results])
 
             progressive_results.append({
                 'num_noise_removed': num_noise_to_remove,
                 'components_removed': components_to_remove.copy(),
                 'avg_uncertainty': avg_uncertainty,
                 'avg_uncertainty_change': avg_uncertainty_change,
+                'avg_f1': avg_f1,
+                'avg_f1_change': avg_f1_change,
+                'avg_perplexity': avg_perplexity,
+                'avg_perplexity_change': avg_perplexity_change,
                 'results': removal_results
             })
 
-            print(f"Top {num_noise_to_remove} noise removed: avg uncertainty = {avg_uncertainty:.4f} (change: {avg_uncertainty_change:+.4f})")
+            print(f"Top {num_noise_to_remove} noise removed: uncertainty={avg_uncertainty:.4f} ({avg_uncertainty_change:+.4f}), F1={avg_f1:.3f} ({avg_f1_change:+.3f}), PPL={avg_perplexity:.1f} ({avg_perplexity_change:+.1f})")
 
             # Checkpoint
             if num_noise_to_remove % checkpoint_every == 0:
@@ -822,6 +988,7 @@ def run_noise_removal(
     generate_topk_removal_figures(
         progressive_results,
         baseline_avg,
+        baseline_results,
         output_dir,
         decomposition_type,
         layer_name
@@ -888,6 +1055,9 @@ def run_noise_removal(
     print("  - topk_uncertainty_reduction.png")
     print("  - topk_uncertainty_change.png")
     print("  - topk_percentage_reduction.png")
+    print("  - topk_f1_score.png")
+    print("  - topk_perplexity.png")
+    print("  - topk_uncertainty_f1_tradeoff.png")
     print("  - analysis_report.txt")
     print("="*80)
 
