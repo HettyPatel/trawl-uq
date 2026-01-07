@@ -22,7 +22,7 @@ class TestNormalizeAnswer:
 
     def test_remove_punctuation(self):
         assert normalize_answer("answer!") == "answer"
-        assert normalize_answer("answer, here.") == "answer  here"
+        assert normalize_answer("answer, here.") == "answer here"
 
     def test_remove_articles(self):
         assert normalize_answer("the answer") == "answer"
@@ -53,10 +53,10 @@ class TestTokenF1:
     def test_partial_overlap(self):
         pred = "paris is the capital"
         gold = "the capital is paris"
-        # All 4 tokens (paris, is, capital) overlap
-        # Precision = 3/4, Recall = 3/4, F1 = 3/4
+        # After normalization (removing "the"), both become: {paris, is, capital}
+        # All 3 tokens overlap perfectly, so F1 = 1.0
         f1 = compute_token_f1(pred, gold)
-        assert f1 == pytest.approx(0.75, abs=0.01)
+        assert f1 == pytest.approx(1.0, abs=0.01)
 
     def test_no_overlap(self):
         pred = "london"
@@ -100,7 +100,7 @@ class TestTokenF1:
 class TestPerplexity:
     """Test perplexity computation (requires model)"""
 
-    @pytest.mark.skip(reason="Requires loading model - run manually if needed")
+    # @pytest.mark.skip(reason="Requires loading model - run manually if needed")
     def test_perplexity_basic(self):
         """Basic test for perplexity (requires model loading)"""
         from transformers import AutoTokenizer, AutoModelForCausalLM
@@ -129,7 +129,7 @@ class TestPerplexity:
 class TestEvaluationMetrics:
     """Test the combined evaluation metrics function"""
 
-    @pytest.mark.skip(reason="Requires loading model - run manually if needed")
+    # @pytest.mark.skip(reason="Requires loading model - run manually if needed")
     def test_compute_evaluation_metrics(self):
         """Full integration test (requires model loading)"""
         from transformers import AutoTokenizer, AutoModelForCausalLM
