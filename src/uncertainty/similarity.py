@@ -1,8 +1,58 @@
 import torch
 import numpy as np
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
-from typing import List, Tuple
+from typing import List, Tuple, Dict
 from tqdm import tqdm
+
+# Import markers from knowledge module
+from src.uncertainty.knowledge import DEGENERATE_MARKER, NO_FACTS_MARKER
+
+
+def is_invalid_knowledge(knowledge: str) -> bool:
+    """
+    Check if a knowledge extraction result is invalid (degenerate or no facts found).
+
+    Args:
+        knowledge: The extracted knowledge string
+
+    Returns:
+        True if the knowledge is invalid and should not be used for similarity
+    """
+    if not knowledge or len(knowledge.strip()) == 0:
+        return True
+    if knowledge == DEGENERATE_MARKER:
+        return True
+    if NO_FACTS_MARKER in knowledge.upper():
+        return True
+    return False
+
+
+def count_invalid_knowledge(knowledge_responses: List[str]) -> Dict[str, int]:
+    """
+    Count invalid knowledge responses in a list.
+
+    Args:
+        knowledge_responses: List of extracted knowledge strings
+
+    Returns:
+        Dict with counts: degenerate_count, no_facts_count, valid_count, total_count
+    """
+    degenerate_count = 0
+    no_facts_count = 0
+
+    for kr in knowledge_responses:
+        if kr == DEGENERATE_MARKER:
+            degenerate_count += 1
+        elif NO_FACTS_MARKER in kr.upper():
+            no_facts_count += 1
+
+    return {
+        'degenerate_count': degenerate_count,
+        'no_facts_count': no_facts_count,
+        'valid_count': len(knowledge_responses) - degenerate_count - no_facts_count,
+        'total_count': len(knowledge_responses)
+    }
+
 
 class NLISimilarityCalculator:
     """
@@ -187,11 +237,11 @@ def compute_spectral_norm_ratio(S_semantic: np.ndarray, S_knowledge: np.ndarray)
     From MD-UQ paper Section 3.2 Equation 7:
 
     SNR = ||Λ_sem||_2 / ||Λ_know||_2
-    
+
     Where ||·||_2 is the spectral norm (largest eigenvalue).
-    
+
     SNR ≈ 1 means matrices have similar structure (high redundancy).
-    
+
     Args:
         S_semantic: Semantic similarity matrix
         S_knowledge: Knowledge similarity matrix
@@ -212,4 +262,67 @@ def compute_spectral_norm_ratio(S_semantic: np.ndarray, S_knowledge: np.ndarray)
     return snr
 
 
-  
+def build_knowledge_similarity_matrix(
+        knowledge_responses: List[str],
+        nli_calculator: NLISimilarityCalculator = None,
+        device: str = "cuda",
+        invalid_similarity: float = 0.0
+) -> Tuple[np.ndarray, Dict[str, int]]:
+    """
+    Build knowledge similarity matrix, handling invalid (degenerate/no_facts) responses.
+
+    For invalid responses, we set similarity to invalid_similarity (default 0.0),
+    which means they are treated as completely dissimilar from everything.
+    This prevents degenerate responses from artificially inflating similarity.
+
+    Args:
+        knowledge_responses: List of extracted knowledge strings
+        nli_calculator: Pre-loaded NLI calculator (optional)
+        device: Device to run on
+        invalid_similarity: Similarity value to use for invalid responses (default 0.0)
+
+    Returns:
+        similarity_matrix: n x n numpy array of similarity scores
+        stats: Dict with counts of invalid responses
+    """
+    n = len(knowledge_responses)
+
+    # Initialize calculator if not provided
+    if nli_calculator is None:
+        nli_calculator = NLISimilarityCalculator(device=device)
+
+    # Count invalid responses
+    stats = count_invalid_knowledge(knowledge_responses)
+
+    # Check if too many invalid - if > 50%, the measurement is unreliable
+    if stats['valid_count'] < n * 0.5:
+        stats['is_reliable'] = False
+    else:
+        stats['is_reliable'] = True
+
+    # Initialize similarity matrix
+    similarity_matrix = np.zeros((n, n))
+    np.fill_diagonal(similarity_matrix, 1.0)
+
+    # Track which responses are invalid
+    invalid_mask = [is_invalid_knowledge(kr) for kr in knowledge_responses]
+
+    # Compute pairwise similarities
+    print(f"Computing knowledge similarities for {n} responses ({stats['valid_count']} valid)...")
+    for i in tqdm(range(n), desc="Knowledge similarity"):
+        for j in range(i + 1, n):
+            # If either response is invalid, use invalid_similarity
+            if invalid_mask[i] or invalid_mask[j]:
+                sim = invalid_similarity
+            else:
+                # Both valid - compute actual similarity
+                sim = nli_calculator.compute_bidirectional_similarity(
+                    knowledge_responses[i],
+                    knowledge_responses[j]
+                )
+
+            similarity_matrix[i, j] = sim
+            similarity_matrix[j, i] = sim
+
+    return similarity_matrix, stats
+

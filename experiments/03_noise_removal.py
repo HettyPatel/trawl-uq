@@ -30,7 +30,8 @@ from src.generation.generate import (
 )
 from src.uncertainty.similarity import (
     NLISimilarityCalculator,
-    build_semantic_similarity_matrix
+    build_semantic_similarity_matrix,
+    build_knowledge_similarity_matrix
 )
 from src.uncertainty.knowledge import KnowledgeExtractor
 from src.uncertainty.metrics import (
@@ -93,9 +94,9 @@ def measure_uncertainty_and_blockiness(
         responses=responses
     )
 
-    # Build knowledge similarity matrix
-    S_knowledge = build_semantic_similarity_matrix(
-        responses=knowledge_responses,
+    # Build knowledge similarity matrix (with invalid response handling)
+    S_knowledge, knowledge_stats = build_knowledge_similarity_matrix(
+        knowledge_responses=knowledge_responses,
         nli_calculator=nli_calculator,
         device=device
     )
@@ -118,6 +119,7 @@ def measure_uncertainty_and_blockiness(
         'semantic_similarity': S_semantic,
         'knowledge_similarity': S_knowledge,
         'knowledge_responses': knowledge_responses,
+        'knowledge_stats': knowledge_stats,  # Stats about invalid/degenerate responses
         'blockiness_by_rank': blockiness_results,
         'uncertainty_score': uncertainty
     }
@@ -727,6 +729,9 @@ def run_noise_removal(
                 'f1_change': f1_change,
                 'perplexity': eval_metrics['perplexity'],
                 'perplexity_change': perplexity_change,
+                'responses': responses,  # Save responses for debugging
+                'greedy_response': greedy_response,  # Save greedy response
+                'knowledge_stats': metrics.get('knowledge_stats', {}),  # Degenerate/invalid stats
                 'metrics': metrics,
                 'evaluation_metrics': eval_metrics
             })
@@ -734,13 +739,24 @@ def run_noise_removal(
         # Compute average uncertainty change for this component
         avg_uncertainty_change = np.mean([r['uncertainty_change'] for r in component_results])
 
+        # Compute degenerate/invalid response stats for this component
+        total_degenerate = sum(r.get('knowledge_stats', {}).get('degenerate_count', 0) for r in component_results)
+        total_no_facts = sum(r.get('knowledge_stats', {}).get('no_facts_count', 0) for r in component_results)
+        total_responses = sum(r.get('knowledge_stats', {}).get('total_count', 0) for r in component_results)
+        invalid_rate = (total_degenerate + total_no_facts) / total_responses if total_responses > 0 else 0
+
         component_search_results.append({
             'component_idx': component_idx,
             'avg_uncertainty_change': avg_uncertainty_change,
+            'degenerate_count': total_degenerate,
+            'no_facts_count': total_no_facts,
+            'total_responses': total_responses,
+            'invalid_rate': invalid_rate,
             'results': component_results
         })
 
-        print(f"Component {component_idx}: avg uncertainty change = {avg_uncertainty_change:.4f}")
+        print(f"Component {component_idx}: avg uncertainty change = {avg_uncertainty_change:.4f}, "
+              f"invalid rate = {invalid_rate:.1%} ({total_degenerate} degenerate, {total_no_facts} no_facts)")
 
         # Checkpoint
         if (component_idx + 1) % checkpoint_every == 0:
