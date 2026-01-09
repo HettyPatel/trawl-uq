@@ -22,8 +22,18 @@ def is_invalid_knowledge(knowledge: str) -> bool:
         return True
     if knowledge == DEGENERATE_MARKER:
         return True
-    if NO_FACTS_MARKER in knowledge.upper():
+
+    # Only mark as invalid if response starts with NO_FACTS_FOUND or is very short
+    # Don't invalidate responses that have actual facts but mention NO_FACTS_FOUND somewhere
+    stripped = knowledge.strip().upper()
+    if stripped.startswith(NO_FACTS_MARKER):
         return True
+    if stripped == NO_FACTS_MARKER:
+        return True
+    # Handle cases like "* NO_FACTS_FOUND" or "1. NO_FACTS_FOUND"
+    if stripped.lstrip('*-0123456789. ').startswith(NO_FACTS_MARKER):
+        return True
+
     return False
 
 
@@ -43,7 +53,8 @@ def count_invalid_knowledge(knowledge_responses: List[str]) -> Dict[str, int]:
     for kr in knowledge_responses:
         if kr == DEGENERATE_MARKER:
             degenerate_count += 1
-        elif NO_FACTS_MARKER in kr.upper():
+        elif is_invalid_knowledge(kr) and kr != DEGENERATE_MARKER:
+            # Use the same logic as is_invalid_knowledge for consistency
             no_facts_count += 1
 
     return {

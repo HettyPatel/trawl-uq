@@ -98,20 +98,15 @@ class KnowledgeExtractor:
         if not skip_prefilter and is_degenerate_response(response):
             return DEGENERATE_MARKER
 
-        # Layer 2: Strict prompt that prevents hallucination
-        # Key changes from original:
-        # - Explicit instruction to NOT use own knowledge
-        # - Explicit instruction to return NO_FACTS_FOUND if incoherent
-        prompt = f"""Extract factual claims from the response below that answer the question.
-- ONLY extract facts explicitly stated in the response
-- Do NOT use your own knowledge to answer the question
-- Do NOT add information not present in the response
-- If the response is incoherent or contains no relevant facts, respond with exactly: NO_FACTS_FOUND
+        # Layer 2: Simple prompt for knowledge extraction
+        # Keep it simple - fewer rules = more consistent behavior from the LLM
+        prompt = f"""List the factual claims in this response as bullet points.
+Only extract facts that are explicitly stated. Do not add your own knowledge.
 
 Question: {question}
 Response: {response}
 
-Extracted claims (or NO_FACTS_FOUND):"""
+Facts:"""
 
         # Tokenize WITH attention mask
         inputs = self.tokenizer(
