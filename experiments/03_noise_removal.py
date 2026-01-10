@@ -229,6 +229,7 @@ def generate_topk_removal_figures(
         progressive_results,
         baseline_avg_uncertainty,
         baseline_results,
+        decomposed_baseline_results,
         output_dir,
         decomposition_type,
         layer_name
@@ -242,14 +243,19 @@ def generate_topk_removal_figures(
         print("No progressive results to plot")
         return
 
-    # Extract data
-    k_values = [pr['num_noise_removed'] for pr in progressive_results]
-    avg_uncertainties = [pr['avg_uncertainty'] for pr in progressive_results]
-    avg_changes = [pr['avg_uncertainty_change'] for pr in progressive_results]
-    avg_f1s = [pr['avg_f1'] for pr in progressive_results]
-    avg_perplexities = [pr['avg_perplexity'] for pr in progressive_results]
+    # Decomposed baseline stats (K=0)
+    decomp_avg_unc = np.mean([r['uncertainty_score'] for r in decomposed_baseline_results])
+    decomp_avg_f1 = np.mean([r['evaluation_metrics']['f1'] for r in decomposed_baseline_results])
+    decomp_avg_ppl = np.mean([r['evaluation_metrics']['perplexity'] for r in decomposed_baseline_results])
 
-    # Baseline evaluation metrics
+    # Extract data and prepend K=0 (decomposed baseline)
+    k_values = [0] + [pr['num_noise_removed'] for pr in progressive_results]
+    avg_uncertainties = [decomp_avg_unc] + [pr['avg_uncertainty'] for pr in progressive_results]
+    avg_changes = [decomp_avg_unc - baseline_avg_uncertainty] + [pr['avg_uncertainty_change'] for pr in progressive_results]
+    avg_f1s = [decomp_avg_f1] + [pr['avg_f1'] for pr in progressive_results]
+    avg_perplexities = [decomp_avg_ppl] + [pr['avg_perplexity'] for pr in progressive_results]
+
+    # Original baseline evaluation metrics
     baseline_avg_f1 = np.mean([r['evaluation_metrics']['f1'] for r in baseline_results])
     baseline_avg_ppl = np.mean([r['evaluation_metrics']['perplexity'] for r in baseline_results])
 
@@ -369,6 +375,7 @@ def generate_report(
         rankings_info,
         progressive_results,
         baseline_results,
+        decomposed_baseline_results,
         config,
         output_dir,
         decomposition_type,
@@ -382,6 +389,13 @@ def generate_report(
 
     # Baseline stats
     baseline_avg = np.mean([r['uncertainty_score'] for r in baseline_results])
+    baseline_avg_f1 = np.mean([r['evaluation_metrics']['f1'] for r in baseline_results])
+    baseline_avg_ppl = np.mean([r['evaluation_metrics']['perplexity'] for r in baseline_results])
+
+    # Decomposed baseline stats
+    decomp_avg = np.mean([r['uncertainty_score'] for r in decomposed_baseline_results])
+    decomp_avg_f1 = np.mean([r['evaluation_metrics']['f1'] for r in decomposed_baseline_results])
+    decomp_avg_ppl = np.mean([r['evaluation_metrics']['perplexity'] for r in decomposed_baseline_results])
 
     # Categorize components
     noise_comps = [(c['component_idx'], c['avg_uncertainty_change'])
@@ -409,9 +423,13 @@ def generate_report(
     report.append(f"Dataset: {config.get('dataset_name', 'N/A')}")
     report.append("")
 
-    report.append("BASELINE UNCERTAINTY")
+    report.append("BASELINE COMPARISON")
     report.append("-"*80)
-    report.append(f"Average: {baseline_avg:.4f}")
+    report.append(f"{'Metric':<20} {'Original':<15} {'Decomposed':<15} {'Change':<15}")
+    report.append("-"*80)
+    report.append(f"{'Uncertainty':<20} {baseline_avg:<15.4f} {decomp_avg:<15.4f} {decomp_avg - baseline_avg:+.4f}")
+    report.append(f"{'F1 Score':<20} {baseline_avg_f1:<15.4f} {decomp_avg_f1:<15.4f} {decomp_avg_f1 - baseline_avg_f1:+.4f}")
+    report.append(f"{'Perplexity':<20} {baseline_avg_ppl:<15.2f} {decomp_avg_ppl:<15.2f} {decomp_avg_ppl - baseline_avg_ppl:+.2f}")
     report.append("")
 
     report.append("COMPONENT CATEGORIZATION")
@@ -658,6 +676,117 @@ def run_noise_removal(
     with open(output_dir / "baseline.pkl", 'wb') as f:
         pickle.dump(baseline_results, f)
     print(f"\nSaved baseline to {output_dir / 'baseline.pkl'}")
+
+    # ========== PHASE 1.5: Decomposed Baseline (All Components, No Removal) ==========
+    print("\n" + "="*80)
+    print("PHASE 1.5: DECOMPOSED BASELINE (Reconstruct with ALL components)")
+    print("="*80)
+
+    # Reconstruct weights with all components (no removal)
+    if decomposition_type == "cp":
+        fc_in_reconstructed, fc_out_reconstructed = reconstruct_weights_cp(decomp_weights, decomp_factors)
+    else:  # tucker
+        fc_in_reconstructed, fc_out_reconstructed = reconstruct_weights(decomp_weights, decomp_factors)
+
+    # Update model with reconstructed weights
+    update_fc_layer_weights(
+        model,
+        target_layer,
+        fc_in_reconstructed,
+        fc_out_reconstructed,
+        model_type="llama"
+    )
+
+    decomposed_baseline_results = []
+
+    for idx, sample in enumerate(tqdm(samples, desc="Decomposed Baseline")):
+        question = sample['question']
+        gold_answer = sample['answer']
+
+        # Generate sampled responses for uncertainty measurement
+        responses = generate_responses(
+            model=model,
+            tokenizer=tokenizer,
+            prompt=question,
+            num_generations=num_generations,
+            max_new_tokens=100,
+            temperature=1.0,
+            top_p=0.95
+        )
+
+        # Generate greedy response for quality evaluation (short answer prompt)
+        greedy_response = generate_responses(
+            model=model,
+            tokenizer=tokenizer,
+            prompt=format_short_answer_prompt(question),
+            num_generations=1,
+            max_new_tokens=50,
+            temperature=0.0,
+            do_sample=False
+        )[0]
+
+        # Measure uncertainty
+        metrics = measure_uncertainty_and_blockiness(
+            responses=responses,
+            question=question,
+            nli_calculator=nli_calculator,
+            knowledge_extractor=knowledge_extractor,
+            decomposition_type=decomposition_type,
+            device=device
+        )
+
+        # Measure downstream task performance
+        eval_metrics = compute_evaluation_metrics(
+            response=greedy_response,
+            gold_answer=gold_answer,
+            model=model,
+            tokenizer=tokenizer,
+            device=device
+        )
+
+        # Compute changes from original baseline
+        orig_baseline = baseline_results[idx]
+        uncertainty_change = metrics['uncertainty_score'] - orig_baseline['uncertainty_score']
+        f1_change = eval_metrics['f1'] - orig_baseline['evaluation_metrics']['f1']
+        perplexity_change = eval_metrics['perplexity'] - orig_baseline['evaluation_metrics']['perplexity']
+
+        decomposed_baseline_results.append({
+            'sample_id': idx,
+            'question': question,
+            'answer': gold_answer,
+            'responses': responses,
+            'greedy_response': greedy_response,
+            'uncertainty_change_from_original': uncertainty_change,
+            'f1_change_from_original': f1_change,
+            'perplexity_change_from_original': perplexity_change,
+            **metrics,
+            'evaluation_metrics': eval_metrics
+        })
+
+    # Save decomposed baseline
+    with open(output_dir / "decomposed_baseline.pkl", 'wb') as f:
+        pickle.dump(decomposed_baseline_results, f)
+
+    # Print summary
+    avg_unc_decomposed = np.mean([r['uncertainty_score'] for r in decomposed_baseline_results])
+    avg_f1_decomposed = np.mean([r['evaluation_metrics']['f1'] for r in decomposed_baseline_results])
+    avg_ppl_decomposed = np.mean([r['evaluation_metrics']['perplexity'] for r in decomposed_baseline_results])
+    avg_unc_original = np.mean([r['uncertainty_score'] for r in baseline_results])
+
+    print(f"\nDecomposed baseline saved to {output_dir / 'decomposed_baseline.pkl'}")
+    print(f"Original baseline avg uncertainty: {avg_unc_original:.4f}")
+    print(f"Decomposed baseline avg uncertainty: {avg_unc_decomposed:.4f} (change: {avg_unc_decomposed - avg_unc_original:+.4f})")
+    print(f"Decomposed baseline avg F1: {avg_f1_decomposed:.4f}")
+    print(f"Decomposed baseline avg perplexity: {avg_ppl_decomposed:.2f}")
+
+    # Restore original weights before component search
+    update_fc_layer_weights(
+        model,
+        target_layer,
+        original_fc_in,
+        original_fc_out,
+        model_type="llama"
+    )
 
     # ========== PHASE 2: Component Search (Individual Removal) ==========
     print("\n" + "="*80)
@@ -1028,6 +1157,7 @@ def run_noise_removal(
         progressive_results,
         baseline_avg,
         baseline_results,
+        decomposed_baseline_results,
         output_dir,
         decomposition_type,
         layer_name
@@ -1056,6 +1186,7 @@ def run_noise_removal(
         rankings_info,
         progressive_results,
         baseline_results,
+        decomposed_baseline_results,
         config,
         output_dir,
         decomposition_type,
@@ -1068,7 +1199,8 @@ def run_noise_removal(
         'baseline': baseline_results,
         'component_search': component_search_results,
         'component_rankings': rankings_info,
-        'progressive_removal': progressive_results
+        'progressive_removal': progressive_results,
+        'decomposed_baseline': decomposed_baseline_results
     }
 
     with open(output_dir / "results.pkl", 'wb') as f:
@@ -1086,6 +1218,7 @@ def run_noise_removal(
     print("\nFiles created:")
     print("  - results.pkl (all data)")
     print("  - baseline.pkl")
+    print("  - decomposed_baseline.pkl")
     print("  - component_search.pkl")
     print("  - component_rankings.pkl")
     print("  - uncertainty_change_by_component.png")
