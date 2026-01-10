@@ -57,6 +57,11 @@ sns.set_style("whitegrid")
 plt.rcParams['figure.figsize'] = (14, 10)
 
 
+def format_short_answer_prompt(question: str) -> str:
+    """Format question as a prompt that encourages short answers (for evaluation)."""
+    return f"Question: {question}\nAnswer (short):"
+
+
 def measure_uncertainty_and_blockiness(
         responses,
         question,
@@ -100,6 +105,24 @@ def measure_uncertainty_and_blockiness(
         nli_calculator=nli_calculator,
         device=device
     )
+
+    # Check if too many responses are degenerate (>=10% = 2+ out of 20)
+    # If so, model is broken for this input → max uncertainty
+    n_responses = len(responses)
+    n_invalid = knowledge_stats['degenerate_count'] + knowledge_stats['no_facts_count']
+    invalid_rate = n_invalid / n_responses if n_responses > 0 else 0
+
+    if invalid_rate >= 0.10:
+        # Too many degenerate responses - return max uncertainty
+        # Don't bother computing blockiness on garbage data
+        return {
+            'semantic_similarity': S_semantic,
+            'knowledge_similarity': S_knowledge,
+            'knowledge_responses': knowledge_responses,
+            'knowledge_stats': knowledge_stats,
+            'blockiness_by_rank': {f'rank_{r}': None for r in ranks},
+            'uncertainty_score': 1.0  # Maximum uncertainty
+        }
 
     # Compute blockiness at multiple ranks
     blockiness_results = {}
@@ -591,13 +614,13 @@ def run_noise_removal(
             top_p=0.95
         )
 
-        # Generate greedy response for quality evaluation
+        # Generate greedy response for quality evaluation (short answer prompt)
         greedy_response = generate_responses(
             model=model,
             tokenizer=tokenizer,
-            prompt=question,
+            prompt=format_short_answer_prompt(question),
             num_generations=1,
-            max_new_tokens=100,
+            max_new_tokens=50,  # Shorter since we expect short answers
             temperature=0.0,
             do_sample=False
         )[0]
@@ -684,13 +707,13 @@ def run_noise_removal(
                 top_p=0.95
             )
 
-            # Generate greedy response for quality evaluation
+            # Generate greedy response for quality evaluation (short answer prompt)
             greedy_response = generate_responses(
                 model=model,
                 tokenizer=tokenizer,
-                prompt=question,
+                prompt=format_short_answer_prompt(question),
                 num_generations=1,
-                max_new_tokens=100,
+                max_new_tokens=50,  # Shorter since we expect short answers
                 temperature=0.0,
                 do_sample=False
             )[0]
@@ -902,13 +925,13 @@ def run_noise_removal(
                     top_p=0.95
                 )
 
-                # Generate greedy response for quality evaluation
+                # Generate greedy response for quality evaluation (short answer prompt)
                 greedy_response = generate_responses(
                     model=model,
                     tokenizer=tokenizer,
-                    prompt=question,
+                    prompt=format_short_answer_prompt(question),
                     num_generations=1,
-                    max_new_tokens=100,
+                    max_new_tokens=50,  # Shorter since we expect short answers
                     temperature=0.0,
                     do_sample=False
                 )[0]
