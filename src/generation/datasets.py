@@ -134,7 +134,44 @@ class HotpotQADataset(QADataset):
 
         self.data = processed_data
         return self # return self for chaining.
-            
+
+
+class NQOpenDataset(QADataset):
+    """
+    Natural Questions Open dataset - open domain QA from Google Search queries.
+    Questions are real user queries, answers are short (<=5 tokens).
+    No context provided - tests model's parametric knowledge.
+    """
+
+    def load(self, tokenizer):
+        """Load and process NQ-Open dataset from HuggingFace."""
+        dataset = load_dataset("google-research-datasets/nq_open", split=self.split)
+
+        if self.num_samples:
+            dataset = dataset.select(range(min(self.num_samples, len(dataset))))
+
+        processed_data = []
+
+        for idx, item in enumerate(dataset):
+            question = item['question']
+            # NQ-Open can have multiple valid answers
+            answers = item['answer']  # List of valid answers
+            answer = answers[0] if answers else ""  # Use first answer as primary
+
+            # No context for open-domain QA - just the question
+            prompt = f"Question: {question}\nAnswer:"
+
+            processed_data.append({
+                'id': f"nq_open_{idx}",
+                'prompt': prompt,
+                'question': question,
+                'answer': answer,
+                'all_answers': answers,  # Store all valid answers for evaluation
+                'context': None  # No context for open-domain QA
+            })
+
+        self.data = processed_data
+        return self
 
 
 ####======================================================####
@@ -166,7 +203,8 @@ def get_dataset(dataset_name: str, split: str = "validation", num_samples: int =
     # Map dataset names to classes
     datasets = {
         "coqa": CoQADataset,
-        "hotpotqa": HotpotQADataset
+        "hotpotqa": HotpotQADataset,
+        "nq_open": NQOpenDataset
     }
 
     # check if requested dataset is supported

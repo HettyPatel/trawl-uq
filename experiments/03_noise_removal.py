@@ -165,13 +165,26 @@ def generate_analysis_figures(
     indices = [c['component_idx'] for c in component_search_results]
     unc_change = [c['avg_uncertainty_change'] for c in component_search_results]
 
-    # Also compute blockiness changes
+    # Also compute blockiness changes (handle None values from high invalid rate)
     block_change = []
     for comp in component_search_results:
-        changes = [r['metrics']['blockiness_by_rank']['rank_10']['reconstruction_fit'] -
-                   baseline_results[r['sample_id']]['blockiness_by_rank']['rank_10']['reconstruction_fit']
-                   for r in comp['results']]
-        block_change.append(np.mean(changes))
+        changes = []
+        for r in comp['results']:
+            sample_id = r['sample_id']
+            metrics_block = r['metrics']['blockiness_by_rank'].get('rank_10')
+            baseline_block = baseline_results[sample_id]['blockiness_by_rank'].get('rank_10')
+
+            # Skip if either blockiness is None (high invalid rate)
+            if metrics_block is None or baseline_block is None:
+                # Component caused model breakdown - treat as large negative change
+                # (removing it would help, but we can't measure blockiness)
+                continue
+
+            change = metrics_block['reconstruction_fit'] - baseline_block['reconstruction_fit']
+            changes.append(change)
+
+        # If all samples had None blockiness, use NaN
+        block_change.append(np.mean(changes) if changes else np.nan)
 
     # Plot 1: Uncertainty Change by Component
     fig, ax = plt.subplots(figsize=(14, 6))
@@ -187,16 +200,25 @@ def generate_analysis_figures(
     print(f"Saved: {output_dir / 'uncertainty_change_by_component.png'}")
     plt.close()
 
-    # Plot 2: Scatter - Uncertainty vs Blockiness Change
+    # Plot 2: Scatter - Uncertainty vs Blockiness Change (filter out NaN values)
     fig, ax = plt.subplots(figsize=(10, 8))
-    sc = ax.scatter(unc_change, block_change, alpha=0.6, s=100, c=indices, cmap='viridis')
+    valid_mask = ~np.isnan(block_change)
+    valid_unc = np.array(unc_change)[valid_mask]
+    valid_block = np.array(block_change)[valid_mask]
+    valid_indices = np.array(indices)[valid_mask]
+    if len(valid_unc) > 0:
+        sc = ax.scatter(valid_unc, valid_block, alpha=0.6, s=100, c=valid_indices, cmap='viridis')
+        plt.colorbar(sc, ax=ax, label='Component Index')
     ax.axhline(y=0, color='red', linestyle='--', alpha=0.5)
     ax.axvline(x=0, color='red', linestyle='--', alpha=0.5)
     ax.set_xlabel('Uncertainty Change', fontsize=12)
     ax.set_ylabel('Blockiness Change', fontsize=12)
-    ax.set_title(f'{layer_name} ({decomp_label}): Uncertainty vs Blockiness Change', fontsize=14)
+    n_skipped = np.sum(~valid_mask)
+    title = f'{layer_name} ({decomp_label}): Uncertainty vs Blockiness Change'
+    if n_skipped > 0:
+        title += f'\n({n_skipped} components with broken model excluded)'
+    ax.set_title(title, fontsize=14)
     ax.grid(alpha=0.3)
-    plt.colorbar(sc, ax=ax, label='Component Index')
     plt.tight_layout()
     plt.savefig(output_dir / 'uncertainty_vs_blockiness.png', dpi=300, bbox_inches='tight')
     print(f"Saved: {output_dir / 'uncertainty_vs_blockiness.png'}")
@@ -211,11 +233,15 @@ def generate_analysis_figures(
     axes[0].set_title(f'{layer_name}: Distribution of Uncertainty Changes', fontsize=14)
     axes[0].grid(alpha=0.3)
 
-    axes[1].hist(block_change, bins=20, alpha=0.7, color='green', edgecolor='black')
+    valid_block_hist = [b for b in block_change if not np.isnan(b)]
+    axes[1].hist(valid_block_hist, bins=20, alpha=0.7, color='green', edgecolor='black')
     axes[1].axvline(x=0, color='red', linestyle='--', linewidth=2)
     axes[1].set_xlabel('Blockiness Change', fontsize=12)
     axes[1].set_ylabel('Frequency', fontsize=12)
-    axes[1].set_title(f'{layer_name}: Distribution of Blockiness Changes', fontsize=14)
+    title_block = f'{layer_name}: Distribution of Blockiness Changes'
+    if len(block_change) - len(valid_block_hist) > 0:
+        title_block += f' ({len(block_change) - len(valid_block_hist)} excluded)'
+    axes[1].set_title(title_block, fontsize=14)
     axes[1].grid(alpha=0.3)
     plt.tight_layout()
     plt.savefig(output_dir / 'change_distributions.png', dpi=300, bbox_inches='tight')
@@ -513,6 +539,7 @@ def generate_report(
 
 def run_noise_removal(
         model_name="meta-llama/Llama-2-7b-chat-hf",
+        model_type="llama",
         dataset_name="hotpotqa",
         num_samples=10,
         target_layer=6,
@@ -534,6 +561,7 @@ def run_noise_removal(
 
     Args:
         model_name: HuggingFace model name
+        model_type: Model architecture type ('llama' or 'gpt2')
         dataset_name: Dataset to use (coqa, hotpotqa)
         num_samples: Number of dataset samples
         target_layer: Which layer to decompose
@@ -548,7 +576,9 @@ def run_noise_removal(
 
     # Setup output directory
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_dir = Path(f"results/noise_removal_{decomposition_type}/{dataset_name}_rank{rank}_{timestamp}")
+    # Extract short model name (e.g., "Llama-3.1-8B-Instruct" from "meta-llama/Llama-3.1-8B-Instruct")
+    short_model_name = model_name.split("/")[-1]
+    output_dir = Path(f"results/noise_removal_{decomposition_type}/{short_model_name}_{dataset_name}_layer{target_layer}_rank{rank}_{timestamp}")
     output_dir.mkdir(parents=True, exist_ok=True)
 
     layer_name = f"Layer {target_layer}"
@@ -557,6 +587,7 @@ def run_noise_removal(
     print(f"Noise Removal Experiment ({decomposition_type.upper()} Decomposition)")
     print("="*80)
     print(f"Model: {model_name}")
+    print(f"Model type: {model_type}")
     print(f"Dataset: {dataset_name}")
     print(f"Num samples: {num_samples}")
     print(f"Target layer: {target_layer}")
@@ -592,7 +623,7 @@ def run_noise_removal(
 
     # ========== Decompose Target Layer ==========
     print(f"\nDecomposing layer {target_layer} with {decomposition_type.upper()} rank {rank}...")
-    fc_in_weight, fc_out_weight = get_fc_layer_weights(model, target_layer, model_type="llama")
+    fc_in_weight, fc_out_weight = get_fc_layer_weights(model, target_layer, model_type=model_type)
 
     if decomposition_type == "cp":
         # CP returns [weights, factor_0, factor_1, factor_2]
@@ -694,7 +725,7 @@ def run_noise_removal(
         target_layer,
         fc_in_reconstructed,
         fc_out_reconstructed,
-        model_type="llama"
+        model_type=model_type
     )
 
     decomposed_baseline_results = []
@@ -785,7 +816,7 @@ def run_noise_removal(
         target_layer,
         original_fc_in,
         original_fc_out,
-        model_type="llama"
+        model_type=model_type
     )
 
     # ========== PHASE 2: Component Search (Individual Removal) ==========
@@ -815,7 +846,7 @@ def run_noise_removal(
             target_layer,
             fc_in_reconstructed,
             fc_out_reconstructed,
-            model_type="llama"
+            model_type=model_type
         )
 
         # Measure on all samples
@@ -923,7 +954,7 @@ def run_noise_removal(
             target_layer,
             original_fc_in,
             original_fc_out,
-            model_type="llama"
+            model_type=model_type
         )
 
         # Clear memory
@@ -1033,7 +1064,7 @@ def run_noise_removal(
                 target_layer,
                 fc_in_reconstructed,
                 fc_out_reconstructed,
-                model_type="llama"
+                model_type=model_type
             )
 
             # Measure on all samples
@@ -1141,7 +1172,7 @@ def run_noise_removal(
                 target_layer,
                 original_fc_in,
                 original_fc_out,
-                model_type="llama"
+                model_type=model_type
             )
 
             # Clear memory
@@ -1170,6 +1201,7 @@ def run_noise_removal(
 
     config = {
         'model_name': model_name,
+        'model_type': model_type,
         'dataset_name': dataset_name,
         'num_samples': num_samples,
         'target_layer': target_layer,
@@ -1243,10 +1275,14 @@ if __name__ == "__main__":
     parser.add_argument('--layer', type=int, default=30, help='Target layer (default: 30)')
     parser.add_argument('--samples', type=int, default=10, help='Number of samples (default: 10)')
     parser.add_argument('--rank', type=int, default=40, help='Decomposition rank (default: 40)')
-    parser.add_argument('--dataset', type=str, default='hotpotqa', choices=['coqa', 'hotpotqa'],
+    parser.add_argument('--dataset', type=str, default='hotpotqa', choices=['coqa', 'hotpotqa', 'nq_open'],
                         help='Dataset to use (default: hotpotqa)')
     parser.add_argument('--decomposition', type=str, default='cp', choices=['tucker', 'cp'],
                         help='Decomposition type (default: cp)')
+    parser.add_argument('--model', type=str, default='meta-llama/Llama-2-7b-chat-hf',
+                        help='HuggingFace model name (default: meta-llama/Llama-2-7b-chat-hf)')
+    parser.add_argument('--model-type', type=str, default='llama', choices=['llama', 'gpt2'],
+                        help='Model architecture type (default: llama). Use gpt2 for GPT-2/GPT-J')
     parser.add_argument('--max-k', type=int, default=None,
                         help='Maximum number of noise components to remove (default: all)')
     parser.add_argument('--test', action='store_true', help='Run quick test (1 sample, 5 components)')
@@ -1257,6 +1293,8 @@ if __name__ == "__main__":
         # Quick test
         print("Running QUICK TEST mode...")
         run_noise_removal(
+            model_name=args.model,
+            model_type=args.model_type,
             dataset_name=args.dataset,
             num_samples=1,
             target_layer=args.layer,
@@ -1269,6 +1307,8 @@ if __name__ == "__main__":
         # Full run
         print(f"Running FULL experiment on layer {args.layer}...")
         run_noise_removal(
+            model_name=args.model,
+            model_type=args.model_type,
             dataset_name=args.dataset,
             num_samples=args.samples,
             target_layer=args.layer,
