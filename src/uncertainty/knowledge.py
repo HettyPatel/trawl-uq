@@ -9,13 +9,17 @@ from tqdm import tqdm
 DEGENERATE_MARKER = "[DEGENERATE]"
 NO_FACTS_MARKER = "NO_FACTS_FOUND"
 
+# Default model for knowledge extraction - Mistral is best at fact extraction
+# while still catching most gibberish
+DEFAULT_EXTRACTION_MODEL = "mistralai/Mistral-7B-Instruct-v0.3"
+
 
 def is_degenerate_response(response: str) -> bool:
     """
-    Detect if a response is degenerate (gibberish/collapsed).
+    Lightweight pre-filter for obviously degenerate responses.
 
-    This pre-filter catches obvious gibberish before sending to the LLM,
-    saving compute and preventing hallucinated extractions.
+    This catches the most obvious gibberish patterns before sending to the LLM,
+    saving compute. The knowledge extractor model (Mistral) handles the rest.
 
     Args:
         response: The model response to check
@@ -38,8 +42,17 @@ def is_degenerate_response(response: str) -> bool:
     if re.search(r'\b(\w+)(\s+\1){4,}', response.lower()):
         return True
 
-    # Check 3: Very short repeated character patterns
+    # Check 3: Very short repeated character patterns (e.g., "========" or "9,9,9,9,9")
     if re.search(r'(.{1,3})\1{5,}', response):
+        return True
+
+    # Check 4: Suspicious non-ASCII (Cyrillic, etc.) - common in broken Llama outputs
+    non_ascii_chars = re.findall(r'[^\x00-\x7F]', response)
+    # Allow emojis and common typographic symbols
+    allowed_unicode = '\u2018\u2019\u201c\u201d\u2013\u2014\u2022\u2026'  # ''""–—•…
+    suspicious = [c for c in non_ascii_chars
+                  if c not in allowed_unicode and (ord(c) < 0x1F300 or ord(c) > 0x1F9FF)]
+    if len(suspicious) > 5:
         return True
 
     return False
@@ -52,14 +65,20 @@ class KnowledgeExtractor:
     From MD-UQ paper Section 2.2.2
     Given question Q and response A_i, generate knowledge representation K_i
     by extracting explicit claims that are standalone and independent of wording.
+
+    Uses Mistral-7B-Instruct by default for best fact extraction accuracy.
     """
 
-    def __init__(self, model_name: str = "meta-llama/Llama-2-7b-hf", device : str = "cuda"):
+    def __init__(self, model_name: str = None, device: str = "cuda"):
         """
         Args:
-            model_name : Auxiliary LLM for knowledge extraction
+            model_name: Auxiliary LLM for knowledge extraction.
+                        If None, uses DEFAULT_EXTRACTION_MODEL (Mistral-7B-Instruct).
             device: Device to run on
         """
+        if model_name is None:
+            model_name = DEFAULT_EXTRACTION_MODEL
+
         print(f"Loading knowledge extraction model: {model_name} on {device}...")
 
         self.device = device
@@ -98,10 +117,11 @@ class KnowledgeExtractor:
         if not skip_prefilter and is_degenerate_response(response):
             return DEGENERATE_MARKER
 
-        # Layer 2: Simple prompt for knowledge extraction
-        # Keep it simple - fewer rules = more consistent behavior from the LLM
+        # Layer 2: Prompt for knowledge extraction
+        # Include instruction to return NO_FACTS_FOUND for gibberish
         prompt = f"""List the factual claims in this response as bullet points.
 Only extract facts that are explicitly stated. Do not add your own knowledge.
+If there are no facts or the response is gibberish/nonsense, say "NO_FACTS_FOUND".
 
 Question: {question}
 Response: {response}
@@ -122,8 +142,8 @@ Facts:"""
             outputs = self.model.generate(
                 inputs.input_ids,
                 attention_mask=inputs.attention_mask,
-                max_new_tokens=150,
-                temperature=0.7,
+                max_new_tokens=200,
+                temperature=0.3,  # Lower temperature for consistent extraction
                 top_p=0.9,
                 do_sample=True,
                 pad_token_id=self.tokenizer.pad_token_id,
@@ -182,11 +202,60 @@ Facts:"""
 
         return knowledge_list
     
+def is_valid_knowledge(knowledge: str) -> bool:
+    """
+    Check if extracted knowledge is valid (contains actual facts).
+
+    Args:
+        knowledge: The extracted knowledge string
+
+    Returns:
+        True if the knowledge contains actual facts, False otherwise
+    """
+    if not knowledge or len(knowledge.strip()) == 0:
+        return False
+    if knowledge == DEGENERATE_MARKER:
+        return False
+
+    # Check for NO_FACTS indicators
+    upper = knowledge.strip().upper()
+    no_facts_indicators = [
+        "NO_FACTS_FOUND", "NO FACTS", "NO FACTUAL", "CANNOT EXTRACT",
+        "UNABLE TO EXTRACT", "GIBBERISH", "NONSENSE", "NO INFORMATION"
+    ]
+
+    for indicator in no_facts_indicators:
+        if upper.startswith(indicator) or indicator in upper[:50]:
+            return False
+
+    return True
+
+
+def compute_valid_ratio(knowledge_list: List[str]) -> float:
+    """
+    Compute the ratio of valid knowledge extractions.
+
+    When this ratio is low (< 0.5), the model outputs are unreliable
+    and uncertainty should be set to maximum (1.0).
+
+    Args:
+        knowledge_list: List of extracted knowledge strings
+
+    Returns:
+        valid_ratio: Fraction of responses with valid knowledge [0, 1]
+    """
+    if not knowledge_list:
+        return 0.0
+
+    valid_count = sum(1 for k in knowledge_list if is_valid_knowledge(k))
+    return valid_count / len(knowledge_list)
+
+
 def extract_knowledge_for_dataset(
         results: List[dict],
         extractor: KnowledgeExtractor = None,
-        model_name : str = "meta-llama/Llama-2-7b-hf",
-        device : str = "cuda"
+        model_name: str = None,
+        device: str = "cuda"
 ) -> List[dict]:
     """
     Extract knowledge for all samples in a dataset.
@@ -194,11 +263,11 @@ def extract_knowledge_for_dataset(
     Args:
         results: List of dicts from generate_for_dataset()
         extractor: Pre-loaded knowledge extractor (optional)
-        model_name : Model to use for extraction
+        model_name: Model to use for extraction (None = use default Mistral)
         device: Device to run on.
-    
-    Returns: 
-        results_with_knowledge: Same list with 'knowledge_responses' added 
+
+    Returns:
+        results_with_knowledge: Same list with 'knowledge_responses' added
     """
     # Initialize extractor once for all samples
     if extractor is None:

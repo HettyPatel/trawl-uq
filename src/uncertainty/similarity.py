@@ -4,37 +4,21 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from typing import List, Tuple, Dict
 from tqdm import tqdm
 
-# Import markers from knowledge module
-from src.uncertainty.knowledge import DEGENERATE_MARKER, NO_FACTS_MARKER
+# Import from knowledge module
+from src.uncertainty.knowledge import (
+    DEGENERATE_MARKER,
+    NO_FACTS_MARKER,
+    is_valid_knowledge,
+    compute_valid_ratio
+)
 
 
 def is_invalid_knowledge(knowledge: str) -> bool:
     """
-    Check if a knowledge extraction result is invalid (degenerate or no facts found).
-
-    Args:
-        knowledge: The extracted knowledge string
-
-    Returns:
-        True if the knowledge is invalid and should not be used for similarity
+    Check if a knowledge extraction result is invalid.
+    This is the inverse of is_valid_knowledge from the knowledge module.
     """
-    if not knowledge or len(knowledge.strip()) == 0:
-        return True
-    if knowledge == DEGENERATE_MARKER:
-        return True
-
-    # Only mark as invalid if response starts with NO_FACTS_FOUND or is very short
-    # Don't invalidate responses that have actual facts but mention NO_FACTS_FOUND somewhere
-    stripped = knowledge.strip().upper()
-    if stripped.startswith(NO_FACTS_MARKER):
-        return True
-    if stripped == NO_FACTS_MARKER:
-        return True
-    # Handle cases like "* NO_FACTS_FOUND" or "1. NO_FACTS_FOUND"
-    if stripped.lstrip('*-0123456789. ').startswith(NO_FACTS_MARKER):
-        return True
-
-    return False
+    return not is_valid_knowledge(knowledge)
 
 
 def count_invalid_knowledge(knowledge_responses: List[str]) -> Dict[str, int]:
@@ -53,8 +37,7 @@ def count_invalid_knowledge(knowledge_responses: List[str]) -> Dict[str, int]:
     for kr in knowledge_responses:
         if kr == DEGENERATE_MARKER:
             degenerate_count += 1
-        elif is_invalid_knowledge(kr) and kr != DEGENERATE_MARKER:
-            # Use the same logic as is_invalid_knowledge for consistency
+        elif not is_valid_knowledge(kr):
             no_facts_count += 1
 
     return {
