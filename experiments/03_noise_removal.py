@@ -33,7 +33,10 @@ from src.uncertainty.similarity import (
     build_semantic_similarity_matrix,
     build_knowledge_similarity_matrix
 )
-from src.uncertainty.knowledge import KnowledgeExtractor
+from src.uncertainty.knowledge import (
+    KnowledgeExtractor,
+    compute_valid_ratio
+)
 from src.uncertainty.metrics import (
     compute_blockiness_score,
     compute_uncertainty_score
@@ -99,6 +102,9 @@ def measure_uncertainty_and_blockiness(
         responses=responses
     )
 
+    # Check valid ratio - if too many responses are invalid, return max uncertainty
+    valid_ratio = compute_valid_ratio(knowledge_responses)
+
     # Build knowledge similarity matrix (with invalid response handling)
     S_knowledge, knowledge_stats = build_knowledge_similarity_matrix(
         knowledge_responses=knowledge_responses,
@@ -106,22 +112,19 @@ def measure_uncertainty_and_blockiness(
         device=device
     )
 
-    # Check if too many responses are degenerate (>=10% = 2+ out of 20)
-    # If so, model is broken for this input → max uncertainty
-    n_responses = len(responses)
-    n_invalid = knowledge_stats['degenerate_count'] + knowledge_stats['no_facts_count']
-    invalid_rate = n_invalid / n_responses if n_responses > 0 else 0
+    # Add valid_ratio to stats
+    knowledge_stats['valid_ratio'] = valid_ratio
 
-    if invalid_rate >= 0.10:
-        # Too many degenerate responses - return max uncertainty
-        # Don't bother computing blockiness on garbage data
+    # If less than 50% valid responses, model outputs are unreliable
+    if valid_ratio < 0.5:
         return {
             'semantic_similarity': S_semantic,
             'knowledge_similarity': S_knowledge,
             'knowledge_responses': knowledge_responses,
             'knowledge_stats': knowledge_stats,
             'blockiness_by_rank': {f'rank_{r}': None for r in ranks},
-            'uncertainty_score': 1.0  # Maximum uncertainty
+            'uncertainty_score': 1.0,  # Maximum uncertainty - outputs unreliable
+            'unreliable_reason': f'valid_ratio={valid_ratio:.2f} < 0.5'
         }
 
     # Compute blockiness at multiple ranks
@@ -617,8 +620,9 @@ def run_noise_removal(
     print("NLI model loaded")
 
     # ========== Load Knowledge Extractor ==========
-    print(f"\nLoading knowledge extractor: {model_name}")
-    knowledge_extractor = KnowledgeExtractor(model_name=model_name, device=device)
+    # Uses Mistral-7B-Instruct by default (best for fact extraction)
+    print("\nLoading knowledge extractor (Mistral-7B-Instruct)...")
+    knowledge_extractor = KnowledgeExtractor(device=device)
     print("Knowledge extractor loaded")
 
     # ========== Decompose Target Layer ==========
