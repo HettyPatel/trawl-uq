@@ -1,0 +1,2174 @@
+{
+  "metadata": {
+    "dataset": "nq_open",
+    "split": "validation",
+    "num_samples": 200,
+    "description": "Fixed evaluation set for nq_open"
+  },
+  "samples": [
+    {
+      "id": "nq_open_0",
+      "prompt": "Question: when was the last time anyone was on the moon\nAnswer:",
+      "question": "when was the last time anyone was on the moon",
+      "answer": "14 December 1972 UTC",
+      "all_answers": [
+        "14 December 1972 UTC",
+        "December 1972"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_1",
+      "prompt": "Question: who wrote he ain't heavy he's my brother lyrics\nAnswer:",
+      "question": "who wrote he ain't heavy he's my brother lyrics",
+      "answer": "Bobby Scott",
+      "all_answers": [
+        "Bobby Scott",
+        "Bob Russell"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_2",
+      "prompt": "Question: how many seasons of the bastard executioner are there\nAnswer:",
+      "question": "how many seasons of the bastard executioner are there",
+      "answer": "one",
+      "all_answers": [
+        "one",
+        "one season"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_3",
+      "prompt": "Question: when did the eagles win last super bowl\nAnswer:",
+      "question": "when did the eagles win last super bowl",
+      "answer": "2017",
+      "all_answers": [
+        "2017"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_4",
+      "prompt": "Question: who won last year's ncaa women's basketball\nAnswer:",
+      "question": "who won last year's ncaa women's basketball",
+      "answer": "South Carolina",
+      "all_answers": [
+        "South Carolina"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_5",
+      "prompt": "Question: when did the isle of wight become an island\nAnswer:",
+      "question": "when did the isle of wight become an island",
+      "answer": "During the last Ice Age",
+      "all_answers": [
+        "During the last Ice Age"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_6",
+      "prompt": "Question: love yourself by justin bieber is about who\nAnswer:",
+      "question": "love yourself by justin bieber is about who",
+      "answer": "Rihanna",
+      "all_answers": [
+        "Rihanna"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_7",
+      "prompt": "Question: who was the ruler of england in 1616\nAnswer:",
+      "question": "who was the ruler of england in 1616",
+      "answer": "James I",
+      "all_answers": [
+        "James I"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_8",
+      "prompt": "Question: what is the hot coffee mod in san andreas\nAnswer:",
+      "question": "what is the hot coffee mod in san andreas",
+      "answer": "a normally inaccessible mini-game",
+      "all_answers": [
+        "a normally inaccessible mini-game"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_9",
+      "prompt": "Question: what is the maximum data rate for the 802.11a standard select one\nAnswer:",
+      "question": "what is the maximum data rate for the 802.11a standard select one",
+      "answer": "54\u00a0Mbit/s",
+      "all_answers": [
+        "54\u00a0Mbit/s"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_10",
+      "prompt": "Question: which state is located in the centre of india\nAnswer:",
+      "question": "which state is located in the centre of india",
+      "answer": "Chhattisgarh",
+      "all_answers": [
+        "Chhattisgarh",
+        "Madhya Pradesh"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_11",
+      "prompt": "Question: who sang i ran all the way home\nAnswer:",
+      "question": "who sang i ran all the way home",
+      "answer": "The Impalas",
+      "all_answers": [
+        "The Impalas"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_12",
+      "prompt": "Question: where did the last name wallace come from\nAnswer:",
+      "question": "where did the last name wallace come from",
+      "answer": "a Scottish surname",
+      "all_answers": [
+        "a Scottish surname"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_13",
+      "prompt": "Question: who was the actor that played ben stone on law and order\nAnswer:",
+      "question": "who was the actor that played ben stone on law and order",
+      "answer": "Michael Moriarty",
+      "all_answers": [
+        "Michael Moriarty"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_14",
+      "prompt": "Question: who does the voice of nala in the lion king\nAnswer:",
+      "question": "who does the voice of nala in the lion king",
+      "answer": "Niketa Calame",
+      "all_answers": [
+        "Niketa Calame",
+        "Sally Dworsky",
+        "Moira Kelly",
+        "Laura Williams"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_15",
+      "prompt": "Question: who plays gram on the young and the restless\nAnswer:",
+      "question": "who plays gram on the young and the restless",
+      "answer": "Max Shippee",
+      "all_answers": [
+        "Max Shippee"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_16",
+      "prompt": "Question: what is the oath that new citizens take\nAnswer:",
+      "question": "what is the oath that new citizens take",
+      "answer": "United States Oath of Allegiance",
+      "all_answers": [
+        "United States Oath of Allegiance"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_17",
+      "prompt": "Question: who is under the mask of darth vader\nAnswer:",
+      "question": "who is under the mask of darth vader",
+      "answer": "Anakin Skywalker",
+      "all_answers": [
+        "Anakin Skywalker"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_18",
+      "prompt": "Question: who had a baby at 100 in the bible\nAnswer:",
+      "question": "who had a baby at 100 in the bible",
+      "answer": "Sarah",
+      "all_answers": [
+        "Sarah",
+        "Abraham"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_19",
+      "prompt": "Question: what age do you need to be to buy a bb gun\nAnswer:",
+      "question": "what age do you need to be to buy a bb gun",
+      "answer": "18",
+      "all_answers": [
+        "18"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_20",
+      "prompt": "Question: ethiopia flight 961 crashes in to the sea\nAnswer:",
+      "question": "ethiopia flight 961 crashes in to the sea",
+      "answer": "23 November 1996",
+      "all_answers": [
+        "23 November 1996"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_21",
+      "prompt": "Question: where was percy jackson and the olympians filmed\nAnswer:",
+      "question": "where was percy jackson and the olympians filmed",
+      "answer": "Vancouver",
+      "all_answers": [
+        "Vancouver",
+        "Mission, British Columbia"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_22",
+      "prompt": "Question: how many seasons of vampire diaries r there\nAnswer:",
+      "question": "how many seasons of vampire diaries r there",
+      "answer": "eight",
+      "all_answers": [
+        "eight",
+        "8"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_23",
+      "prompt": "Question: how many episodes are there in dragon ball z\nAnswer:",
+      "question": "how many episodes are there in dragon ball z",
+      "answer": "291 episodes",
+      "all_answers": [
+        "291 episodes",
+        "291"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_24",
+      "prompt": "Question: who plays auggie in the movie the wonder\nAnswer:",
+      "question": "who plays auggie in the movie the wonder",
+      "answer": "Jacob Tremblay",
+      "all_answers": [
+        "Jacob Tremblay"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_25",
+      "prompt": "Question: when was the first australian prime minister elected\nAnswer:",
+      "question": "when was the first australian prime minister elected",
+      "answer": "Sir Edmund Barton",
+      "all_answers": [
+        "Sir Edmund Barton",
+        "1901"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_26",
+      "prompt": "Question: who plays matthew on anne with an e\nAnswer:",
+      "question": "who plays matthew on anne with an e",
+      "answer": "R. H. Thomson",
+      "all_answers": [
+        "R. H. Thomson"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_27",
+      "prompt": "Question: who is the girl in green day 21 guns\nAnswer:",
+      "question": "who is the girl in green day 21 guns",
+      "answer": "Lisa Stelly",
+      "all_answers": [
+        "Lisa Stelly"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_28",
+      "prompt": "Question: who plays joker in batman the dark knight\nAnswer:",
+      "question": "who plays joker in batman the dark knight",
+      "answer": "Ledger",
+      "all_answers": [
+        "Ledger"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_29",
+      "prompt": "Question: when was the south asian association for regional co-operation (saarc) formed\nAnswer:",
+      "question": "when was the south asian association for regional co-operation (saarc) formed",
+      "answer": "December 1985",
+      "all_answers": [
+        "December 1985",
+        "8 December 1985"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_30",
+      "prompt": "Question: when was the first hunger games book published\nAnswer:",
+      "question": "when was the first hunger games book published",
+      "answer": "September 14, 2008",
+      "all_answers": [
+        "September 14, 2008",
+        "2008"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_31",
+      "prompt": "Question: who did bette midler portray in the rose\nAnswer:",
+      "question": "who did bette midler portray in the rose",
+      "answer": "Mary Rose Foster",
+      "all_answers": [
+        "Mary Rose Foster"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_32",
+      "prompt": "Question: who is the lead singer of depeche mode\nAnswer:",
+      "question": "who is the lead singer of depeche mode",
+      "answer": "David Gahan",
+      "all_answers": [
+        "David Gahan"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_33",
+      "prompt": "Question: where did the butchers in the slaughterhouse cases live\nAnswer:",
+      "question": "where did the butchers in the slaughterhouse cases live",
+      "answer": "New Orleans",
+      "all_answers": [
+        "New Orleans"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_34",
+      "prompt": "Question: who developed the concept of total quality management\nAnswer:",
+      "question": "who developed the concept of total quality management",
+      "answer": "W. Edwards Deming",
+      "all_answers": [
+        "W. Edwards Deming"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_35",
+      "prompt": "Question: who wrote cant get you out of my head lyrics\nAnswer:",
+      "question": "who wrote cant get you out of my head lyrics",
+      "answer": "Cathy Dennis and Rob Davis",
+      "all_answers": [
+        "Cathy Dennis and Rob Davis",
+        "Rob Davis",
+        "Cathy Dennis"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_36",
+      "prompt": "Question: where does no game no life anime end\nAnswer:",
+      "question": "where does no game no life anime end",
+      "answer": "the Elkia Federation",
+      "all_answers": [
+        "the Elkia Federation",
+        "the sixth volume"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_37",
+      "prompt": "Question: when did taylor swift's first album release\nAnswer:",
+      "question": "when did taylor swift's first album release",
+      "answer": "October 24, 2006",
+      "all_answers": [
+        "October 24, 2006",
+        "2005"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_38",
+      "prompt": "Question: what are the three fifty shades of grey books\nAnswer:",
+      "question": "what are the three fifty shades of grey books",
+      "answer": "Fifty Shades of Grey",
+      "all_answers": [
+        "Fifty Shades of Grey",
+        "Fifty Shades Darker",
+        "Fifty Shades Freed"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_39",
+      "prompt": "Question: who has the power (judicial) to make decisions in courts of law\nAnswer:",
+      "question": "who has the power (judicial) to make decisions in courts of law",
+      "answer": "judges",
+      "all_answers": [
+        "judges"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_40",
+      "prompt": "Question: what are the ranks in the us navy\nAnswer:",
+      "question": "what are the ranks in the us navy",
+      "answer": "E-8s senior chief petty officer",
+      "all_answers": [
+        "E-8s senior chief petty officer",
+        "E-9s master chief petty officer"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_41",
+      "prompt": "Question: i was a great islamic scholar and mathematician who died in 1131 ce\nAnswer:",
+      "question": "i was a great islamic scholar and mathematician who died in 1131 ce",
+      "answer": "Omar Khayyam",
+      "all_answers": [
+        "Omar Khayyam"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_42",
+      "prompt": "Question: who is the coach for the ottawa senators\nAnswer:",
+      "question": "who is the coach for the ottawa senators",
+      "answer": "Guy Boucher",
+      "all_answers": [
+        "Guy Boucher"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_43",
+      "prompt": "Question: last episode of what happens to my family\nAnswer:",
+      "question": "last episode of what happens to my family",
+      "answer": "53",
+      "all_answers": [
+        "53"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_44",
+      "prompt": "Question: when is the last time the vikings were in the nfc championship\nAnswer:",
+      "question": "when is the last time the vikings were in the nfc championship",
+      "answer": "1976",
+      "all_answers": [
+        "1976",
+        "2017/18"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_45",
+      "prompt": "Question: what are the colors of the netherlands flag\nAnswer:",
+      "question": "what are the colors of the netherlands flag",
+      "answer": "blue",
+      "all_answers": [
+        "blue",
+        "white",
+        "red"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_46",
+      "prompt": "Question: where is lord's prayer found in bible\nAnswer:",
+      "question": "where is lord's prayer found in bible",
+      "answer": "in the Gospel of Luke",
+      "all_answers": [
+        "in the Gospel of Luke"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_47",
+      "prompt": "Question: when was the last time oklahoma won a national championship in football\nAnswer:",
+      "question": "when was the last time oklahoma won a national championship in football",
+      "answer": "2003",
+      "all_answers": [
+        "2003",
+        "2000"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_48",
+      "prompt": "Question: location of the ten commandments in the bible\nAnswer:",
+      "question": "location of the ten commandments in the bible",
+      "answer": "Exodus",
+      "all_answers": [
+        "Exodus",
+        "Deuteronomy"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_49",
+      "prompt": "Question: where did the allies go after north africa\nAnswer:",
+      "question": "where did the allies go after north africa",
+      "answer": "Italy",
+      "all_answers": [
+        "Italy",
+        "the Italian Campaign"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_50",
+      "prompt": "Question: what is the meaning of veronica in english\nAnswer:",
+      "question": "what is the meaning of veronica in english",
+      "answer": "she who brings victory",
+      "all_answers": [
+        "she who brings victory"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_51",
+      "prompt": "Question: what is the name of the main artery which takes blood from the heart to the body\nAnswer:",
+      "question": "what is the name of the main artery which takes blood from the heart to the body",
+      "answer": "The aorta",
+      "all_answers": [
+        "The aorta",
+        "aorta"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_52",
+      "prompt": "Question: who played solomon in little house on the prairie\nAnswer:",
+      "question": "who played solomon in little house on the prairie",
+      "answer": "Todd Bridges",
+      "all_answers": [
+        "Todd Bridges"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_53",
+      "prompt": "Question: who does eric end up with in that 70s show\nAnswer:",
+      "question": "who does eric end up with in that 70s show",
+      "answer": "Donna",
+      "all_answers": [
+        "Donna"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_54",
+      "prompt": "Question: an object that moves around an external axis is said to be\nAnswer:",
+      "question": "an object that moves around an external axis is said to be",
+      "answer": "revolution or orbital revolution",
+      "all_answers": [
+        "revolution or orbital revolution",
+        "orbit"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_55",
+      "prompt": "Question: architectural elements forming rib vaults eg wells cathedral\nAnswer:",
+      "question": "architectural elements forming rib vaults eg wells cathedral",
+      "answer": "an armature of piped masonry",
+      "all_answers": [
+        "an armature of piped masonry",
+        "barrel vaults",
+        "two to three barrel vaults"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_56",
+      "prompt": "Question: who sang the song good morning good morning\nAnswer:",
+      "question": "who sang the song good morning good morning",
+      "answer": "Gene Kelly",
+      "all_answers": [
+        "Gene Kelly",
+        "Donald O'Connor",
+        "Judy Garland",
+        "Debbie Reynolds",
+        "Mickey Rooney"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_57",
+      "prompt": "Question: who wrote papa got a brand new bag\nAnswer:",
+      "question": "who wrote papa got a brand new bag",
+      "answer": "James Brown",
+      "all_answers": [
+        "James Brown"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_58",
+      "prompt": "Question: where does a roadrunner live in the desert\nAnswer:",
+      "question": "where does a roadrunner live in the desert",
+      "answer": "mountainous shrubland",
+      "all_answers": [
+        "mountainous shrubland",
+        "arid lowland"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_59",
+      "prompt": "Question: who wrote it's a long long way to pasadena\nAnswer:",
+      "question": "who wrote it's a long long way to pasadena",
+      "answer": "John Young",
+      "all_answers": [
+        "John Young",
+        "Harry Vanda",
+        "David Hemmings",
+        "George Young"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_60",
+      "prompt": "Question: what's the dog's name on tom and jerry\nAnswer:",
+      "question": "what's the dog's name on tom and jerry",
+      "answer": "Spike",
+      "all_answers": [
+        "Spike"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_61",
+      "prompt": "Question: who are nominated for president of india 2017\nAnswer:",
+      "question": "who are nominated for president of india 2017",
+      "answer": "Meira Kumar",
+      "all_answers": [
+        "Meira Kumar",
+        "Ram Nath Kovind"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_62",
+      "prompt": "Question: where does the path train stop in newark\nAnswer:",
+      "question": "where does the path train stop in newark",
+      "answer": "Newark Penn Station",
+      "all_answers": [
+        "Newark Penn Station"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_63",
+      "prompt": "Question: where does route 66 start on the west coast\nAnswer:",
+      "question": "where does route 66 start on the west coast",
+      "answer": "in Santa Monica",
+      "all_answers": [
+        "in Santa Monica"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_64",
+      "prompt": "Question: who is the first wife on sister wives\nAnswer:",
+      "question": "who is the first wife on sister wives",
+      "answer": "Meri",
+      "all_answers": [
+        "Meri"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_65",
+      "prompt": "Question: when did houston go to the american league\nAnswer:",
+      "question": "when did houston go to the american league",
+      "answer": "2013",
+      "all_answers": [
+        "2013"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_66",
+      "prompt": "Question: when did they stop cigarette advertising on television\nAnswer:",
+      "question": "when did they stop cigarette advertising on television",
+      "answer": "January 2, 1971",
+      "all_answers": [
+        "January 2, 1971",
+        "1970"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_67",
+      "prompt": "Question: coldplay song i will try to fix you\nAnswer:",
+      "question": "coldplay song i will try to fix you",
+      "answer": "\"Fix You\"",
+      "all_answers": [
+        "\"Fix You\""
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_68",
+      "prompt": "Question: points on a sphere or angles in a circle are measured in units called\nAnswer:",
+      "question": "points on a sphere or angles in a circle are measured in units called",
+      "answer": "radians",
+      "all_answers": [
+        "radians"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_69",
+      "prompt": "Question: the oligodynamic effect is a phenomenon that describes\nAnswer:",
+      "question": "the oligodynamic effect is a phenomenon that describes",
+      "answer": "a biocidal effect of metals",
+      "all_answers": [
+        "a biocidal effect of metals"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_70",
+      "prompt": "Question: where does the white witch live in narnia\nAnswer:",
+      "question": "where does the white witch live in narnia",
+      "answer": "her castle",
+      "all_answers": [
+        "her castle"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_71",
+      "prompt": "Question: how many games in a row have the uconn women's basketball team won\nAnswer:",
+      "question": "how many games in a row have the uconn women's basketball team won",
+      "answer": "111 straight wins",
+      "all_answers": [
+        "111 straight wins",
+        "111",
+        "90"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_72",
+      "prompt": "Question: is there a name for the at symbol\nAnswer:",
+      "question": "is there a name for the at symbol",
+      "answer": "commercial at",
+      "all_answers": [
+        "commercial at",
+        "at symbol",
+        "at sign"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_73",
+      "prompt": "Question: who sings the theme song for the tv show cops\nAnswer:",
+      "question": "who sings the theme song for the tv show cops",
+      "answer": "Inner Circle",
+      "all_answers": [
+        "Inner Circle",
+        "Jamaican reggae band Inner Circle"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_74",
+      "prompt": "Question: when was corporal punishment banned in south africa\nAnswer:",
+      "question": "when was corporal punishment banned in south africa",
+      "answer": "1997",
+      "all_answers": [
+        "1997"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_75",
+      "prompt": "Question: who plays captain phasma in star wars the force awakens\nAnswer:",
+      "question": "who plays captain phasma in star wars the force awakens",
+      "answer": "Gwendoline Christie",
+      "all_answers": [
+        "Gwendoline Christie"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_76",
+      "prompt": "Question: who sings she's like the wind lyrics\nAnswer:",
+      "question": "who sings she's like the wind lyrics",
+      "answer": "Wendy Fraser",
+      "all_answers": [
+        "Wendy Fraser",
+        "Patrick Swayze"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_77",
+      "prompt": "Question: when did marathon change its name to snickers\nAnswer:",
+      "question": "when did marathon change its name to snickers",
+      "answer": "19 July 1990",
+      "all_answers": [
+        "19 July 1990"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_78",
+      "prompt": "Question: who captained the first european ship to sail around the tip of africa\nAnswer:",
+      "question": "who captained the first european ship to sail around the tip of africa",
+      "answer": "Bartolomeu Dias",
+      "all_answers": [
+        "Bartolomeu Dias"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_79",
+      "prompt": "Question: who ordered the forbidden city to be built\nAnswer:",
+      "question": "who ordered the forbidden city to be built",
+      "answer": "Zhu Di",
+      "all_answers": [
+        "Zhu Di"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_80",
+      "prompt": "Question: who sang let me tell you about the birds and the bees\nAnswer:",
+      "question": "who sang let me tell you about the birds and the bees",
+      "answer": "Jewel Akens",
+      "all_answers": [
+        "Jewel Akens"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_81",
+      "prompt": "Question: who has the power to approve or veto legislation constitution\nAnswer:",
+      "question": "who has the power to approve or veto legislation constitution",
+      "answer": "the President",
+      "all_answers": [
+        "the President"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_82",
+      "prompt": "Question: how many seasons of the rugrats are there\nAnswer:",
+      "question": "how many seasons of the rugrats are there",
+      "answer": "9 seasons",
+      "all_answers": [
+        "9 seasons",
+        "9"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_83",
+      "prompt": "Question: who is the minister of local government in zimbabwe\nAnswer:",
+      "question": "who is the minister of local government in zimbabwe",
+      "answer": "Hon July Moyo",
+      "all_answers": [
+        "Hon July Moyo"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_84",
+      "prompt": "Question: what was the initial effect of the transition from command to market economies in eastern europe\nAnswer:",
+      "question": "what was the initial effect of the transition from command to market economies in eastern europe",
+      "answer": "Inequality of opportunity",
+      "all_answers": [
+        "Inequality of opportunity"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_85",
+      "prompt": "Question: when did toyota start making cars in the us\nAnswer:",
+      "question": "when did toyota start making cars in the us",
+      "answer": "by the early 1980s",
+      "all_answers": [
+        "by the early 1980s",
+        "1984"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_86",
+      "prompt": "Question: how many pieces in a terry's chocolate orange\nAnswer:",
+      "question": "how many pieces in a terry's chocolate orange",
+      "answer": "six",
+      "all_answers": [
+        "six",
+        "20"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_87",
+      "prompt": "Question: who plays the saint of killers on preacher\nAnswer:",
+      "question": "who plays the saint of killers on preacher",
+      "answer": "Graham McTavish",
+      "all_answers": [
+        "Graham McTavish"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_88",
+      "prompt": "Question: when did the royal proclamation of 1763 end\nAnswer:",
+      "question": "when did the royal proclamation of 1763 end",
+      "answer": "the American Revolutionary War",
+      "all_answers": [
+        "the American Revolutionary War",
+        "with the American Revolutionary War",
+        "1783"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_89",
+      "prompt": "Question: who is playing the halftime show at super bowl 2016\nAnswer:",
+      "question": "who is playing the halftime show at super bowl 2016",
+      "answer": "Beyonc\u00e9",
+      "all_answers": [
+        "Beyonc\u00e9",
+        "Coldplay",
+        "Bruno Mars"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_90",
+      "prompt": "Question: jonny cash one piece at a time car\nAnswer:",
+      "question": "jonny cash one piece at a time car",
+      "answer": "Cadillac",
+      "all_answers": [
+        "Cadillac"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_91",
+      "prompt": "Question: what is the minimum wage in france per hour\nAnswer:",
+      "question": "what is the minimum wage in france per hour",
+      "answer": "11.16",
+      "all_answers": [
+        "11.16",
+        "\u20ac9.88 per hour."
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_92",
+      "prompt": "Question: describe the three phases of the normal blood clotting process\nAnswer:",
+      "question": "describe the three phases of the normal blood clotting process",
+      "answer": "blood coagulation",
+      "all_answers": [
+        "blood coagulation",
+        "vasoconstriction,"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_93",
+      "prompt": "Question: when did amnesia the dark descent come out\nAnswer:",
+      "question": "when did amnesia the dark descent come out",
+      "answer": "8 September 2010",
+      "all_answers": [
+        "8 September 2010"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_94",
+      "prompt": "Question: what is the oldest street in the philippines\nAnswer:",
+      "question": "what is the oldest street in the philippines",
+      "answer": "Cebu City",
+      "all_answers": [
+        "Cebu City",
+        "Colon Street"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_95",
+      "prompt": "Question: where is the tibia and fibula bone located\nAnswer:",
+      "question": "where is the tibia and fibula bone located",
+      "answer": "leg",
+      "all_answers": [
+        "leg"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_96",
+      "prompt": "Question: who played bat masterson in the tv series\nAnswer:",
+      "question": "who played bat masterson in the tv series",
+      "answer": "Gene Barry",
+      "all_answers": [
+        "Gene Barry"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_97",
+      "prompt": "Question: who sings sugar sugar you are my candy girl\nAnswer:",
+      "question": "who sings sugar sugar you are my candy girl",
+      "answer": "the Archies",
+      "all_answers": [
+        "the Archies"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_98",
+      "prompt": "Question: types of skiing in the winter olympics 2018\nAnswer:",
+      "question": "types of skiing in the winter olympics 2018",
+      "answer": "Slalom",
+      "all_answers": [
+        "Slalom",
+        "Downhill",
+        "Super-G",
+        "Giant slalom",
+        "Slalom \u2013 (SC)"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_99",
+      "prompt": "Question: who plays noah newman on the young and the restless\nAnswer:",
+      "question": "who plays noah newman on the young and the restless",
+      "answer": "Robert Gillespie Adamson IV",
+      "all_answers": [
+        "Robert Gillespie Adamson IV"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_100",
+      "prompt": "Question: who has won the most games in nfl 2017\nAnswer:",
+      "question": "who has won the most games in nfl 2017",
+      "answer": "Dallas Cowboys",
+      "all_answers": [
+        "Dallas Cowboys"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_101",
+      "prompt": "Question: under article 1 what is the minimum age required to serve in the house of representatives\nAnswer:",
+      "question": "under article 1 what is the minimum age required to serve in the house of representatives",
+      "answer": "25",
+      "all_answers": [
+        "25",
+        "25 years old"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_102",
+      "prompt": "Question: who has the most catches in nfl history\nAnswer:",
+      "question": "who has the most catches in nfl history",
+      "answer": "Jerry Rice",
+      "all_answers": [
+        "Jerry Rice"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_103",
+      "prompt": "Question: when does the dlc for rainbow six siege come out\nAnswer:",
+      "question": "when does the dlc for rainbow six siege come out",
+      "answer": "January 2018",
+      "all_answers": [
+        "January 2018"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_104",
+      "prompt": "Question: who was the great wall of china built to defend against\nAnswer:",
+      "question": "who was the great wall of china built to defend against",
+      "answer": "nomads from Inner Asia",
+      "all_answers": [
+        "nomads from Inner Asia",
+        "nomads from Inner Asia."
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_105",
+      "prompt": "Question: where does the last name galvez come from\nAnswer:",
+      "question": "where does the last name galvez come from",
+      "answer": "Spanish surname",
+      "all_answers": [
+        "Spanish surname",
+        "Spanish"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_106",
+      "prompt": "Question: who opens the church of the holy sepulchre\nAnswer:",
+      "question": "who opens the church of the holy sepulchre",
+      "answer": "the Sunni Muslim family",
+      "all_answers": [
+        "the Sunni Muslim family",
+        "the Nusaybah family"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_107",
+      "prompt": "Question: when does season 5 of the blacklist resume\nAnswer:",
+      "question": "when does season 5 of the blacklist resume",
+      "answer": "January\u00a031,\u00a02018",
+      "all_answers": [
+        "January\u00a031,\u00a02018"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_108",
+      "prompt": "Question: the chinese dragons are protectors of how many seas diggy\nAnswer:",
+      "question": "the chinese dragons are protectors of how many seas diggy",
+      "answer": "Four Seas",
+      "all_answers": [
+        "Four Seas",
+        "Four"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_109",
+      "prompt": "Question: how much money did it cost to make gta v\nAnswer:",
+      "question": "how much money did it cost to make gta v",
+      "answer": "137",
+      "all_answers": [
+        "137"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_110",
+      "prompt": "Question: what is the angle of the tower of pisa\nAnswer:",
+      "question": "what is the angle of the tower of pisa",
+      "answer": "about 3.99 degrees",
+      "all_answers": [
+        "about 3.99 degrees",
+        "3.99 degrees",
+        "at about 3.99 degrees"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_111",
+      "prompt": "Question: what is the share of agriculture in indian economy\nAnswer:",
+      "question": "what is the share of agriculture in indian economy",
+      "answer": "17.32%",
+      "all_answers": [
+        "17.32%",
+        "23%"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_112",
+      "prompt": "Question: who does demetrius love in a midsummer night dream\nAnswer:",
+      "question": "who does demetrius love in a midsummer night dream",
+      "answer": "Helena",
+      "all_answers": [
+        "Helena",
+        "Hermia"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_113",
+      "prompt": "Question: when did the movie varsity blues come out\nAnswer:",
+      "question": "when did the movie varsity blues come out",
+      "answer": "1999",
+      "all_answers": [
+        "1999",
+        "January\u00a015,\u00a01999"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_114",
+      "prompt": "Question: when does the champions league quarter finals start\nAnswer:",
+      "question": "when does the champions league quarter finals start",
+      "answer": "16 March 2018",
+      "all_answers": [
+        "16 March 2018",
+        "3\u20134 April 2018"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_115",
+      "prompt": "Question: who was the famous scientist that ran the research lab moseley went to in manchester\nAnswer:",
+      "question": "who was the famous scientist that ran the research lab moseley went to in manchester",
+      "answer": "Sir Ernest Rutherford",
+      "all_answers": [
+        "Sir Ernest Rutherford"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_116",
+      "prompt": "Question: where do you get a cashiers check from\nAnswer:",
+      "question": "where do you get a cashiers check from",
+      "answer": "a bank",
+      "all_answers": [
+        "a bank",
+        "bank"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_117",
+      "prompt": "Question: who does stefan marry in the vampire diaries\nAnswer:",
+      "question": "who does stefan marry in the vampire diaries",
+      "answer": "Caroline Forbes",
+      "all_answers": [
+        "Caroline Forbes"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_118",
+      "prompt": "Question: what is the meaning of cc and bcc\nAnswer:",
+      "question": "what is the meaning of cc and bcc",
+      "answer": "Carbon copy",
+      "all_answers": [
+        "Carbon copy",
+        "Carbon copy to secondary recipients",
+        "Blind carbon copy"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_119",
+      "prompt": "Question: hazels boyfriend in the fault in our stars\nAnswer:",
+      "question": "hazels boyfriend in the fault in our stars",
+      "answer": "Augustus Waters",
+      "all_answers": [
+        "Augustus Waters"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_120",
+      "prompt": "Question: when does the day of the dead end\nAnswer:",
+      "question": "when does the day of the dead end",
+      "answer": "November 2",
+      "all_answers": [
+        "November 2"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_121",
+      "prompt": "Question: when do you celebrate birthday if born on feb 29\nAnswer:",
+      "question": "when do you celebrate birthday if born on feb 29",
+      "answer": "February 29",
+      "all_answers": [
+        "February 29",
+        "February 28",
+        "March 1"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_122",
+      "prompt": "Question: where does new york drinking water come from\nAnswer:",
+      "question": "where does new york drinking water come from",
+      "answer": "the eastern Catskill Mountains",
+      "all_answers": [
+        "the eastern Catskill Mountains"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_123",
+      "prompt": "Question: where is the citrus bowl held this year\nAnswer:",
+      "question": "where is the citrus bowl held this year",
+      "answer": "Camping World Stadium",
+      "all_answers": [
+        "Camping World Stadium"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_124",
+      "prompt": "Question: what year does the quiet man take place\nAnswer:",
+      "question": "what year does the quiet man take place",
+      "answer": "the 1920s",
+      "all_answers": [
+        "the 1920s",
+        "In the 1920s"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_125",
+      "prompt": "Question: how many seasons of rules of engagement is there\nAnswer:",
+      "question": "how many seasons of rules of engagement is there",
+      "answer": "7",
+      "all_answers": [
+        "7",
+        "seven"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_126",
+      "prompt": "Question: who plays alec ramsay in the black stallion\nAnswer:",
+      "question": "who plays alec ramsay in the black stallion",
+      "answer": "Kelly Reno",
+      "all_answers": [
+        "Kelly Reno"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_127",
+      "prompt": "Question: who plays dusty in the movie pure country\nAnswer:",
+      "question": "who plays dusty in the movie pure country",
+      "answer": "George Strait",
+      "all_answers": [
+        "George Strait"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_128",
+      "prompt": "Question: how many episodes of greys anatomy season 14\nAnswer:",
+      "question": "how many episodes of greys anatomy season 14",
+      "answer": "24",
+      "all_answers": [
+        "24",
+        "24 episodes",
+        "21"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_129",
+      "prompt": "Question: who is currently serving as president of the senate\nAnswer:",
+      "question": "who is currently serving as president of the senate",
+      "answer": "Orrin Hatch",
+      "all_answers": [
+        "Orrin Hatch",
+        "Patrick Leahy"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_130",
+      "prompt": "Question: what percentage of sunlight is captured by plants to convert it into food energy\nAnswer:",
+      "question": "what percentage of sunlight is captured by plants to convert it into food energy",
+      "answer": "45%",
+      "all_answers": [
+        "45%",
+        "3 to 6%"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_131",
+      "prompt": "Question: what type of economic system was utilized in the soviet union\nAnswer:",
+      "question": "what type of economic system was utilized in the soviet union",
+      "answer": "communism",
+      "all_answers": [
+        "communism",
+        "state ownership"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_132",
+      "prompt": "Question: how many gold medals did australia win in the 2000 olympics\nAnswer:",
+      "question": "how many gold medals did australia win in the 2000 olympics",
+      "answer": "16",
+      "all_answers": [
+        "16"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_133",
+      "prompt": "Question: who started ww2 and how did it start\nAnswer:",
+      "question": "who started ww2 and how did it start",
+      "answer": "Nazi Germany",
+      "all_answers": [
+        "Nazi Germany"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_134",
+      "prompt": "Question: when did the royal mint move to wales\nAnswer:",
+      "question": "when did the royal mint move to wales",
+      "answer": "1968",
+      "all_answers": [
+        "1968",
+        "the 1960s.",
+        "17 December 1968",
+        "the 1960s"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_135",
+      "prompt": "Question: when did bird is the word come out\nAnswer:",
+      "question": "when did bird is the word come out",
+      "answer": "1963",
+      "all_answers": [
+        "1963"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_136",
+      "prompt": "Question: how tall is the actor who plays hagrid in harry potter\nAnswer:",
+      "question": "how tall is the actor who plays hagrid in harry potter",
+      "answer": "6ft 1in",
+      "all_answers": [
+        "6ft 1in"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_137",
+      "prompt": "Question: who is opening for little mix glory days tour\nAnswer:",
+      "question": "who is opening for little mix glory days tour",
+      "answer": "Sheppard",
+      "all_answers": [
+        "Sheppard",
+        "Zoe Badwi",
+        "Louisa Johnson",
+        "Bronnie",
+        "The Vamps",
+        "Ella Eyre",
+        "Conor Maynard"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_138",
+      "prompt": "Question: who performed the first c section in 1794\nAnswer:",
+      "question": "who performed the first c section in 1794",
+      "answer": "Dr. Jesse Bennett",
+      "all_answers": [
+        "Dr. Jesse Bennett"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_139",
+      "prompt": "Question: who voices randy in f is for family\nAnswer:",
+      "question": "who voices randy in f is for family",
+      "answer": "T.J. Miller",
+      "all_answers": [
+        "T.J. Miller"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_140",
+      "prompt": "Question: bible verse taking the lord's name in vain\nAnswer:",
+      "question": "bible verse taking the lord's name in vain",
+      "answer": "Exodus 20:7",
+      "all_answers": [
+        "Exodus 20:7"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_141",
+      "prompt": "Question: who controlled the house and the senate in 2012\nAnswer:",
+      "question": "who controlled the house and the senate in 2012",
+      "answer": "Republican",
+      "all_answers": [
+        "Republican",
+        "Democratic"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_142",
+      "prompt": "Question: when's the last time army won the army navy game\nAnswer:",
+      "question": "when's the last time army won the army navy game",
+      "answer": "2017",
+      "all_answers": [
+        "2017",
+        "Army"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_143",
+      "prompt": "Question: when does thomas rhett's new album come out\nAnswer:",
+      "question": "when does thomas rhett's new album come out",
+      "answer": "September 8, 2017",
+      "all_answers": [
+        "September 8, 2017"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_144",
+      "prompt": "Question: who won the champions league final in 2016\nAnswer:",
+      "question": "who won the champions league final in 2016",
+      "answer": "Real Madrid",
+      "all_answers": [
+        "Real Madrid"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_145",
+      "prompt": "Question: who is the real killer in basic instinct 2\nAnswer:",
+      "question": "who is the real killer in basic instinct 2",
+      "answer": "Catherine Tramell",
+      "all_answers": [
+        "Catherine Tramell"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_146",
+      "prompt": "Question: who does the voice of mickey mouse on mickey mouse clubhouse\nAnswer:",
+      "question": "who does the voice of mickey mouse on mickey mouse clubhouse",
+      "answer": "Bret Iwan",
+      "all_answers": [
+        "Bret Iwan",
+        "Wayne Allwine"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_147",
+      "prompt": "Question: when was the last episode of vampire diaries aired\nAnswer:",
+      "question": "when was the last episode of vampire diaries aired",
+      "answer": "March\u00a010,\u00a02017",
+      "all_answers": [
+        "March\u00a010,\u00a02017",
+        "March 10, 2017"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_148",
+      "prompt": "Question: where did the dewey decimal system come from\nAnswer:",
+      "question": "where did the dewey decimal system come from",
+      "answer": "Melvil Dewey",
+      "all_answers": [
+        "Melvil Dewey"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_149",
+      "prompt": "Question: where did the jungle book story come from\nAnswer:",
+      "question": "where did the jungle book story come from",
+      "answer": "English author Rudyard Kipling",
+      "all_answers": [
+        "English author Rudyard Kipling"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_150",
+      "prompt": "Question: derek and meredith get back together season 3\nAnswer:",
+      "question": "derek and meredith get back together season 3",
+      "answer": "Staring at the Sun",
+      "all_answers": [
+        "Staring at the Sun"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_151",
+      "prompt": "Question: who did america declare war on in ww1\nAnswer:",
+      "question": "who did america declare war on in ww1",
+      "answer": "Austria-Hungary",
+      "all_answers": [
+        "Austria-Hungary"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_152",
+      "prompt": "Question: who played zoe hart on hart of dixie\nAnswer:",
+      "question": "who played zoe hart on hart of dixie",
+      "answer": "Rachel Sarah Bilson",
+      "all_answers": [
+        "Rachel Sarah Bilson"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_153",
+      "prompt": "Question: what was tom hanks character name in castaway\nAnswer:",
+      "question": "what was tom hanks character name in castaway",
+      "answer": "Chuck Noland",
+      "all_answers": [
+        "Chuck Noland"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_154",
+      "prompt": "Question: what engine is in a holden v8 supercar\nAnswer:",
+      "question": "what engine is in a holden v8 supercar",
+      "answer": "V8-engine",
+      "all_answers": [
+        "V8-engine"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_155",
+      "prompt": "Question: when did the sat become out of 1600\nAnswer:",
+      "question": "when did the sat become out of 1600",
+      "answer": "March 2016",
+      "all_answers": [
+        "March 2016",
+        "2014",
+        "2016"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_156",
+      "prompt": "Question: when was the minimum wage established in the united states\nAnswer:",
+      "question": "when was the minimum wage established in the united states",
+      "answer": "1938",
+      "all_answers": [
+        "1938",
+        "1933",
+        "1912"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_157",
+      "prompt": "Question: when did the rational dress society begin to work\nAnswer:",
+      "question": "when did the rational dress society begin to work",
+      "answer": "1881",
+      "all_answers": [
+        "1881"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_158",
+      "prompt": "Question: what is the baby elephants name in jungle book\nAnswer:",
+      "question": "what is the baby elephants name in jungle book",
+      "answer": "Hathi Jr.",
+      "all_answers": [
+        "Hathi Jr."
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_159",
+      "prompt": "Question: where is fe best absorbed in the body\nAnswer:",
+      "question": "where is fe best absorbed in the body",
+      "answer": "in the duodenum",
+      "all_answers": [
+        "in the duodenum",
+        "the duodenum"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_160",
+      "prompt": "Question: who is the biggest selling female group of all time\nAnswer:",
+      "question": "who is the biggest selling female group of all time",
+      "answer": "Spice Girls",
+      "all_answers": [
+        "Spice Girls"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_161",
+      "prompt": "Question: epidemiologists attempt to explain the link between health and variables such as\nAnswer:",
+      "question": "epidemiologists attempt to explain the link between health and variables such as",
+      "answer": "biological agents",
+      "all_answers": [
+        "biological agents",
+        "disease conditions in defined populations",
+        "smoking",
+        "stress",
+        "chemicals",
+        "alcohol"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_162",
+      "prompt": "Question: who won the mens single ice skating 2018\nAnswer:",
+      "question": "who won the mens single ice skating 2018",
+      "answer": "Yuzuru Hanyu",
+      "all_answers": [
+        "Yuzuru Hanyu",
+        "Javier Fern\u00e1ndez",
+        "Shoma Uno"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_163",
+      "prompt": "Question: where is the boy who played charlie in willy wonka\nAnswer:",
+      "question": "where is the boy who played charlie in willy wonka",
+      "answer": "Peter Gardner[4] Ostrum",
+      "all_answers": [
+        "Peter Gardner[4] Ostrum",
+        "Lowville, New York"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_164",
+      "prompt": "Question: where was the first session of the assam association held in1905\nAnswer:",
+      "question": "where was the first session of the assam association held in1905",
+      "answer": "Guwahati",
+      "all_answers": [
+        "Guwahati"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_165",
+      "prompt": "Question: who played ice queen in chronicles of narnia\nAnswer:",
+      "question": "who played ice queen in chronicles of narnia",
+      "answer": "Tilda Swinton",
+      "all_answers": [
+        "Tilda Swinton",
+        "Laura Brent"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_166",
+      "prompt": "Question: when is season 2 of jessica jones being released\nAnswer:",
+      "question": "when is season 2 of jessica jones being released",
+      "answer": "March 8, 2018",
+      "all_answers": [
+        "March 8, 2018"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_167",
+      "prompt": "Question: when was united nations convention on the rights of the child created\nAnswer:",
+      "question": "when was united nations convention on the rights of the child created",
+      "answer": "20 November 1989",
+      "all_answers": [
+        "20 November 1989"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_168",
+      "prompt": "Question: swan lake the sleeping beauty and the nutcracker are three famous ballets by\nAnswer:",
+      "question": "swan lake the sleeping beauty and the nutcracker are three famous ballets by",
+      "answer": "Pyotr Ilyich Tchaikovsky",
+      "all_answers": [
+        "Pyotr Ilyich Tchaikovsky"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_169",
+      "prompt": "Question: what type of database is library literature and information science\nAnswer:",
+      "question": "what type of database is library literature and information science",
+      "answer": "bibliographic database",
+      "all_answers": [
+        "bibliographic database",
+        "bibliographic"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_170",
+      "prompt": "Question: when did the united states start using the death penalty\nAnswer:",
+      "question": "when did the united states start using the death penalty",
+      "answer": "the beginning",
+      "all_answers": [
+        "the beginning",
+        "1608"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_171",
+      "prompt": "Question: when was coffee first made into a drink\nAnswer:",
+      "question": "when was coffee first made into a drink",
+      "answer": "15th century",
+      "all_answers": [
+        "15th century",
+        "the 15th century"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_172",
+      "prompt": "Question: who is jared on the bold and the beautiful\nAnswer:",
+      "question": "who is jared on the bold and the beautiful",
+      "answer": "Andrew Collins",
+      "all_answers": [
+        "Andrew Collins"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_173",
+      "prompt": "Question: who wrote knock knock knocking on heavens door\nAnswer:",
+      "question": "who wrote knock knock knocking on heavens door",
+      "answer": "Bob Dylan",
+      "all_answers": [
+        "Bob Dylan"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_174",
+      "prompt": "Question: when did the movie napoleon dynamite come out\nAnswer:",
+      "question": "when did the movie napoleon dynamite come out",
+      "answer": "June\u00a011,\u00a02004",
+      "all_answers": [
+        "June\u00a011,\u00a02004",
+        "2004"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_175",
+      "prompt": "Question: who starred in an officer and a gentleman\nAnswer:",
+      "question": "who starred in an officer and a gentleman",
+      "answer": "Richard Gere",
+      "all_answers": [
+        "Richard Gere",
+        "David Keith",
+        "Louis Gossett Jr.",
+        "Debra Winger",
+        "Phillip J. Salmon"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_176",
+      "prompt": "Question: who plays chummy's mother in call the midwife\nAnswer:",
+      "question": "who plays chummy's mother in call the midwife",
+      "answer": "Cheryl Campbell",
+      "all_answers": [
+        "Cheryl Campbell"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_177",
+      "prompt": "Question: name two fibres which are made of proteins\nAnswer:",
+      "question": "name two fibres which are made of proteins",
+      "answer": "feathers",
+      "all_answers": [
+        "feathers",
+        "hair",
+        "wool",
+        "fur",
+        "silk"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_178",
+      "prompt": "Question: how many super bowl games has the patriots played in\nAnswer:",
+      "question": "how many super bowl games has the patriots played in",
+      "answer": "10",
+      "all_answers": [
+        "10",
+        "ten",
+        "ten times"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_179",
+      "prompt": "Question: where do they put the tomb vampires in order to burn them during founders day\nAnswer:",
+      "question": "where do they put the tomb vampires in order to burn them during founders day",
+      "answer": "the Gilbert building",
+      "all_answers": [
+        "the Gilbert building"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_180",
+      "prompt": "Question: who is the king and queen of the netherlands\nAnswer:",
+      "question": "who is the king and queen of the netherlands",
+      "answer": "Queen M\u00e1xima of the Netherlands",
+      "all_answers": [
+        "Queen M\u00e1xima of the Netherlands",
+        "King Willem-Alexander"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_181",
+      "prompt": "Question: where is gall bladder situated in human body\nAnswer:",
+      "question": "where is gall bladder situated in human body",
+      "answer": "beneath the liver",
+      "all_answers": [
+        "beneath the liver"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_182",
+      "prompt": "Question: what is the current population of bora bora\nAnswer:",
+      "question": "what is the current population of bora bora",
+      "answer": "10,605",
+      "all_answers": [
+        "10,605"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_183",
+      "prompt": "Question: where does tropic of cancer pass in india\nAnswer:",
+      "question": "where does tropic of cancer pass in india",
+      "answer": "Chhattisgarh",
+      "all_answers": [
+        "Chhattisgarh",
+        "West Bengal",
+        "Gujarat",
+        "State of Tripura",
+        "Jharkhand",
+        "State of Mizoram",
+        "Madhya Pradesh",
+        "Rajasthan"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_184",
+      "prompt": "Question: who made the song falling in love with you\nAnswer:",
+      "question": "who made the song falling in love with you",
+      "answer": "Hugo Peretti",
+      "all_answers": [
+        "Hugo Peretti",
+        "George David Weiss",
+        "Elvis Presley",
+        "Luigi Creatore"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_185",
+      "prompt": "Question: which is produced in plants of narora kakrapar tarapur\nAnswer:",
+      "question": "which is produced in plants of narora kakrapar tarapur",
+      "answer": "Atomic Power",
+      "all_answers": [
+        "Atomic Power"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_186",
+      "prompt": "Question: what is the first book of percy jackson\nAnswer:",
+      "question": "what is the first book of percy jackson",
+      "answer": "The Lightning Thief",
+      "all_answers": [
+        "The Lightning Thief"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_187",
+      "prompt": "Question: who was originally cast to play indiana jones\nAnswer:",
+      "question": "who was originally cast to play indiana jones",
+      "answer": "Tom Selleck",
+      "all_answers": [
+        "Tom Selleck"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_188",
+      "prompt": "Question: what proposition made the insurance commissioner an elected position\nAnswer:",
+      "question": "what proposition made the insurance commissioner an elected position",
+      "answer": "Proposition 103",
+      "all_answers": [
+        "Proposition 103",
+        "Proposition 103 in 1988"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_189",
+      "prompt": "Question: who played amy grant i i can only imagine\nAnswer:",
+      "question": "who played amy grant i i can only imagine",
+      "answer": "Nicole DuPort",
+      "all_answers": [
+        "Nicole DuPort"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_190",
+      "prompt": "Question: who sings the song only in my dreams\nAnswer:",
+      "question": "who sings the song only in my dreams",
+      "answer": "Debbie Gibson",
+      "all_answers": [
+        "Debbie Gibson"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_191",
+      "prompt": "Question: who appoints the chair of the federal reserve system\nAnswer:",
+      "question": "who appoints the chair of the federal reserve system",
+      "answer": "President of the United States",
+      "all_answers": [
+        "President of the United States"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_192",
+      "prompt": "Question: who wins the next iron chef super chefs\nAnswer:",
+      "question": "who wins the next iron chef super chefs",
+      "answer": "Zakarian",
+      "all_answers": [
+        "Zakarian",
+        "Geoffrey Zakarian"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_193",
+      "prompt": "Question: when does body temperature tend to be lowest\nAnswer:",
+      "question": "when does body temperature tend to be lowest",
+      "answer": "11 p.m. to 3 a.m.",
+      "all_answers": [
+        "11 p.m. to 3 a.m."
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_194",
+      "prompt": "Question: who sings the whiskey ain't workin anymore\nAnswer:",
+      "question": "who sings the whiskey ain't workin anymore",
+      "answer": "Dennis Locorriere",
+      "all_answers": [
+        "Dennis Locorriere",
+        "Marty Stuart",
+        "Travis Tritt",
+        "Tim Passmore",
+        "Travis Tritt and Marty Stuart"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_195",
+      "prompt": "Question: what year is it for the jewish calendar\nAnswer:",
+      "question": "what year is it for the jewish calendar",
+      "answer": "AM 5778",
+      "all_answers": [
+        "AM 5778",
+        "5778"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_196",
+      "prompt": "Question: chief ministers of tamil nadu mentioned on wikipedia\nAnswer:",
+      "question": "chief ministers of tamil nadu mentioned on wikipedia",
+      "answer": "Ramakrishna Ranga Rao",
+      "all_answers": [
+        "Ramakrishna Ranga Rao",
+        "Tanguturi Prakasam",
+        "P. Subbarayan",
+        "M. G. Ramachandran",
+        "Janaki Ramachandran",
+        "P. T. Rajan",
+        "J. Jayalalithaa",
+        "M. Karunanidhi",
+        "A. Subbarayalu Reddiar",
+        "C. N. Annadurai",
+        "P. S. Kumaraswamy Raja",
+        "K. Palaniswami",
+        "O. Panneerselvam",
+        "V.R. Nedunchezhiyan",
+        "Raja of Panagal",
+        "O. P. Ramaswamy Reddiyar",
+        "Kurma Venkata Reddy Naidu",
+        "B. Munuswamy Naidu",
+        "C. Rajagopalachari"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_197",
+      "prompt": "Question: what is the function of a political action committee (pac)\nAnswer:",
+      "question": "what is the function of a political action committee (pac)",
+      "answer": "pools campaign contributions from members",
+      "all_answers": [
+        "pools campaign contributions from members"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_198",
+      "prompt": "Question: who has the most followers in the world on instagram\nAnswer:",
+      "question": "who has the most followers in the world on instagram",
+      "answer": "Instagram's own account",
+      "all_answers": [
+        "Instagram's own account",
+        "Instagram"
+      ],
+      "context": null
+    },
+    {
+      "id": "nq_open_199",
+      "prompt": "Question: what type of political system does el salvador have\nAnswer:",
+      "question": "what type of political system does el salvador have",
+      "answer": "a presidential representative democratic republic",
+      "all_answers": [
+        "a presidential representative democratic republic",
+        "\"flawed democracy\"",
+        "presidential representative democratic republic"
+      ],
+      "context": null
+    }
+  ]
+}
