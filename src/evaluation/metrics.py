@@ -3,14 +3,14 @@ Evaluation metrics for downstream task performance.
 
 This module implements standard QA evaluation metrics:
 - Token F1: Measures token-level overlap between prediction and gold answer
-- Perplexity: Measures model confidence/fluency on generated text
+- Answer NLL: Measures how well model predicts the gold answer (proper downstream metric)
 """
 
 import re
 import string
 import torch
 import numpy as np
-from typing import Dict
+from typing import Dict, Tuple, Optional
 
 
 def normalize_answer(text: str) -> str:
@@ -90,50 +90,121 @@ def compute_token_f1(prediction: str, gold_answer: str) -> float:
     return float(f1)
 
 
-def compute_perplexity(
-    text: str,
+def compute_answer_nll(
+    question: str,
+    gold_answer: str,
     model,
     tokenizer,
-    device: str = "cuda"
-) -> float:
+    device: str = "cuda",
+    debug: bool = False,
+    prompt_text: Optional[str] = None,
+    max_length: int = 512
+) -> Tuple[float, float]:
     """
-    Compute perplexity of generated text using the model.
+    Compute answer-only NLL (Negative Log-Likelihood) on the gold answer.
 
-    Perplexity measures how "surprised" the model is by the text:
-    - Lower perplexity = more fluent/expected text
-    - Higher perplexity = less fluent/unexpected text
-
-    Perplexity = exp(average negative log-likelihood)
+    This is the proper downstream metric for QA evaluation:
+    - Measures how well the model predicts the correct answer given the question
+    - Only scores the answer tokens, not the prompt tokens
+    - Lower NLL = model assigns higher probability to gold answer = better
 
     Args:
-        text: Generated text to evaluate
+        question: The input question/prompt
+        gold_answer: Ground truth answer to evaluate against
         model: Language model (must support forward pass with labels)
         tokenizer: Corresponding tokenizer
         device: Device for computation (cuda/cpu)
+        debug: If True, print detailed tokenization info for verification
 
     Returns:
-        perplexity: Perplexity score (lower = better)
+        Tuple of (nll, perplexity):
+            - nll: Average NLL over answer tokens (in nats, lower = better)
+            - perplexity: exp(nll) for reference
     """
-    if len(text.strip()) == 0:
-        return float('inf')
+    if len(gold_answer.strip()) == 0:
+        return float('inf'), float('inf')
 
-    # Tokenize the text
-    inputs = tokenizer(
-        text,
+    model.eval()
+
+    # Build prompt using chat template if available
+    if prompt_text is None:
+        if hasattr(tokenizer, 'apply_chat_template') and tokenizer.chat_template is not None:
+            messages = [{"role": "user", "content": question}]
+            prompt_text = tokenizer.apply_chat_template(
+                messages, tokenize=False, add_generation_prompt=True
+            )
+        else:
+            # Fallback for models without chat template
+            prompt_text = f"Question: {question}\nAnswer:"
+
+    # Full text = prompt + space + gold answer
+    # The space is important: Llama-2-chat format is [/INST] answer (with space)
+    full_text = prompt_text + " " + gold_answer
+
+    # Tokenize full text
+    enc_full = tokenizer(
+        full_text,
         return_tensors="pt",
         truncation=True,
-        max_length=512  # Limit length for memory
+        max_length=max_length
     ).to(device)
 
-    # Compute loss (negative log-likelihood)
+    input_ids = enc_full["input_ids"]
+    attention_mask = enc_full["attention_mask"]
+
+    # Find the boundary by tokenizing the prompt itself to avoid BPE mismatch.
+    enc_prompt = tokenizer(
+        prompt_text,
+        return_tensors="pt",
+        truncation=True,
+        max_length=max_length
+    ).to(device)
+    prompt_len = enc_prompt["input_ids"].shape[1]
+
+    if prompt_len >= input_ids.shape[1]:
+        if debug:
+            print("DEBUG: prompt_len >= full_len; likely truncation. Returning inf.")
+        return float('inf'), float('inf')
+
+    # Create labels: mask prompt tokens with -100 (ignored in loss)
+    labels = input_ids.clone()
+    labels[:, :prompt_len] = -100  # Only score answer tokens
+
+    if debug:
+        print("=" * 60)
+        print("DEBUG: compute_answer_nll tokenization check")
+        print("=" * 60)
+        print(f"Question: {question[:100]}...")
+        print(f"Gold answer: '{gold_answer}'")
+        print(f"Full text ends with: ...{full_text[-50:]}")
+        print(f"Total tokens: {input_ids.shape[1]}")
+        print(f"Prompt tokens (computed): {prompt_len}")
+        print("-" * 60)
+        # Show tokens around the boundary
+        boundary_start = max(0, prompt_len - 3)
+        boundary_end = min(input_ids.shape[1], prompt_len + 5)
+        print("Tokens around prompt/answer boundary:")
+        for i in range(boundary_start, boundary_end):
+            token_id = input_ids[0, i].item()
+            token_str = tokenizer.decode([token_id])
+            is_masked = labels[0, i].item() == -100
+            marker = "[MASKED]" if is_masked else "[SCORED]"
+            print(f"  {i}: '{token_str}' (id={token_id}) {marker}")
+        print("=" * 60)
+
+    # Compute loss
     with torch.no_grad():
-        outputs = model(**inputs, labels=inputs.input_ids)
-        loss = outputs.loss
+        outputs = model(
+            input_ids=input_ids,
+            attention_mask=attention_mask,
+            labels=labels
+        )
+        loss = outputs.loss  # Average NLL over answer tokens
 
-    # Perplexity = exp(loss)
-    perplexity = torch.exp(loss).item()
+    nll = loss.item()
+    ppl = torch.exp(loss).item()
 
-    return float(perplexity)
+    return nll, ppl
 
 
 def compute_evaluation_metrics(
@@ -141,7 +212,9 @@ def compute_evaluation_metrics(
     gold_answer: str,
     model,
     tokenizer,
-    device: str = "cuda"
+    question: str,
+    device: str = "cuda",
+    nll_prompt_text: Optional[str] = None
 ) -> Dict[str, float]:
     """
     Compute all evaluation metrics for a single response.
@@ -152,27 +225,37 @@ def compute_evaluation_metrics(
     Args:
         response: Model-generated response (greedy decoding)
         gold_answer: Ground truth answer
-        model: Language model for perplexity calculation
+        model: Language model for NLL calculation
         tokenizer: Corresponding tokenizer
+        question: Original question (needed for answer NLL)
         device: Device for computation
 
     Returns:
         metrics: Dictionary containing:
             - f1: Token F1 score [0.0, 1.0]
-            - perplexity: Perplexity score (lower = better)
+            - answer_nll: NLL on gold answer (lower = better)
+            - answer_ppl: Perplexity on gold answer (exp(nll))
             - response_length: Number of tokens in response
     """
     # Token F1
     f1_score = compute_token_f1(response, gold_answer)
 
-    # Perplexity
-    perplexity = compute_perplexity(response, model, tokenizer, device)
+    # Answer NLL (proper downstream metric)
+    answer_nll, answer_ppl = compute_answer_nll(
+        question=question,
+        gold_answer=gold_answer,
+        model=model,
+        tokenizer=tokenizer,
+        device=device,
+        prompt_text=nll_prompt_text
+    )
 
     # Response length (tokens)
     response_length = len(response.split())
 
     return {
         'f1': f1_score,
-        'perplexity': perplexity,
+        'answer_nll': answer_nll,
+        'answer_ppl': answer_ppl,
         'response_length': response_length
     }

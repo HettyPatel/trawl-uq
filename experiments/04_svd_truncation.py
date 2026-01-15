@@ -16,7 +16,7 @@ Key differences from CP/Tucker noise removal:
 Experiment flow:
 1. Baseline: Original model performance
 2. SVD Analysis: Analyze singular value distribution
-3. Progressive Truncation: For each reduction %, measure uncertainty/F1/perplexity
+3. Progressive Truncation: For each reduction %, measure uncertainty/F1/NLL
 4. Generate analysis figures and report
 """
 
@@ -232,12 +232,12 @@ def generate_truncation_figures(
     reductions = [r['reduction_percent'] for r in truncation_results]
     uncertainties = [r['avg_uncertainty'] for r in truncation_results]
     f1_scores = [r['avg_f1'] for r in truncation_results]
-    perplexities = [r['avg_perplexity'] for r in truncation_results]
+    nlls = [r['avg_nll'] for r in truncation_results]
     energy_retentions = [r['energy_retention'] * 100 for r in truncation_results]
 
     baseline_uncertainty = np.mean([r['uncertainty_score'] for r in baseline_results])
     baseline_f1 = np.mean([r['evaluation_metrics']['f1'] for r in baseline_results])
-    baseline_ppl = np.mean([r['evaluation_metrics']['perplexity'] for r in baseline_results])
+    baseline_nll = np.mean([r['evaluation_metrics']['answer_nll'] for r in baseline_results])
 
     # Plot 1: Uncertainty vs Reduction %
     fig, ax = plt.subplots(figsize=(12, 6))
@@ -280,22 +280,22 @@ def generate_truncation_figures(
     print(f"Saved: {output_dir / 'f1_vs_reduction.png'}")
     plt.close()
 
-    # Plot 3: Perplexity vs Reduction %
+    # Plot 3: Answer NLL vs Reduction %
     fig, ax = plt.subplots(figsize=(12, 6))
-    ax.axhline(y=baseline_ppl, color='red', linestyle='--', linewidth=2,
-               alpha=0.7, label=f'Baseline ({baseline_ppl:.1f})')
-    ax.plot(reductions, perplexities, 'm-o', linewidth=2, markersize=6, label='After SVD Truncation')
+    ax.axhline(y=baseline_nll, color='red', linestyle='--', linewidth=2,
+               alpha=0.7, label=f'Baseline ({baseline_nll:.2f})')
+    ax.plot(reductions, nlls, 'm-o', linewidth=2, markersize=6, label='After SVD Truncation')
 
     ax.set_xlabel('Reduction % (Components Removed)', fontsize=12)
-    ax.set_ylabel('Average Perplexity', fontsize=12)
-    ax.set_title(f'{layer_name} {matrix_type}: Perplexity vs SVD Reduction', fontsize=14)
+    ax.set_ylabel('Average Answer NLL', fontsize=12)
+    ax.set_title(f'{layer_name} {matrix_type}: Answer NLL vs SVD Reduction', fontsize=14)
     ax.legend(fontsize=11)
     ax.grid(alpha=0.3)
     ax.invert_xaxis()
 
     plt.tight_layout()
-    plt.savefig(output_dir / 'perplexity_vs_reduction.png', dpi=300, bbox_inches='tight')
-    print(f"Saved: {output_dir / 'perplexity_vs_reduction.png'}")
+    plt.savefig(output_dir / 'nll_vs_reduction.png', dpi=300, bbox_inches='tight')
+    print(f"Saved: {output_dir / 'nll_vs_reduction.png'}")
     plt.close()
 
     # Plot 4: Energy Retention vs Reduction %
@@ -382,7 +382,7 @@ def generate_report(
     # Baseline stats
     baseline_avg_unc = np.mean([r['uncertainty_score'] for r in baseline_results])
     baseline_avg_f1 = np.mean([r['evaluation_metrics']['f1'] for r in baseline_results])
-    baseline_avg_ppl = np.mean([r['evaluation_metrics']['perplexity'] for r in baseline_results])
+    baseline_avg_nll = np.mean([r['evaluation_metrics']['answer_nll'] for r in baseline_results])
 
     report = []
     report.append("=" * 80)
@@ -416,12 +416,12 @@ def generate_report(
     report.append("-" * 80)
     report.append(f"Uncertainty: {baseline_avg_unc:.4f}")
     report.append(f"F1 Score: {baseline_avg_f1:.4f}")
-    report.append(f"Perplexity: {baseline_avg_ppl:.2f}")
+    report.append(f"Answer NLL: {baseline_avg_nll:.2f}")
     report.append("")
 
     report.append("TRUNCATION RESULTS")
     report.append("=" * 80)
-    report.append(f"{'Reduction %':<12} {'Keep %':<10} {'Uncertainty':<12} {'Unc Δ':<10} {'F1':<10} {'F1 Δ':<10} {'PPL':<10} {'Energy %':<10}")
+    report.append(f"{'Reduction %':<12} {'Keep %':<10} {'Uncertainty':<12} {'Unc Δ':<10} {'F1':<10} {'F1 Δ':<10} {'NLL':<10} {'Energy %':<10}")
     report.append("-" * 80)
 
     for tr in truncation_results:
@@ -434,7 +434,7 @@ def generate_report(
             f"{unc_change:+.4f}    "
             f"{tr['avg_f1']:<10.3f} "
             f"{f1_change:+.3f}    "
-            f"{tr['avg_perplexity']:<10.1f} "
+            f"{tr['avg_nll']:<10.2f} "
             f"{tr['energy_retention']*100:<10.1f}"
         )
 
@@ -632,7 +632,9 @@ def run_svd_truncation(
             gold_answer=gold_answer,
             model=model,
             tokenizer=tokenizer,
-            device=device
+            question=question,
+            device=device,
+            nll_prompt_text=format_short_answer_prompt(question)
         )
 
         baseline_results.append({
@@ -652,10 +654,10 @@ def run_svd_truncation(
 
     baseline_avg_unc = np.mean([r['uncertainty_score'] for r in baseline_results])
     baseline_avg_f1 = np.mean([r['evaluation_metrics']['f1'] for r in baseline_results])
-    baseline_avg_ppl = np.mean([r['evaluation_metrics']['perplexity'] for r in baseline_results])
+    baseline_avg_nll = np.mean([r['evaluation_metrics']['answer_nll'] for r in baseline_results])
     print(f"Baseline avg uncertainty: {baseline_avg_unc:.4f}")
     print(f"Baseline avg F1: {baseline_avg_f1:.4f}")
-    print(f"Baseline avg perplexity: {baseline_avg_ppl:.2f}")
+    print(f"Baseline avg answer NLL: {baseline_avg_nll:.2f}")
 
     # ========== PHASE 2: Progressive SVD Truncation ==========
     print("\n" + "=" * 80)
@@ -734,14 +736,16 @@ def run_svd_truncation(
                 gold_answer=gold_answer,
                 model=model,
                 tokenizer=tokenizer,
-                device=device
+                question=question,
+                device=device,
+                nll_prompt_text=format_short_answer_prompt(question)
             )
 
             # Compute changes from baseline
             baseline = baseline_results[idx]
             uncertainty_change = metrics['uncertainty_score'] - baseline['uncertainty_score']
             f1_change = eval_metrics['f1'] - baseline['evaluation_metrics']['f1']
-            perplexity_change = eval_metrics['perplexity'] - baseline['evaluation_metrics']['perplexity']
+            nll_change = eval_metrics['answer_nll'] - baseline['evaluation_metrics']['answer_nll']
 
             reduction_results.append({
                 'sample_id': idx,
@@ -751,8 +755,8 @@ def run_svd_truncation(
                 'uncertainty_change': uncertainty_change,
                 'f1': eval_metrics['f1'],
                 'f1_change': f1_change,
-                'perplexity': eval_metrics['perplexity'],
-                'perplexity_change': perplexity_change,
+                'answer_nll': eval_metrics['answer_nll'],
+                'nll_change': nll_change,
                 'responses': responses,
                 'greedy_response': greedy_response,
                 'metrics': metrics,
@@ -764,8 +768,8 @@ def run_svd_truncation(
         avg_uncertainty_change = np.mean([r['uncertainty_change'] for r in reduction_results])
         avg_f1 = np.mean([r['f1'] for r in reduction_results])
         avg_f1_change = np.mean([r['f1_change'] for r in reduction_results])
-        avg_perplexity = np.mean([r['perplexity'] for r in reduction_results])
-        avg_perplexity_change = np.mean([r['perplexity_change'] for r in reduction_results])
+        avg_nll = np.mean([r['answer_nll'] for r in reduction_results])
+        avg_nll_change = np.mean([r['nll_change'] for r in reduction_results])
 
         truncation_results.append({
             'reduction_percent': reduction_pct,
@@ -778,14 +782,14 @@ def run_svd_truncation(
             'avg_uncertainty_change': avg_uncertainty_change,
             'avg_f1': avg_f1,
             'avg_f1_change': avg_f1_change,
-            'avg_perplexity': avg_perplexity,
-            'avg_perplexity_change': avg_perplexity_change,
+            'avg_nll': avg_nll,
+            'avg_nll_change': avg_nll_change,
             'results': reduction_results
         })
 
         print(f"  Uncertainty: {avg_uncertainty:.4f} ({avg_uncertainty_change:+.4f})")
         print(f"  F1: {avg_f1:.3f} ({avg_f1_change:+.3f})")
-        print(f"  Perplexity: {avg_perplexity:.1f} ({avg_perplexity_change:+.1f})")
+        print(f"  Answer NLL: {avg_nll:.2f} ({avg_nll_change:+.2f})")
 
         # Restore original weight for next iteration
         restore_original_weight(model, target_layer, original_weight, matrix_type, model_type)
@@ -874,7 +878,7 @@ def run_svd_truncation(
     print("  - cumulative_energy.png")
     print("  - uncertainty_vs_reduction.png")
     print("  - f1_vs_reduction.png")
-    print("  - perplexity_vs_reduction.png")
+    print("  - nll_vs_reduction.png")
     print("  - energy_retention.png")
     print("  - uncertainty_f1_tradeoff.png")
     print("  - percentage_change.png")

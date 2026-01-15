@@ -275,18 +275,18 @@ def generate_topk_removal_figures(
     # Decomposed baseline stats (K=0)
     decomp_avg_unc = np.mean([r['uncertainty_score'] for r in decomposed_baseline_results])
     decomp_avg_f1 = np.mean([r['evaluation_metrics']['f1'] for r in decomposed_baseline_results])
-    decomp_avg_ppl = np.mean([r['evaluation_metrics']['perplexity'] for r in decomposed_baseline_results])
+    decomp_avg_nll = np.mean([r['evaluation_metrics']['answer_nll'] for r in decomposed_baseline_results])
 
     # Extract data and prepend K=0 (decomposed baseline)
     k_values = [0] + [pr['num_noise_removed'] for pr in progressive_results]
     avg_uncertainties = [decomp_avg_unc] + [pr['avg_uncertainty'] for pr in progressive_results]
     avg_changes = [decomp_avg_unc - baseline_avg_uncertainty] + [pr['avg_uncertainty_change'] for pr in progressive_results]
     avg_f1s = [decomp_avg_f1] + [pr['avg_f1'] for pr in progressive_results]
-    avg_perplexities = [decomp_avg_ppl] + [pr['avg_perplexity'] for pr in progressive_results]
+    avg_nlls = [decomp_avg_nll] + [pr['avg_nll'] for pr in progressive_results]
 
     # Original baseline evaluation metrics
     baseline_avg_f1 = np.mean([r['evaluation_metrics']['f1'] for r in baseline_results])
-    baseline_avg_ppl = np.mean([r['evaluation_metrics']['perplexity'] for r in baseline_results])
+    baseline_avg_nll = np.mean([r['evaluation_metrics']['answer_nll'] for r in baseline_results])
 
     # Plot 1: Uncertainty vs Number of Noise Components Removed
     fig, ax = plt.subplots(figsize=(12, 6))
@@ -356,19 +356,19 @@ def generate_topk_removal_figures(
     print(f"Saved: {output_dir / 'topk_f1_score.png'}")
     plt.close()
 
-    # Plot 5: Perplexity vs K
+    # Plot 5: Answer NLL vs K
     fig, ax = plt.subplots(figsize=(12, 6))
-    ax.axhline(y=baseline_avg_ppl, color='red', linestyle='--', linewidth=2,
-               alpha=0.7, label=f'Baseline PPL ({baseline_avg_ppl:.1f})')
-    ax.plot(k_values, avg_perplexities, 'b-o', linewidth=2, markersize=8, label='PPL After Noise Removal')
+    ax.axhline(y=baseline_avg_nll, color='red', linestyle='--', linewidth=2,
+               alpha=0.7, label=f'Baseline NLL ({baseline_avg_nll:.2f})')
+    ax.plot(k_values, avg_nlls, 'b-o', linewidth=2, markersize=8, label='NLL After Noise Removal')
     ax.set_xlabel('Number of Noise Components Removed (Top-K)', fontsize=12)
-    ax.set_ylabel('Average Perplexity', fontsize=12)
-    ax.set_title(f'{layer_name} ({decomp_label}): Perplexity vs Top-K Noise Removal', fontsize=14)
+    ax.set_ylabel('Average Answer NLL', fontsize=12)
+    ax.set_title(f'{layer_name} ({decomp_label}): Answer NLL vs Top-K Noise Removal', fontsize=14)
     ax.legend(fontsize=11)
     ax.grid(alpha=0.3)
     plt.tight_layout()
-    plt.savefig(output_dir / 'topk_perplexity.png', dpi=300, bbox_inches='tight')
-    print(f"Saved: {output_dir / 'topk_perplexity.png'}")
+    plt.savefig(output_dir / 'topk_nll.png', dpi=300, bbox_inches='tight')
+    print(f"Saved: {output_dir / 'topk_nll.png'}")
     plt.close()
 
     # Plot 6: Combined metrics - Uncertainty vs F1 tradeoff
@@ -419,12 +419,12 @@ def generate_report(
     # Baseline stats
     baseline_avg = np.mean([r['uncertainty_score'] for r in baseline_results])
     baseline_avg_f1 = np.mean([r['evaluation_metrics']['f1'] for r in baseline_results])
-    baseline_avg_ppl = np.mean([r['evaluation_metrics']['perplexity'] for r in baseline_results])
+    baseline_avg_nll = np.mean([r['evaluation_metrics']['answer_nll'] for r in baseline_results])
 
     # Decomposed baseline stats
     decomp_avg = np.mean([r['uncertainty_score'] for r in decomposed_baseline_results])
     decomp_avg_f1 = np.mean([r['evaluation_metrics']['f1'] for r in decomposed_baseline_results])
-    decomp_avg_ppl = np.mean([r['evaluation_metrics']['perplexity'] for r in decomposed_baseline_results])
+    decomp_avg_nll = np.mean([r['evaluation_metrics']['answer_nll'] for r in decomposed_baseline_results])
 
     # Categorize components
     noise_comps = [(c['component_idx'], c['avg_uncertainty_change'])
@@ -458,7 +458,7 @@ def generate_report(
     report.append("-"*80)
     report.append(f"{'Uncertainty':<20} {baseline_avg:<15.4f} {decomp_avg:<15.4f} {decomp_avg - baseline_avg:+.4f}")
     report.append(f"{'F1 Score':<20} {baseline_avg_f1:<15.4f} {decomp_avg_f1:<15.4f} {decomp_avg_f1 - baseline_avg_f1:+.4f}")
-    report.append(f"{'Perplexity':<20} {baseline_avg_ppl:<15.2f} {decomp_avg_ppl:<15.2f} {decomp_avg_ppl - baseline_avg_ppl:+.2f}")
+    report.append(f"{'Answer NLL':<20} {baseline_avg_nll:<15.2f} {decomp_avg_nll:<15.2f} {decomp_avg_nll - baseline_avg_nll:+.2f}")
     report.append("")
 
     report.append("COMPONENT CATEGORIZATION")
@@ -486,11 +486,8 @@ def generate_report(
     report.append("TOP-K NOISE REMOVAL RESULTS")
     report.append("="*80)
 
-    # Compute baseline evaluation metrics
-    baseline_avg_f1 = np.mean([r['evaluation_metrics']['f1'] for r in baseline_results])
-    baseline_avg_ppl = np.mean([r['evaluation_metrics']['perplexity'] for r in baseline_results])
-
-    report.append(f"{'K':<6} {'Uncertainty':<14} {'Unc Δ':<10} {'F1':<10} {'F1 Δ':<10} {'PPL':<10} {'PPL Δ':<10}")
+    # Compute baseline evaluation metrics (already computed above)
+    report.append(f"{'K':<6} {'Uncertainty':<14} {'Unc Δ':<10} {'F1':<10} {'F1 Δ':<10} {'NLL':<10} {'NLL Δ':<10}")
     report.append("-"*80)
 
     if progressive_results:
@@ -505,8 +502,8 @@ def generate_report(
                     f"{pr['avg_uncertainty_change']:+.4f}     "
                     f"{pr['avg_f1']:<10.3f} "
                     f"{pr['avg_f1_change']:+.3f}     "
-                    f"{pr['avg_perplexity']:<10.1f} "
-                    f"{pr['avg_perplexity_change']:+.1f}"
+                    f"{pr['avg_nll']:<10.2f} "
+                    f"{pr['avg_nll_change']:+.2f}"
                 )
 
         # Find optimal K
@@ -694,7 +691,9 @@ def run_noise_removal(
             gold_answer=gold_answer,
             model=model,
             tokenizer=tokenizer,
-            device=device
+            question=question,
+            device=device,
+            nll_prompt_text=format_short_answer_prompt(question)
         )
 
         baseline_results.append({
@@ -776,14 +775,16 @@ def run_noise_removal(
             gold_answer=gold_answer,
             model=model,
             tokenizer=tokenizer,
-            device=device
+            question=question,
+            device=device,
+            nll_prompt_text=format_short_answer_prompt(question)
         )
 
         # Compute changes from original baseline
         orig_baseline = baseline_results[idx]
         uncertainty_change = metrics['uncertainty_score'] - orig_baseline['uncertainty_score']
         f1_change = eval_metrics['f1'] - orig_baseline['evaluation_metrics']['f1']
-        perplexity_change = eval_metrics['perplexity'] - orig_baseline['evaluation_metrics']['perplexity']
+        nll_change = eval_metrics['answer_nll'] - orig_baseline['evaluation_metrics']['answer_nll']
 
         decomposed_baseline_results.append({
             'sample_id': idx,
@@ -793,7 +794,7 @@ def run_noise_removal(
             'greedy_response': greedy_response,
             'uncertainty_change_from_original': uncertainty_change,
             'f1_change_from_original': f1_change,
-            'perplexity_change_from_original': perplexity_change,
+            'nll_change_from_original': nll_change,
             **metrics,
             'evaluation_metrics': eval_metrics
         })
@@ -805,14 +806,14 @@ def run_noise_removal(
     # Print summary
     avg_unc_decomposed = np.mean([r['uncertainty_score'] for r in decomposed_baseline_results])
     avg_f1_decomposed = np.mean([r['evaluation_metrics']['f1'] for r in decomposed_baseline_results])
-    avg_ppl_decomposed = np.mean([r['evaluation_metrics']['perplexity'] for r in decomposed_baseline_results])
+    avg_nll_decomposed = np.mean([r['evaluation_metrics']['answer_nll'] for r in decomposed_baseline_results])
     avg_unc_original = np.mean([r['uncertainty_score'] for r in baseline_results])
 
     print(f"\nDecomposed baseline saved to {output_dir / 'decomposed_baseline.pkl'}")
     print(f"Original baseline avg uncertainty: {avg_unc_original:.4f}")
     print(f"Decomposed baseline avg uncertainty: {avg_unc_decomposed:.4f} (change: {avg_unc_decomposed - avg_unc_original:+.4f})")
     print(f"Decomposed baseline avg F1: {avg_f1_decomposed:.4f}")
-    print(f"Decomposed baseline avg perplexity: {avg_ppl_decomposed:.2f}")
+    print(f"Decomposed baseline avg answer NLL: {avg_nll_decomposed:.2f}")
 
     # Restore original weights before component search
     update_fc_layer_weights(
@@ -898,14 +899,16 @@ def run_noise_removal(
                 gold_answer=gold_answer,
                 model=model,
                 tokenizer=tokenizer,
-                device=device
+                question=question,
+                device=device,
+                nll_prompt_text=format_short_answer_prompt(question)
             )
 
             # Compute changes from baseline
             baseline = baseline_results[idx]
             uncertainty_change = metrics['uncertainty_score'] - baseline['uncertainty_score']
             f1_change = eval_metrics['f1'] - baseline['evaluation_metrics']['f1']
-            perplexity_change = eval_metrics['perplexity'] - baseline['evaluation_metrics']['perplexity']
+            nll_change = eval_metrics['answer_nll'] - baseline['evaluation_metrics']['answer_nll']
 
             component_results.append({
                 'sample_id': idx,
@@ -914,8 +917,8 @@ def run_noise_removal(
                 'uncertainty_change': uncertainty_change,
                 'f1': eval_metrics['f1'],
                 'f1_change': f1_change,
-                'perplexity': eval_metrics['perplexity'],
-                'perplexity_change': perplexity_change,
+                'answer_nll': eval_metrics['answer_nll'],
+                'nll_change': nll_change,
                 'responses': responses,  # Save responses for debugging
                 'greedy_response': greedy_response,  # Save greedy response
                 'knowledge_stats': metrics.get('knowledge_stats', {}),  # Degenerate/invalid stats
@@ -1116,14 +1119,16 @@ def run_noise_removal(
                     gold_answer=gold_answer,
                     model=model,
                     tokenizer=tokenizer,
-                    device=device
+                    question=question,
+                    device=device,
+                    nll_prompt_text=format_short_answer_prompt(question)
                 )
 
                 # Compute changes from baseline
                 baseline = baseline_results[idx]
                 uncertainty_change = metrics['uncertainty_score'] - baseline['uncertainty_score']
                 f1_change = eval_metrics['f1'] - baseline['evaluation_metrics']['f1']
-                perplexity_change = eval_metrics['perplexity'] - baseline['evaluation_metrics']['perplexity']
+                nll_change = eval_metrics['answer_nll'] - baseline['evaluation_metrics']['answer_nll']
 
                 removal_results.append({
                     'sample_id': idx,
@@ -1133,8 +1138,8 @@ def run_noise_removal(
                     'uncertainty_change': uncertainty_change,
                     'f1': eval_metrics['f1'],
                     'f1_change': f1_change,
-                    'perplexity': eval_metrics['perplexity'],
-                    'perplexity_change': perplexity_change,
+                    'answer_nll': eval_metrics['answer_nll'],
+                    'nll_change': nll_change,
                     'responses': responses,
                     'greedy_response': greedy_response,
                     'metrics': metrics,
@@ -1146,8 +1151,8 @@ def run_noise_removal(
             avg_uncertainty_change = np.mean([r['uncertainty_change'] for r in removal_results])
             avg_f1 = np.mean([r['f1'] for r in removal_results])
             avg_f1_change = np.mean([r['f1_change'] for r in removal_results])
-            avg_perplexity = np.mean([r['perplexity'] for r in removal_results])
-            avg_perplexity_change = np.mean([r['perplexity_change'] for r in removal_results])
+            avg_nll = np.mean([r['answer_nll'] for r in removal_results])
+            avg_nll_change = np.mean([r['nll_change'] for r in removal_results])
 
             progressive_results.append({
                 'num_noise_removed': num_noise_to_remove,
@@ -1156,12 +1161,12 @@ def run_noise_removal(
                 'avg_uncertainty_change': avg_uncertainty_change,
                 'avg_f1': avg_f1,
                 'avg_f1_change': avg_f1_change,
-                'avg_perplexity': avg_perplexity,
-                'avg_perplexity_change': avg_perplexity_change,
+                'avg_nll': avg_nll,
+                'avg_nll_change': avg_nll_change,
                 'results': removal_results
             })
 
-            print(f"Top {num_noise_to_remove} noise removed: uncertainty={avg_uncertainty:.4f} ({avg_uncertainty_change:+.4f}), F1={avg_f1:.3f} ({avg_f1_change:+.3f}), PPL={avg_perplexity:.1f} ({avg_perplexity_change:+.1f})")
+            print(f"Top {num_noise_to_remove} noise removed: uncertainty={avg_uncertainty:.4f} ({avg_uncertainty_change:+.4f}), F1={avg_f1:.3f} ({avg_f1_change:+.3f}), NLL={avg_nll:.2f} ({avg_nll_change:+.2f})")
 
             # Checkpoint
             if num_noise_to_remove % checkpoint_every == 0:
@@ -1264,7 +1269,7 @@ def run_noise_removal(
     print("  - topk_uncertainty_change.png")
     print("  - topk_percentage_reduction.png")
     print("  - topk_f1_score.png")
-    print("  - topk_perplexity.png")
+    print("  - topk_nll.png")
     print("  - topk_uncertainty_f1_tradeoff.png")
     print("  - analysis_report.txt")
     print("="*80)
