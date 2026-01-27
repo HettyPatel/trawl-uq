@@ -261,6 +261,13 @@ def apply_svd_to_layer(
             weight = model.transformer.h[layer_idx].mlp.c_proj.weight.data
         else:
             raise ValueError(f"Unknown matrix_type: {matrix_type}")
+    elif model_type == "gptj":
+        if matrix_type == "mlp_in":
+            weight = model.transformer.h[layer_idx].mlp.fc_in.weight.data
+        elif matrix_type == "mlp_out":
+            weight = model.transformer.h[layer_idx].mlp.fc_out.weight.data
+        else:
+            raise ValueError(f"Unknown matrix_type: {matrix_type}")
     else:
         raise ValueError(f"Unsupported model_type: {model_type}")
 
@@ -318,6 +325,13 @@ def update_layer_with_svd(
             target = model.transformer.h[layer_idx].mlp.c_fc.weight
         elif matrix_type == "mlp_out":
             target = model.transformer.h[layer_idx].mlp.c_proj.weight
+        else:
+            raise ValueError(f"Unknown matrix_type: {matrix_type}")
+    elif model_type == "gptj":
+        if matrix_type == "mlp_in":
+            target = model.transformer.h[layer_idx].mlp.fc_in.weight
+        elif matrix_type == "mlp_out":
+            target = model.transformer.h[layer_idx].mlp.fc_out.weight
         else:
             raise ValueError(f"Unknown matrix_type: {matrix_type}")
     else:

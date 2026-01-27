@@ -43,8 +43,22 @@ def update_fc_layer_weights(
         model.roberta.encoder.layer[layer_idx].output.dense.weight.data = fc_out_weight
 
     elif model_type == "gpt2":
-        model.transformer.h[layer_idx].mlp.c_fc.weight.data = fc_in_weight
-        model.transformer.h[layer_idx].mlp.c_proj.weight.data = fc_out_weight
+        model.transformer.h[layer_idx].mlp.c_fc.weight.data = fc_in_weight.to(
+            model.transformer.h[layer_idx].mlp.c_fc.weight.device
+        ).to(model.transformer.h[layer_idx].mlp.c_fc.weight.dtype)
+
+        model.transformer.h[layer_idx].mlp.c_proj.weight.data = fc_out_weight.to(
+            model.transformer.h[layer_idx].mlp.c_proj.weight.device
+        ).to(model.transformer.h[layer_idx].mlp.c_proj.weight.dtype)
+
+    elif model_type == "gptj":
+        model.transformer.h[layer_idx].mlp.fc_in.weight.data = fc_in_weight.to(
+            model.transformer.h[layer_idx].mlp.fc_in.weight.device
+        ).to(model.transformer.h[layer_idx].mlp.fc_in.weight.dtype)
+
+        model.transformer.h[layer_idx].mlp.fc_out.weight.data = fc_out_weight.to(
+            model.transformer.h[layer_idx].mlp.fc_out.weight.device
+        ).to(model.transformer.h[layer_idx].mlp.fc_out.weight.dtype)
 
     else:
         raise ValueError(f"Unsupported model type: {model_type}")

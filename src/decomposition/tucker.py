@@ -339,6 +339,11 @@ def get_fc_layer_weights(
         fc_in = model.model.layers[layer_idx].mlp.up_proj.weight
         fc_out = model.model.layers[layer_idx].mlp.down_proj.weight
 
+    elif model_type == "gptj":
+        # GPT-J: transformer.h[i].mlp.fc_in and fc_out (standard Linear layers)
+        fc_in = model.transformer.h[layer_idx].mlp.fc_in.weight
+        fc_out = model.transformer.h[layer_idx].mlp.fc_out.weight
+
     else:
         raise ValueError(f"Unsupported model type: {model_type}")
     
