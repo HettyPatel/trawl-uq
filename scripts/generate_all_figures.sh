@@ -1,5 +1,5 @@
 #!/bin/bash
-# Generate figures for all entropy experiment results
+# Generate figures for MCQ entropy experiment results
 # Finds all results.pkl files and generates plots
 
 set -e
@@ -8,26 +8,26 @@ set -e
 source /home/hpate061/trawl-uq/trawl-env/bin/activate
 
 echo "=============================================="
-echo "GENERATING FIGURES FOR ALL EXPERIMENTS"
+echo "GENERATING FIGURES FOR MCQ EXPERIMENTS"
 echo "=============================================="
 echo ""
 
-# CP Decomposition results
-echo "--- CP Decomposition Results ---"
-for results_file in results/entropy_noise_removal/*/results.pkl; do
+# MCQ CP Decomposition results
+echo "--- MCQ CP Decomposition Results ---"
+for results_file in results/mcq_entropy_noise_removal/*/results.pkl; do
     if [ -f "$results_file" ]; then
         echo "Processing: $results_file"
-        python scripts/plot_entropy_results.py --results "$results_file"
+        python scripts/plot_mcq_results.py --results "$results_file"
         echo ""
     fi
 done
 
-# SVD Truncation results
-echo "--- SVD Truncation Results ---"
-for results_file in results/entropy_svd/*/results.pkl; do
+# MCQ SVD Truncation results
+echo "--- MCQ SVD Truncation Results ---"
+for results_file in results/mcq_entropy_svd/*/results.pkl; do
     if [ -f "$results_file" ]; then
         echo "Processing: $results_file"
-        python scripts/plot_entropy_results.py --results "$results_file"
+        python scripts/plot_mcq_results.py --results "$results_file"
         echo ""
     fi
 done
