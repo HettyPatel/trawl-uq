@@ -91,7 +91,7 @@ def run_mcq_entropy_noise_removal(
     model_type: str = "llama",
     eval_set_path: str = "data/eval_sets/eval_set_mcq_nq_open_200.json",
     target_layer: int = 6,
-    rank: int = 40,
+    rank: int = 20,
     decomposition_type: str = "cp",
     device: str = "cuda",
     checkpoint_every: int = 10
@@ -337,7 +337,7 @@ if __name__ == "__main__":
     parser.add_argument("--model-type", type=str, default="llama", choices=["llama", "gpt2", "gptj"])
     parser.add_argument("--eval-set", type=str, default="data/eval_sets/eval_set_mcq_nq_open_200.json")
     parser.add_argument("--layer", type=int, default=6)
-    parser.add_argument("--rank", type=int, default=40)
+    parser.add_argument("--rank", type=int, default=20)
     parser.add_argument("--decomposition", type=str, default="cp", choices=["cp", "tucker"])
     parser.add_argument("--checkpoint-every", type=int, default=10)
     parser.add_argument("--test", action="store_true", help="Quick test with rank=5")

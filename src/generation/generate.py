@@ -29,11 +29,13 @@ def load_model_and_tokenizer(model_name: str, device: str = "cuda", dtype=torch.
     tokenizer = AutoTokenizer.from_pretrained(model_name)
 
     # Load casual language model
+    # Use device_map to put everything on the specified device to avoid meta tensors
+    # This ensures all weights are materialized and accessible for decomposition
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
-        torch_dtype=dtype, # Use half precision for memory efficiency
-        device_map = "auto", # Automatically map model to available devices
-        low_cpu_mem_usage=True # Reduce CPU memory usage during load
+        torch_dtype=dtype,
+        device_map={"": device},  # Force all layers to specified device
+        low_cpu_mem_usage=True
     )
 
     model.eval() # set model to evaluation mode (disables droput, grads etc)

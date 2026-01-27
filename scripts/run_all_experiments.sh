@@ -45,7 +45,7 @@ python experiments/07_mcq_entropy_noise_removal.py \
     --model meta-llama/Llama-2-7b-chat-hf \
     --model-type llama \
     --layer 30 \
-    --rank 50 \
+    --rank 20 \
     --decomposition cp
 
 echo ""
@@ -54,7 +54,7 @@ python experiments/07_mcq_entropy_noise_removal.py \
     --model meta-llama/Llama-2-7b-chat-hf \
     --model-type llama \
     --layer 31 \
-    --rank 50 \
+    --rank 20 \
     --decomposition cp
 
 # Llama-3-8B (32 layers: 30, 31)
@@ -64,7 +64,7 @@ python experiments/07_mcq_entropy_noise_removal.py \
     --model meta-llama/Meta-Llama-3-8B \
     --model-type llama \
     --layer 30 \
-    --rank 50 \
+    --rank 20 \
     --decomposition cp
 
 echo ""
@@ -73,7 +73,7 @@ python experiments/07_mcq_entropy_noise_removal.py \
     --model meta-llama/Meta-Llama-3-8B \
     --model-type llama \
     --layer 31 \
-    --rank 50 \
+    --rank 20 \
     --decomposition cp
 
 # GPT-2 (12 layers: 10, 11)
@@ -83,7 +83,7 @@ python experiments/07_mcq_entropy_noise_removal.py \
     --model gpt2 \
     --model-type gpt2 \
     --layer 10 \
-    --rank 50 \
+    --rank 20 \
     --decomposition cp
 
 echo ""
@@ -92,7 +92,7 @@ python experiments/07_mcq_entropy_noise_removal.py \
     --model gpt2 \
     --model-type gpt2 \
     --layer 11 \
-    --rank 50 \
+    --rank 20 \
     --decomposition cp
 
 # GPT-J-6B (28 layers: 26, 27)
@@ -102,7 +102,7 @@ python experiments/07_mcq_entropy_noise_removal.py \
     --model EleutherAI/gpt-j-6B \
     --model-type gptj \
     --layer 26 \
-    --rank 50 \
+    --rank 20 \
     --decomposition cp
 
 echo ""
@@ -111,7 +111,7 @@ python experiments/07_mcq_entropy_noise_removal.py \
     --model EleutherAI/gpt-j-6B \
     --model-type gptj \
     --layer 27 \
-    --rank 50 \
+    --rank 20 \
     --decomposition cp
 
 
