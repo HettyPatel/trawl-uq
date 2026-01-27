@@ -1,0 +1,3613 @@
+{
+  "metadata": {
+    "dataset": "nq_open",
+    "format": "mcq",
+    "split": "validation",
+    "num_samples": 200,
+    "num_options": 4,
+    "seed": 42,
+    "description": "MCQ evaluation set for nq_open"
+  },
+  "samples": [
+    {
+      "id": "nq_open_mcq_0",
+      "question": "when was the last time anyone was on the moon",
+      "mcq_prompt": "Question: when was the last time anyone was on the moon\nA. Corinth, Mississippi\nB. Janaki Ramachandran\nC. 14 December 1972 UTC\nD. Catherine Tramell\nAnswer:",
+      "options": {
+        "A": "Corinth, Mississippi",
+        "B": "Janaki Ramachandran",
+        "C": "14 December 1972 UTC",
+        "D": "Catherine Tramell"
+      },
+      "correct_answer": "14 December 1972 UTC",
+      "correct_letter": "C",
+      "distractors": [
+        "Catherine Tramell",
+        "Janaki Ramachandran",
+        "Corinth, Mississippi"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_1",
+      "question": "who wrote he ain't heavy he's my brother lyrics",
+      "mcq_prompt": "Question: who wrote he ain't heavy he's my brother lyrics\nA. Beorn\nB. Anakin Skywalker\nC. Hon July Moyo\nD. Bobby Scott\nAnswer:",
+      "options": {
+        "A": "Beorn",
+        "B": "Anakin Skywalker",
+        "C": "Hon July Moyo",
+        "D": "Bobby Scott"
+      },
+      "correct_answer": "Bobby Scott",
+      "correct_letter": "D",
+      "distractors": [
+        "Beorn",
+        "Anakin Skywalker",
+        "Hon July Moyo"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_2",
+      "question": "how many seasons of the bastard executioner are there",
+      "mcq_prompt": "Question: how many seasons of the bastard executioner are there\nA. the American Revolutionary War\nB. Audley Harrison\nC. 1608\nD. one\nAnswer:",
+      "options": {
+        "A": "the American Revolutionary War",
+        "B": "Audley Harrison",
+        "C": "1608",
+        "D": "one"
+      },
+      "correct_answer": "one",
+      "correct_letter": "D",
+      "distractors": [
+        "the American Revolutionary War",
+        "1608",
+        "Audley Harrison"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_3",
+      "question": "when did the eagles win last super bowl",
+      "mcq_prompt": "Question: when did the eagles win last super bowl\nA. the Chernobyl Nuclear Power Plant\nB. October 18, 2003\nC. 2017\nD. the duodenum\nAnswer:",
+      "options": {
+        "A": "the Chernobyl Nuclear Power Plant",
+        "B": "October 18, 2003",
+        "C": "2017",
+        "D": "the duodenum"
+      },
+      "correct_answer": "2017",
+      "correct_letter": "C",
+      "distractors": [
+        "the Chernobyl Nuclear Power Plant",
+        "the duodenum",
+        "October 18, 2003"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_4",
+      "question": "who won last year's ncaa women's basketball",
+      "mcq_prompt": "Question: who won last year's ncaa women's basketball\nA. Travis Tritt and Marty Stuart\nB. season two\nC. South Carolina\nD. Hon July Moyo\nAnswer:",
+      "options": {
+        "A": "Travis Tritt and Marty Stuart",
+        "B": "season two",
+        "C": "South Carolina",
+        "D": "Hon July Moyo"
+      },
+      "correct_answer": "South Carolina",
+      "correct_letter": "C",
+      "distractors": [
+        "Hon July Moyo",
+        "Travis Tritt and Marty Stuart",
+        "season two"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_5",
+      "question": "when did the isle of wight become an island",
+      "mcq_prompt": "Question: when did the isle of wight become an island\nA. Llanrhaeadr-ym-Mochnant\nB. Inner Circle\nC. Beorn\nD. During the last Ice Age\nAnswer:",
+      "options": {
+        "A": "Llanrhaeadr-ym-Mochnant",
+        "B": "Inner Circle",
+        "C": "Beorn",
+        "D": "During the last Ice Age"
+      },
+      "correct_answer": "During the last Ice Age",
+      "correct_letter": "D",
+      "distractors": [
+        "Beorn",
+        "Inner Circle",
+        "Llanrhaeadr-ym-Mochnant"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_6",
+      "question": "love yourself by justin bieber is about who",
+      "mcq_prompt": "Question: love yourself by justin bieber is about who\nA. Geoffrey Zakarian\nB. Pyotr Ilyich Tchaikovsky\nC. 1966\nD. Rihanna\nAnswer:",
+      "options": {
+        "A": "Geoffrey Zakarian",
+        "B": "Pyotr Ilyich Tchaikovsky",
+        "C": "1966",
+        "D": "Rihanna"
+      },
+      "correct_answer": "Rihanna",
+      "correct_letter": "D",
+      "distractors": [
+        "1966",
+        "Geoffrey Zakarian",
+        "Pyotr Ilyich Tchaikovsky"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_7",
+      "question": "who was the ruler of england in 1616",
+      "mcq_prompt": "Question: who was the ruler of england in 1616\nA. Christina Applegate\nB. Carbon copy to secondary recipients\nC. never made\nD. James I\nAnswer:",
+      "options": {
+        "A": "Christina Applegate",
+        "B": "Carbon copy to secondary recipients",
+        "C": "never made",
+        "D": "James I"
+      },
+      "correct_answer": "James I",
+      "correct_letter": "D",
+      "distractors": [
+        "Christina Applegate",
+        "Carbon copy to secondary recipients",
+        "never made"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_8",
+      "question": "what is the hot coffee mod in san andreas",
+      "mcq_prompt": "Question: what is the hot coffee mod in san andreas\nA. 1608\nB. January 2, 1971\nC. 2002\nD. a normally inaccessible mini-game\nAnswer:",
+      "options": {
+        "A": "1608",
+        "B": "January 2, 1971",
+        "C": "2002",
+        "D": "a normally inaccessible mini-game"
+      },
+      "correct_answer": "a normally inaccessible mini-game",
+      "correct_letter": "D",
+      "distractors": [
+        "2002",
+        "January 2, 1971",
+        "1608"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_9",
+      "question": "what is the maximum data rate for the 802.11a standard select one",
+      "mcq_prompt": "Question: what is the maximum data rate for the 802.11a standard select one\nA. October 13, 2001\nB. 54\u00a0Mbit/s\nC. suprachiasmatic nucleus\nD. Queen M\u00e1xima of the Netherlands\nAnswer:",
+      "options": {
+        "A": "October 13, 2001",
+        "B": "54\u00a0Mbit/s",
+        "C": "suprachiasmatic nucleus",
+        "D": "Queen M\u00e1xima of the Netherlands"
+      },
+      "correct_answer": "54\u00a0Mbit/s",
+      "correct_letter": "B",
+      "distractors": [
+        "suprachiasmatic nucleus",
+        "Queen M\u00e1xima of the Netherlands",
+        "October 13, 2001"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_10",
+      "question": "which state is located in the centre of india",
+      "mcq_prompt": "Question: which state is located in the centre of india\nA. K. Palaniswami\nB. Can't Change Me\nC. Chhattisgarh\nD. Niketa Calame\nAnswer:",
+      "options": {
+        "A": "K. Palaniswami",
+        "B": "Can't Change Me",
+        "C": "Chhattisgarh",
+        "D": "Niketa Calame"
+      },
+      "correct_answer": "Chhattisgarh",
+      "correct_letter": "C",
+      "distractors": [
+        "Niketa Calame",
+        "K. Palaniswami",
+        "Can't Change Me"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_11",
+      "question": "who sang i ran all the way home",
+      "mcq_prompt": "Question: who sang i ran all the way home\nA. P. Subbarayan\nB. M. G. Ramachandran\nC. The Impalas\nD. The Statue of Freedom\nAnswer:",
+      "options": {
+        "A": "P. Subbarayan",
+        "B": "M. G. Ramachandran",
+        "C": "The Impalas",
+        "D": "The Statue of Freedom"
+      },
+      "correct_answer": "The Impalas",
+      "correct_letter": "C",
+      "distractors": [
+        "P. Subbarayan",
+        "The Statue of Freedom",
+        "M. G. Ramachandran"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_12",
+      "question": "where did the last name wallace come from",
+      "mcq_prompt": "Question: where did the last name wallace come from\nA. Fifty Shades Darker\nB. six\nC. a Scottish surname\nD. 2005\nAnswer:",
+      "options": {
+        "A": "Fifty Shades Darker",
+        "B": "six",
+        "C": "a Scottish surname",
+        "D": "2005"
+      },
+      "correct_answer": "a Scottish surname",
+      "correct_letter": "C",
+      "distractors": [
+        "Fifty Shades Darker",
+        "2005",
+        "six"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_13",
+      "question": "who was the actor that played ben stone on law and order",
+      "mcq_prompt": "Question: who was the actor that played ben stone on law and order\nA. Michael Moriarty\nB. Staring at the Sun\nC. on CBS\nD. 8\nAnswer:",
+      "options": {
+        "A": "Michael Moriarty",
+        "B": "Staring at the Sun",
+        "C": "on CBS",
+        "D": "8"
+      },
+      "correct_answer": "Michael Moriarty",
+      "correct_letter": "A",
+      "distractors": [
+        "Staring at the Sun",
+        "on CBS",
+        "8"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_14",
+      "question": "who does the voice of nala in the lion king",
+      "mcq_prompt": "Question: who does the voice of nala in the lion king\nA. Niketa Calame\nB. Instagram's own account\nC. nearby\nD. glomeruli\nAnswer:",
+      "options": {
+        "A": "Niketa Calame",
+        "B": "Instagram's own account",
+        "C": "nearby",
+        "D": "glomeruli"
+      },
+      "correct_answer": "Niketa Calame",
+      "correct_letter": "A",
+      "distractors": [
+        "glomeruli",
+        "nearby",
+        "Instagram's own account"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_15",
+      "question": "who plays gram on the young and the restless",
+      "mcq_prompt": "Question: who plays gram on the young and the restless\nA. January\u00a031,\u00a02018\nB. Carbon copy to secondary recipients\nC. Max Shippee\nD. 111 straight wins\nAnswer:",
+      "options": {
+        "A": "January\u00a031,\u00a02018",
+        "B": "Carbon copy to secondary recipients",
+        "C": "Max Shippee",
+        "D": "111 straight wins"
+      },
+      "correct_answer": "Max Shippee",
+      "correct_letter": "C",
+      "distractors": [
+        "111 straight wins",
+        "January\u00a031,\u00a02018",
+        "Carbon copy to secondary recipients"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_16",
+      "question": "what is the oath that new citizens take",
+      "mcq_prompt": "Question: what is the oath that new citizens take\nA. Peter Gardner[4] Ostrum\nB. United States Oath of Allegiance\nC. 24\nD. Fifty Shades Freed\nAnswer:",
+      "options": {
+        "A": "Peter Gardner[4] Ostrum",
+        "B": "United States Oath of Allegiance",
+        "C": "24",
+        "D": "Fifty Shades Freed"
+      },
+      "correct_answer": "United States Oath of Allegiance",
+      "correct_letter": "B",
+      "distractors": [
+        "Fifty Shades Freed",
+        "24",
+        "Peter Gardner[4] Ostrum"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_17",
+      "question": "who is under the mask of darth vader",
+      "mcq_prompt": "Question: who is under the mask of darth vader\nA. Anakin Skywalker\nB. Hon July Moyo\nC. Abraham\nD. Dennis Locorriere\nAnswer:",
+      "options": {
+        "A": "Anakin Skywalker",
+        "B": "Hon July Moyo",
+        "C": "Abraham",
+        "D": "Dennis Locorriere"
+      },
+      "correct_answer": "Anakin Skywalker",
+      "correct_letter": "A",
+      "distractors": [
+        "Hon July Moyo",
+        "Abraham",
+        "Dennis Locorriere"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_18",
+      "question": "who had a baby at 100 in the bible",
+      "mcq_prompt": "Question: who had a baby at 100 in the bible\nA. the sixth volume\nB. 1984\nC. Ramakrishna Ranga Rao\nD. Sarah\nAnswer:",
+      "options": {
+        "A": "the sixth volume",
+        "B": "1984",
+        "C": "Ramakrishna Ranga Rao",
+        "D": "Sarah"
+      },
+      "correct_answer": "Sarah",
+      "correct_letter": "D",
+      "distractors": [
+        "1984",
+        "Ramakrishna Ranga Rao",
+        "the sixth volume"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_19",
+      "question": "what age do you need to be to buy a bb gun",
+      "mcq_prompt": "Question: what age do you need to be to buy a bb gun\nA. Catherine Tramell\nB. Travis Tritt and Marty Stuart\nC. 18\nD. Christina Applegate\nAnswer:",
+      "options": {
+        "A": "Catherine Tramell",
+        "B": "Travis Tritt and Marty Stuart",
+        "C": "18",
+        "D": "Christina Applegate"
+      },
+      "correct_answer": "18",
+      "correct_letter": "C",
+      "distractors": [
+        "Travis Tritt and Marty Stuart",
+        "Catherine Tramell",
+        "Christina Applegate"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_20",
+      "question": "ethiopia flight 961 crashes in to the sea",
+      "mcq_prompt": "Question: ethiopia flight 961 crashes in to the sea\nA. 1938\nB. 23 November 1996\nC. New Orleans\nD. nomads from Inner Asia.\nAnswer:",
+      "options": {
+        "A": "1938",
+        "B": "23 November 1996",
+        "C": "New Orleans",
+        "D": "nomads from Inner Asia."
+      },
+      "correct_answer": "23 November 1996",
+      "correct_letter": "B",
+      "distractors": [
+        "nomads from Inner Asia.",
+        "New Orleans",
+        "1938"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_21",
+      "question": "where was percy jackson and the olympians filmed",
+      "mcq_prompt": "Question: where was percy jackson and the olympians filmed\nA. October 3, 1970\nB. Vancouver\nC. Eda Reiss Merin\nD. 11.16\nAnswer:",
+      "options": {
+        "A": "October 3, 1970",
+        "B": "Vancouver",
+        "C": "Eda Reiss Merin",
+        "D": "11.16"
+      },
+      "correct_answer": "Vancouver",
+      "correct_letter": "B",
+      "distractors": [
+        "11.16",
+        "October 3, 1970",
+        "Eda Reiss Merin"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_22",
+      "question": "how many seasons of vampire diaries r there",
+      "mcq_prompt": "Question: how many seasons of vampire diaries r there\nA. 9 seasons\nB. Chernobyl Nuclear Power Plant\nC. eight\nD. Tom Selleck\nAnswer:",
+      "options": {
+        "A": "9 seasons",
+        "B": "Chernobyl Nuclear Power Plant",
+        "C": "eight",
+        "D": "Tom Selleck"
+      },
+      "correct_answer": "eight",
+      "correct_letter": "C",
+      "distractors": [
+        "9 seasons",
+        "Chernobyl Nuclear Power Plant",
+        "Tom Selleck"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_23",
+      "question": "how many episodes are there in dragon ball z",
+      "mcq_prompt": "Question: how many episodes are there in dragon ball z\nA. the cast members\nB. by the early 1980s\nC. Mickey Rooney\nD. 291 episodes\nAnswer:",
+      "options": {
+        "A": "the cast members",
+        "B": "by the early 1980s",
+        "C": "Mickey Rooney",
+        "D": "291 episodes"
+      },
+      "correct_answer": "291 episodes",
+      "correct_letter": "D",
+      "distractors": [
+        "the cast members",
+        "by the early 1980s",
+        "Mickey Rooney"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_24",
+      "question": "who plays auggie in the movie the wonder",
+      "mcq_prompt": "Question: who plays auggie in the movie the wonder\nA. October 5, 1968\nB. 15th century\nC. Jacob Tremblay\nD. the President\nAnswer:",
+      "options": {
+        "A": "October 5, 1968",
+        "B": "15th century",
+        "C": "Jacob Tremblay",
+        "D": "the President"
+      },
+      "correct_answer": "Jacob Tremblay",
+      "correct_letter": "C",
+      "distractors": [
+        "the President",
+        "October 5, 1968",
+        "15th century"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_25",
+      "question": "when was the first australian prime minister elected",
+      "mcq_prompt": "Question: when was the first australian prime minister elected\nA. eight\nB. nearby\nC. Sir Edmund Barton\nD. March 1\nAnswer:",
+      "options": {
+        "A": "eight",
+        "B": "nearby",
+        "C": "Sir Edmund Barton",
+        "D": "March 1"
+      },
+      "correct_answer": "Sir Edmund Barton",
+      "correct_letter": "C",
+      "distractors": [
+        "eight",
+        "nearby",
+        "March 1"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_26",
+      "question": "who plays matthew on anne with an e",
+      "mcq_prompt": "Question: who plays matthew on anne with an e\nA. R. H. Thomson\nB. 1970\nC. January\u00a031,\u00a02018\nD. Spice Girls\nAnswer:",
+      "options": {
+        "A": "R. H. Thomson",
+        "B": "1970",
+        "C": "January\u00a031,\u00a02018",
+        "D": "Spice Girls"
+      },
+      "correct_answer": "R. H. Thomson",
+      "correct_letter": "A",
+      "distractors": [
+        "1970",
+        "January\u00a031,\u00a02018",
+        "Spice Girls"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_27",
+      "question": "who is the girl in green day 21 guns",
+      "mcq_prompt": "Question: who is the girl in green day 21 guns\nA. Orange Juice\nB. 90\nC. Richard Gere\nD. Lisa Stelly\nAnswer:",
+      "options": {
+        "A": "Orange Juice",
+        "B": "90",
+        "C": "Richard Gere",
+        "D": "Lisa Stelly"
+      },
+      "correct_answer": "Lisa Stelly",
+      "correct_letter": "D",
+      "distractors": [
+        "Richard Gere",
+        "Orange Juice",
+        "90"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_28",
+      "question": "who plays joker in batman the dark knight",
+      "mcq_prompt": "Question: who plays joker in batman the dark knight\nA. Lead\nB. Javier Fern\u00e1ndez\nC. the duodenum\nD. Ledger\nAnswer:",
+      "options": {
+        "A": "Lead",
+        "B": "Javier Fern\u00e1ndez",
+        "C": "the duodenum",
+        "D": "Ledger"
+      },
+      "correct_answer": "Ledger",
+      "correct_letter": "D",
+      "distractors": [
+        "Lead",
+        "the duodenum",
+        "Javier Fern\u00e1ndez"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_29",
+      "question": "when was the south asian association for regional co-operation (saarc) formed",
+      "mcq_prompt": "Question: when was the south asian association for regional co-operation (saarc) formed\nA. leg\nB. Fifty Shades Darker\nC. December 1985\nD. in Corinth, Mississippi\nAnswer:",
+      "options": {
+        "A": "leg",
+        "B": "Fifty Shades Darker",
+        "C": "December 1985",
+        "D": "in Corinth, Mississippi"
+      },
+      "correct_answer": "December 1985",
+      "correct_letter": "C",
+      "distractors": [
+        "leg",
+        "in Corinth, Mississippi",
+        "Fifty Shades Darker"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_30",
+      "question": "when was the first hunger games book published",
+      "mcq_prompt": "Question: when was the first hunger games book published\nA. September 14, 2008\nB. Augustus Waters\nC. October 5, 1968\nD. Norm Van Brocklin\nAnswer:",
+      "options": {
+        "A": "September 14, 2008",
+        "B": "Augustus Waters",
+        "C": "October 5, 1968",
+        "D": "Norm Van Brocklin"
+      },
+      "correct_answer": "September 14, 2008",
+      "correct_letter": "A",
+      "distractors": [
+        "Norm Van Brocklin",
+        "October 5, 1968",
+        "Augustus Waters"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_31",
+      "question": "who did bette midler portray in the rose",
+      "mcq_prompt": "Question: who did bette midler portray in the rose\nA. the Gilbert building\nB. King Willem-Alexander\nC. Mary Rose Foster\nD. October 4, 2014\nAnswer:",
+      "options": {
+        "A": "the Gilbert building",
+        "B": "King Willem-Alexander",
+        "C": "Mary Rose Foster",
+        "D": "October 4, 2014"
+      },
+      "correct_answer": "Mary Rose Foster",
+      "correct_letter": "C",
+      "distractors": [
+        "October 4, 2014",
+        "King Willem-Alexander",
+        "the Gilbert building"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_32",
+      "question": "who is the lead singer of depeche mode",
+      "mcq_prompt": "Question: who is the lead singer of depeche mode\nA. Beyonc\u00e9\nB. David Gahan\nC. Confederate\nD. Jerry Rice\nAnswer:",
+      "options": {
+        "A": "Beyonc\u00e9",
+        "B": "David Gahan",
+        "C": "Confederate",
+        "D": "Jerry Rice"
+      },
+      "correct_answer": "David Gahan",
+      "correct_letter": "B",
+      "distractors": [
+        "Confederate",
+        "Beyonc\u00e9",
+        "Jerry Rice"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_33",
+      "question": "where did the butchers in the slaughterhouse cases live",
+      "mcq_prompt": "Question: where did the butchers in the slaughterhouse cases live\nA. B. Munuswamy Naidu\nB. Proposition 103\nC. New Orleans\nD. Llansilin in Powys\nAnswer:",
+      "options": {
+        "A": "B. Munuswamy Naidu",
+        "B": "Proposition 103",
+        "C": "New Orleans",
+        "D": "Llansilin in Powys"
+      },
+      "correct_answer": "New Orleans",
+      "correct_letter": "C",
+      "distractors": [
+        "B. Munuswamy Naidu",
+        "Llansilin in Powys",
+        "Proposition 103"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_34",
+      "question": "who developed the concept of total quality management",
+      "mcq_prompt": "Question: who developed the concept of total quality management\nA. 16 March 2018\nB. never made\nC. W. Edwards Deming\nD. revolution or orbital revolution\nAnswer:",
+      "options": {
+        "A": "16 March 2018",
+        "B": "never made",
+        "C": "W. Edwards Deming",
+        "D": "revolution or orbital revolution"
+      },
+      "correct_answer": "W. Edwards Deming",
+      "correct_letter": "C",
+      "distractors": [
+        "never made",
+        "16 March 2018",
+        "revolution or orbital revolution"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_35",
+      "question": "who wrote cant get you out of my head lyrics",
+      "mcq_prompt": "Question: who wrote cant get you out of my head lyrics\nA. Norm Van Brocklin\nB. Telugu\nC. Cathy Dennis and Rob Davis\nD. Inequality of opportunity\nAnswer:",
+      "options": {
+        "A": "Norm Van Brocklin",
+        "B": "Telugu",
+        "C": "Cathy Dennis and Rob Davis",
+        "D": "Inequality of opportunity"
+      },
+      "correct_answer": "Cathy Dennis and Rob Davis",
+      "correct_letter": "C",
+      "distractors": [
+        "Inequality of opportunity",
+        "Norm Van Brocklin",
+        "Telugu"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_36",
+      "question": "where does no game no life anime end",
+      "mcq_prompt": "Question: where does no game no life anime end\nA. B. Munuswamy Naidu\nB. outer layer of skin\nC. Zhu Di\nD. the Elkia Federation\nAnswer:",
+      "options": {
+        "A": "B. Munuswamy Naidu",
+        "B": "outer layer of skin",
+        "C": "Zhu Di",
+        "D": "the Elkia Federation"
+      },
+      "correct_answer": "the Elkia Federation",
+      "correct_letter": "D",
+      "distractors": [
+        "B. Munuswamy Naidu",
+        "outer layer of skin",
+        "Zhu Di"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_37",
+      "question": "when did taylor swift's first album release",
+      "mcq_prompt": "Question: when did taylor swift's first album release\nA. October 5, 1968\nB. October 24, 2006\nC. Germany\nD. the Gilbert building\nAnswer:",
+      "options": {
+        "A": "October 5, 1968",
+        "B": "October 24, 2006",
+        "C": "Germany",
+        "D": "the Gilbert building"
+      },
+      "correct_answer": "October 24, 2006",
+      "correct_letter": "B",
+      "distractors": [
+        "the Gilbert building",
+        "October 5, 1968",
+        "Germany"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_38",
+      "question": "what are the three fifty shades of grey books",
+      "mcq_prompt": "Question: what are the three fifty shades of grey books\nA. Fifty Shades of Grey\nB. P. Subbarayan\nC. E-8s senior chief petty officer\nD. 20 November 1989\nAnswer:",
+      "options": {
+        "A": "Fifty Shades of Grey",
+        "B": "P. Subbarayan",
+        "C": "E-8s senior chief petty officer",
+        "D": "20 November 1989"
+      },
+      "correct_answer": "Fifty Shades of Grey",
+      "correct_letter": "A",
+      "distractors": [
+        "E-8s senior chief petty officer",
+        "P. Subbarayan",
+        "20 November 1989"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_39",
+      "question": "who has the power (judicial) to make decisions in courts of law",
+      "mcq_prompt": "Question: who has the power (judicial) to make decisions in courts of law\nA. Jerry Rice\nB. Max Shippee\nC. judges\nD. Afghanistan\nAnswer:",
+      "options": {
+        "A": "Jerry Rice",
+        "B": "Max Shippee",
+        "C": "judges",
+        "D": "Afghanistan"
+      },
+      "correct_answer": "judges",
+      "correct_letter": "C",
+      "distractors": [
+        "Afghanistan",
+        "Jerry Rice",
+        "Max Shippee"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_40",
+      "question": "what are the ranks in the us navy",
+      "mcq_prompt": "Question: what are the ranks in the us navy\nA. Marvel's Daredevil\nB. Llansilin in Powys\nC. E-8s senior chief petty officer\nD. 54\u00a0Mbit/s\nAnswer:",
+      "options": {
+        "A": "Marvel's Daredevil",
+        "B": "Llansilin in Powys",
+        "C": "E-8s senior chief petty officer",
+        "D": "54\u00a0Mbit/s"
+      },
+      "correct_answer": "E-8s senior chief petty officer",
+      "correct_letter": "C",
+      "distractors": [
+        "Marvel's Daredevil",
+        "54\u00a0Mbit/s",
+        "Llansilin in Powys"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_41",
+      "question": "i was a great islamic scholar and mathematician who died in 1131 ce",
+      "mcq_prompt": "Question: i was a great islamic scholar and mathematician who died in 1131 ce\nA. 9 seasons\nB. Sarah\nC. Omar Khayyam\nD. 14 December 1972 UTC\nAnswer:",
+      "options": {
+        "A": "9 seasons",
+        "B": "Sarah",
+        "C": "Omar Khayyam",
+        "D": "14 December 1972 UTC"
+      },
+      "correct_answer": "Omar Khayyam",
+      "correct_letter": "C",
+      "distractors": [
+        "14 December 1972 UTC",
+        "Sarah",
+        "9 seasons"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_42",
+      "question": "who is the coach for the ottawa senators",
+      "mcq_prompt": "Question: who is the coach for the ottawa senators\nA. 15th century\nB. Guy Boucher\nC. in Corinth, Mississippi\nD. Lisa Stelly\nAnswer:",
+      "options": {
+        "A": "15th century",
+        "B": "Guy Boucher",
+        "C": "in Corinth, Mississippi",
+        "D": "Lisa Stelly"
+      },
+      "correct_answer": "Guy Boucher",
+      "correct_letter": "B",
+      "distractors": [
+        "Lisa Stelly",
+        "15th century",
+        "in Corinth, Mississippi"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_43",
+      "question": "last episode of what happens to my family",
+      "mcq_prompt": "Question: last episode of what happens to my family\nA. 53\nB. Michael Moriarty\nC. Gina Tognoni\nD. Shenzi\nAnswer:",
+      "options": {
+        "A": "53",
+        "B": "Michael Moriarty",
+        "C": "Gina Tognoni",
+        "D": "Shenzi"
+      },
+      "correct_answer": "53",
+      "correct_letter": "A",
+      "distractors": [
+        "Michael Moriarty",
+        "Gina Tognoni",
+        "Shenzi"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_44",
+      "question": "when is the last time the vikings were in the nfc championship",
+      "mcq_prompt": "Question: when is the last time the vikings were in the nfc championship\nA. 1976\nB. 21\nC. Giant slalom\nD. 1933\nAnswer:",
+      "options": {
+        "A": "1976",
+        "B": "21",
+        "C": "Giant slalom",
+        "D": "1933"
+      },
+      "correct_answer": "1976",
+      "correct_letter": "A",
+      "distractors": [
+        "1933",
+        "21",
+        "Giant slalom"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_45",
+      "question": "what are the colors of the netherlands flag",
+      "mcq_prompt": "Question: what are the colors of the netherlands flag\nA. Kimmy Robertson\nB. commercial at\nC. blue\nD. Josh Charles\nAnswer:",
+      "options": {
+        "A": "Kimmy Robertson",
+        "B": "commercial at",
+        "C": "blue",
+        "D": "Josh Charles"
+      },
+      "correct_answer": "blue",
+      "correct_letter": "C",
+      "distractors": [
+        "Kimmy Robertson",
+        "Josh Charles",
+        "commercial at"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_46",
+      "question": "where is lord's prayer found in bible",
+      "mcq_prompt": "Question: where is lord's prayer found in bible\nA. in the Gospel of Luke\nB. Colon Street\nC. W. Edwards Deming\nD. Wayne Allwine\nAnswer:",
+      "options": {
+        "A": "in the Gospel of Luke",
+        "B": "Colon Street",
+        "C": "W. Edwards Deming",
+        "D": "Wayne Allwine"
+      },
+      "correct_answer": "in the Gospel of Luke",
+      "correct_letter": "A",
+      "distractors": [
+        "Wayne Allwine",
+        "W. Edwards Deming",
+        "Colon Street"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_47",
+      "question": "when was the last time oklahoma won a national championship in football",
+      "mcq_prompt": "Question: when was the last time oklahoma won a national championship in football\nA. 2003\nB. 10,605\nC. 15th century\nD. Dr. Jesse Bennett\nAnswer:",
+      "options": {
+        "A": "2003",
+        "B": "10,605",
+        "C": "15th century",
+        "D": "Dr. Jesse Bennett"
+      },
+      "correct_answer": "2003",
+      "correct_letter": "A",
+      "distractors": [
+        "Dr. Jesse Bennett",
+        "10,605",
+        "15th century"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_48",
+      "question": "location of the ten commandments in the bible",
+      "mcq_prompt": "Question: location of the ten commandments in the bible\nA. Gwendoline Christie\nB. Jordan Fisher\nC. 20\nD. Exodus\nAnswer:",
+      "options": {
+        "A": "Gwendoline Christie",
+        "B": "Jordan Fisher",
+        "C": "20",
+        "D": "Exodus"
+      },
+      "correct_answer": "Exodus",
+      "correct_letter": "D",
+      "distractors": [
+        "Jordan Fisher",
+        "20",
+        "Gwendoline Christie"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_49",
+      "question": "where did the allies go after north africa",
+      "mcq_prompt": "Question: where did the allies go after north africa\nA. Rihanna\nB. Jacob Tremblay\nC. 1966\nD. Italy\nAnswer:",
+      "options": {
+        "A": "Rihanna",
+        "B": "Jacob Tremblay",
+        "C": "1966",
+        "D": "Italy"
+      },
+      "correct_answer": "Italy",
+      "correct_letter": "D",
+      "distractors": [
+        "Rihanna",
+        "Jacob Tremblay",
+        "1966"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_50",
+      "question": "what is the meaning of veronica in english",
+      "mcq_prompt": "Question: what is the meaning of veronica in english\nA. Confederate victory\nB. Tanguturi Prakasam\nC. she who brings victory\nD. Gujarat\nAnswer:",
+      "options": {
+        "A": "Confederate victory",
+        "B": "Tanguturi Prakasam",
+        "C": "she who brings victory",
+        "D": "Gujarat"
+      },
+      "correct_answer": "she who brings victory",
+      "correct_letter": "C",
+      "distractors": [
+        "Tanguturi Prakasam",
+        "Gujarat",
+        "Confederate victory"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_51",
+      "question": "what is the name of the main artery which takes blood from the heart to the body",
+      "mcq_prompt": "Question: what is the name of the main artery which takes blood from the heart to the body\nA. 11 p.m. to 3 a.m.\nB. Audley Harrison\nC. Ramakrishna Ranga Rao\nD. The aorta\nAnswer:",
+      "options": {
+        "A": "11 p.m. to 3 a.m.",
+        "B": "Audley Harrison",
+        "C": "Ramakrishna Ranga Rao",
+        "D": "The aorta"
+      },
+      "correct_answer": "The aorta",
+      "correct_letter": "D",
+      "distractors": [
+        "Audley Harrison",
+        "11 p.m. to 3 a.m.",
+        "Ramakrishna Ranga Rao"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_52",
+      "question": "who played solomon in little house on the prairie",
+      "mcq_prompt": "Question: who played solomon in little house on the prairie\nA. nomads from Inner Asia.\nB. Billie Jean King\nC. Todd Bridges\nD. October 27, 1894\nAnswer:",
+      "options": {
+        "A": "nomads from Inner Asia.",
+        "B": "Billie Jean King",
+        "C": "Todd Bridges",
+        "D": "October 27, 1894"
+      },
+      "correct_answer": "Todd Bridges",
+      "correct_letter": "C",
+      "distractors": [
+        "Billie Jean King",
+        "October 27, 1894",
+        "nomads from Inner Asia."
+      ]
+    },
+    {
+      "id": "nq_open_mcq_53",
+      "question": "who does eric end up with in that 70s show",
+      "mcq_prompt": "Question: who does eric end up with in that 70s show\nA. O. Panneerselvam\nB. George Young\nC. Exodus 20:7\nD. Donna\nAnswer:",
+      "options": {
+        "A": "O. Panneerselvam",
+        "B": "George Young",
+        "C": "Exodus 20:7",
+        "D": "Donna"
+      },
+      "correct_answer": "Donna",
+      "correct_letter": "D",
+      "distractors": [
+        "O. Panneerselvam",
+        "George Young",
+        "Exodus 20:7"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_54",
+      "question": "an object that moves around an external axis is said to be",
+      "mcq_prompt": "Question: an object that moves around an external axis is said to be\nA. Moira Kelly\nB. revolution or orbital revolution\nC. ---\nD. Elvis Presley\nAnswer:",
+      "options": {
+        "A": "Moira Kelly",
+        "B": "revolution or orbital revolution",
+        "C": "---",
+        "D": "Elvis Presley"
+      },
+      "correct_answer": "revolution or orbital revolution",
+      "correct_letter": "B",
+      "distractors": [
+        "Elvis Presley",
+        "Moira Kelly",
+        "---"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_55",
+      "question": "architectural elements forming rib vaults eg wells cathedral",
+      "mcq_prompt": "Question: architectural elements forming rib vaults eg wells cathedral\nA. Patrick Leahy\nB. Queen M\u00e1xima of the Netherlands\nC. The Vamps\nD. an armature of piped masonry\nAnswer:",
+      "options": {
+        "A": "Patrick Leahy",
+        "B": "Queen M\u00e1xima of the Netherlands",
+        "C": "The Vamps",
+        "D": "an armature of piped masonry"
+      },
+      "correct_answer": "an armature of piped masonry",
+      "correct_letter": "D",
+      "distractors": [
+        "The Vamps",
+        "Patrick Leahy",
+        "Queen M\u00e1xima of the Netherlands"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_56",
+      "question": "who sang the song good morning good morning",
+      "mcq_prompt": "Question: who sang the song good morning good morning\nA. Cadillac\nB. Gene Kelly\nC. November 2\nD. Beyonc\u00e9\nAnswer:",
+      "options": {
+        "A": "Cadillac",
+        "B": "Gene Kelly",
+        "C": "November 2",
+        "D": "Beyonc\u00e9"
+      },
+      "correct_answer": "Gene Kelly",
+      "correct_letter": "B",
+      "distractors": [
+        "Cadillac",
+        "November 2",
+        "Beyonc\u00e9"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_57",
+      "question": "who wrote papa got a brand new bag",
+      "mcq_prompt": "Question: who wrote papa got a brand new bag\nA. A. Subbarayalu Reddiar\nB. October 13, 2001\nC. James Brown\nD. David Gahan\nAnswer:",
+      "options": {
+        "A": "A. Subbarayalu Reddiar",
+        "B": "October 13, 2001",
+        "C": "James Brown",
+        "D": "David Gahan"
+      },
+      "correct_answer": "James Brown",
+      "correct_letter": "C",
+      "distractors": [
+        "A. Subbarayalu Reddiar",
+        "October 13, 2001",
+        "David Gahan"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_58",
+      "question": "where does a roadrunner live in the desert",
+      "mcq_prompt": "Question: where does a roadrunner live in the desert\nA. T.J. Miller\nB. A'ja Wilson\nC. mountainous shrubland\nD. Roddy McDowall\nAnswer:",
+      "options": {
+        "A": "T.J. Miller",
+        "B": "A'ja Wilson",
+        "C": "mountainous shrubland",
+        "D": "Roddy McDowall"
+      },
+      "correct_answer": "mountainous shrubland",
+      "correct_letter": "C",
+      "distractors": [
+        "T.J. Miller",
+        "Roddy McDowall",
+        "A'ja Wilson"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_59",
+      "question": "who wrote it's a long long way to pasadena",
+      "mcq_prompt": "Question: who wrote it's a long long way to pasadena\nA. a presidential representative democratic republic\nB. smoking\nC. John Young\nD. red\nAnswer:",
+      "options": {
+        "A": "a presidential representative democratic republic",
+        "B": "smoking",
+        "C": "John Young",
+        "D": "red"
+      },
+      "correct_answer": "John Young",
+      "correct_letter": "C",
+      "distractors": [
+        "red",
+        "a presidential representative democratic republic",
+        "smoking"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_60",
+      "question": "what's the dog's name on tom and jerry",
+      "mcq_prompt": "Question: what's the dog's name on tom and jerry\nA. Nicole DuPort\nB. Scottish post-punk band Orange Juice\nC. Spike\nD. Hindi\nAnswer:",
+      "options": {
+        "A": "Nicole DuPort",
+        "B": "Scottish post-punk band Orange Juice",
+        "C": "Spike",
+        "D": "Hindi"
+      },
+      "correct_answer": "Spike",
+      "correct_letter": "C",
+      "distractors": [
+        "Hindi",
+        "Scottish post-punk band Orange Juice",
+        "Nicole DuPort"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_61",
+      "question": "who are nominated for president of india 2017",
+      "mcq_prompt": "Question: who are nominated for president of india 2017\nA. Norm Van Brocklin\nB. Sheppard\nC. January\u00a031,\u00a02018\nD. Meira Kumar\nAnswer:",
+      "options": {
+        "A": "Norm Van Brocklin",
+        "B": "Sheppard",
+        "C": "January\u00a031,\u00a02018",
+        "D": "Meira Kumar"
+      },
+      "correct_answer": "Meira Kumar",
+      "correct_letter": "D",
+      "distractors": [
+        "January\u00a031,\u00a02018",
+        "Sheppard",
+        "Norm Van Brocklin"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_62",
+      "question": "where does the path train stop in newark",
+      "mcq_prompt": "Question: where does the path train stop in newark\nA. pools campaign contributions from members\nB. revolution or orbital revolution\nC. Newark Penn Station\nD. 19 July 1990\nAnswer:",
+      "options": {
+        "A": "pools campaign contributions from members",
+        "B": "revolution or orbital revolution",
+        "C": "Newark Penn Station",
+        "D": "19 July 1990"
+      },
+      "correct_answer": "Newark Penn Station",
+      "correct_letter": "C",
+      "distractors": [
+        "pools campaign contributions from members",
+        "19 July 1990",
+        "revolution or orbital revolution"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_63",
+      "question": "where does route 66 start on the west coast",
+      "mcq_prompt": "Question: where does route 66 start on the west coast\nA. Spike\nB. 1933\nC. nearby\nD. in Santa Monica\nAnswer:",
+      "options": {
+        "A": "Spike",
+        "B": "1933",
+        "C": "nearby",
+        "D": "in Santa Monica"
+      },
+      "correct_answer": "in Santa Monica",
+      "correct_letter": "D",
+      "distractors": [
+        "1933",
+        "Spike",
+        "nearby"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_64",
+      "question": "who is the first wife on sister wives",
+      "mcq_prompt": "Question: who is the first wife on sister wives\nA. Giant slalom\nB. the beginning\nC. adenine (A)\nD. Meri\nAnswer:",
+      "options": {
+        "A": "Giant slalom",
+        "B": "the beginning",
+        "C": "adenine (A)",
+        "D": "Meri"
+      },
+      "correct_answer": "Meri",
+      "correct_letter": "D",
+      "distractors": [
+        "adenine (A)",
+        "Giant slalom",
+        "the beginning"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_65",
+      "question": "when did houston go to the american league",
+      "mcq_prompt": "Question: when did houston go to the american league\nA. group 1\nB. the beginning\nC. October 27, 1894\nD. 2013\nAnswer:",
+      "options": {
+        "A": "group 1",
+        "B": "the beginning",
+        "C": "October 27, 1894",
+        "D": "2013"
+      },
+      "correct_answer": "2013",
+      "correct_letter": "D",
+      "distractors": [
+        "group 1",
+        "October 27, 1894",
+        "the beginning"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_66",
+      "question": "when did they stop cigarette advertising on television",
+      "mcq_prompt": "Question: when did they stop cigarette advertising on television\nA. January 2, 1971\nB. the cast\nC. The aorta\nD. Confederate\nAnswer:",
+      "options": {
+        "A": "January 2, 1971",
+        "B": "the cast",
+        "C": "The aorta",
+        "D": "Confederate"
+      },
+      "correct_answer": "January 2, 1971",
+      "correct_letter": "A",
+      "distractors": [
+        "the cast",
+        "Confederate",
+        "The aorta"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_67",
+      "question": "coldplay song i will try to fix you",
+      "mcq_prompt": "Question: coldplay song i will try to fix you\nA. \"Fix You\"\nB. Debbie Gibson\nC. October 3, 1970\nD. Josh Charles\nAnswer:",
+      "options": {
+        "A": "\"Fix You\"",
+        "B": "Debbie Gibson",
+        "C": "October 3, 1970",
+        "D": "Josh Charles"
+      },
+      "correct_answer": "\"Fix You\"",
+      "correct_letter": "A",
+      "distractors": [
+        "Debbie Gibson",
+        "Josh Charles",
+        "October 3, 1970"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_68",
+      "question": "points on a sphere or angles in a circle are measured in units called",
+      "mcq_prompt": "Question: points on a sphere or angles in a circle are measured in units called\nA. Proposition 103\nB. Orrin Hatch\nC. radians\nD. Luigi Creatore\nAnswer:",
+      "options": {
+        "A": "Proposition 103",
+        "B": "Orrin Hatch",
+        "C": "radians",
+        "D": "Luigi Creatore"
+      },
+      "correct_answer": "radians",
+      "correct_letter": "C",
+      "distractors": [
+        "Luigi Creatore",
+        "Proposition 103",
+        "Orrin Hatch"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_69",
+      "question": "the oligodynamic effect is a phenomenon that describes",
+      "mcq_prompt": "Question: the oligodynamic effect is a phenomenon that describes\nA. P. Subbarayan\nB. a biocidal effect of metals\nC. Kurma Venkata Reddy Naidu\nD. 1901\nAnswer:",
+      "options": {
+        "A": "P. Subbarayan",
+        "B": "a biocidal effect of metals",
+        "C": "Kurma Venkata Reddy Naidu",
+        "D": "1901"
+      },
+      "correct_answer": "a biocidal effect of metals",
+      "correct_letter": "B",
+      "distractors": [
+        "P. Subbarayan",
+        "Kurma Venkata Reddy Naidu",
+        "1901"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_70",
+      "question": "where does the white witch live in narnia",
+      "mcq_prompt": "Question: where does the white witch live in narnia\nA. her castle\nB. Travis Tritt\nC. Jamaican reggae band Inner Circle\nD. Confederate victory\nAnswer:",
+      "options": {
+        "A": "her castle",
+        "B": "Travis Tritt",
+        "C": "Jamaican reggae band Inner Circle",
+        "D": "Confederate victory"
+      },
+      "correct_answer": "her castle",
+      "correct_letter": "A",
+      "distractors": [
+        "Travis Tritt",
+        "Jamaican reggae band Inner Circle",
+        "Confederate victory"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_71",
+      "question": "how many games in a row have the uconn women's basketball team won",
+      "mcq_prompt": "Question: how many games in a row have the uconn women's basketball team won\nA. Graham McTavish\nB. 111 straight wins\nC. George Young\nD. presidential representative democratic republic\nAnswer:",
+      "options": {
+        "A": "Graham McTavish",
+        "B": "111 straight wins",
+        "C": "George Young",
+        "D": "presidential representative democratic republic"
+      },
+      "correct_answer": "111 straight wins",
+      "correct_letter": "B",
+      "distractors": [
+        "Graham McTavish",
+        "George Young",
+        "presidential representative democratic republic"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_72",
+      "question": "is there a name for the at symbol",
+      "mcq_prompt": "Question: is there a name for the at symbol\nA. Helena\nB. State of Mizoram\nC. commercial at\nD. Wendy Fraser\nAnswer:",
+      "options": {
+        "A": "Helena",
+        "B": "State of Mizoram",
+        "C": "commercial at",
+        "D": "Wendy Fraser"
+      },
+      "correct_answer": "commercial at",
+      "correct_letter": "C",
+      "distractors": [
+        "Helena",
+        "Wendy Fraser",
+        "State of Mizoram"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_73",
+      "question": "who sings the theme song for the tv show cops",
+      "mcq_prompt": "Question: who sings the theme song for the tv show cops\nA. Eda Reiss Merin\nB. 90\nC. Inner Circle\nD. Lead and lead dioxide\nAnswer:",
+      "options": {
+        "A": "Eda Reiss Merin",
+        "B": "90",
+        "C": "Inner Circle",
+        "D": "Lead and lead dioxide"
+      },
+      "correct_answer": "Inner Circle",
+      "correct_letter": "C",
+      "distractors": [
+        "Lead and lead dioxide",
+        "90",
+        "Eda Reiss Merin"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_74",
+      "question": "when was corporal punishment banned in south africa",
+      "mcq_prompt": "Question: when was corporal punishment banned in south africa\nA. Robert Hy Gorman\nB. 1997\nC. transposed\nD. February 29\nAnswer:",
+      "options": {
+        "A": "Robert Hy Gorman",
+        "B": "1997",
+        "C": "transposed",
+        "D": "February 29"
+      },
+      "correct_answer": "1997",
+      "correct_letter": "B",
+      "distractors": [
+        "transposed",
+        "Robert Hy Gorman",
+        "February 29"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_75",
+      "question": "who plays captain phasma in star wars the force awakens",
+      "mcq_prompt": "Question: who plays captain phasma in star wars the force awakens\nA. 19 July 1990\nB. fourth\nC. Gwendoline Christie\nD. in the s-block\nAnswer:",
+      "options": {
+        "A": "19 July 1990",
+        "B": "fourth",
+        "C": "Gwendoline Christie",
+        "D": "in the s-block"
+      },
+      "correct_answer": "Gwendoline Christie",
+      "correct_letter": "C",
+      "distractors": [
+        "in the s-block",
+        "fourth",
+        "19 July 1990"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_76",
+      "question": "who sings she's like the wind lyrics",
+      "mcq_prompt": "Question: who sings she's like the wind lyrics\nA. Wendy Fraser\nB. M. G. Ramachandran\nC. the Archies\nD. stress\nAnswer:",
+      "options": {
+        "A": "Wendy Fraser",
+        "B": "M. G. Ramachandran",
+        "C": "the Archies",
+        "D": "stress"
+      },
+      "correct_answer": "Wendy Fraser",
+      "correct_letter": "A",
+      "distractors": [
+        "stress",
+        "the Archies",
+        "M. G. Ramachandran"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_77",
+      "question": "when did marathon change its name to snickers",
+      "mcq_prompt": "Question: when did marathon change its name to snickers\nA. Cadillac\nB. outer layer of skin\nC. 19 July 1990\nD. her castle\nAnswer:",
+      "options": {
+        "A": "Cadillac",
+        "B": "outer layer of skin",
+        "C": "19 July 1990",
+        "D": "her castle"
+      },
+      "correct_answer": "19 July 1990",
+      "correct_letter": "C",
+      "distractors": [
+        "outer layer of skin",
+        "Cadillac",
+        "her castle"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_78",
+      "question": "who captained the first european ship to sail around the tip of africa",
+      "mcq_prompt": "Question: who captained the first european ship to sail around the tip of africa\nA. Bartolomeu Dias\nB. 9 seasons\nC. communism\nD. 111\nAnswer:",
+      "options": {
+        "A": "Bartolomeu Dias",
+        "B": "9 seasons",
+        "C": "communism",
+        "D": "111"
+      },
+      "correct_answer": "Bartolomeu Dias",
+      "correct_letter": "A",
+      "distractors": [
+        "9 seasons",
+        "communism",
+        "111"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_79",
+      "question": "who ordered the forbidden city to be built",
+      "mcq_prompt": "Question: who ordered the forbidden city to be built\nA. 3.99 degrees\nB. 1980\nC. Zhu Di\nD. Robert Hy Gorman\nAnswer:",
+      "options": {
+        "A": "3.99 degrees",
+        "B": "1980",
+        "C": "Zhu Di",
+        "D": "Robert Hy Gorman"
+      },
+      "correct_answer": "Zhu Di",
+      "correct_letter": "C",
+      "distractors": [
+        "1980",
+        "Robert Hy Gorman",
+        "3.99 degrees"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_80",
+      "question": "who sang let me tell you about the birds and the bees",
+      "mcq_prompt": "Question: who sang let me tell you about the birds and the bees\nA. Justin Bieber\nB. Jewel Akens\nC. Karl Malone\nD. Marvel's Luke Cage\nAnswer:",
+      "options": {
+        "A": "Justin Bieber",
+        "B": "Jewel Akens",
+        "C": "Karl Malone",
+        "D": "Marvel's Luke Cage"
+      },
+      "correct_answer": "Jewel Akens",
+      "correct_letter": "B",
+      "distractors": [
+        "Karl Malone",
+        "Marvel's Luke Cage",
+        "Justin Bieber"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_81",
+      "question": "who has the power to approve or veto legislation constitution",
+      "mcq_prompt": "Question: who has the power to approve or veto legislation constitution\nA. Tanguturi Prakasam\nB. the President\nC. Afghanistan\nD. Dan Castellaneta (voice)\nAnswer:",
+      "options": {
+        "A": "Tanguturi Prakasam",
+        "B": "the President",
+        "C": "Afghanistan",
+        "D": "Dan Castellaneta (voice)"
+      },
+      "correct_answer": "the President",
+      "correct_letter": "B",
+      "distractors": [
+        "Afghanistan",
+        "Dan Castellaneta (voice)",
+        "Tanguturi Prakasam"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_82",
+      "question": "how many seasons of the rugrats are there",
+      "mcq_prompt": "Question: how many seasons of the rugrats are there\nA. Ed\nB. 9 seasons\nC. Shoma Uno\nD. one\nAnswer:",
+      "options": {
+        "A": "Ed",
+        "B": "9 seasons",
+        "C": "Shoma Uno",
+        "D": "one"
+      },
+      "correct_answer": "9 seasons",
+      "correct_letter": "B",
+      "distractors": [
+        "Ed",
+        "Shoma Uno",
+        "one"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_83",
+      "question": "who is the minister of local government in zimbabwe",
+      "mcq_prompt": "Question: who is the minister of local government in zimbabwe\nA. Hon July Moyo\nB. Abraham\nC. Augustus Waters\nD. July 14, 2016\nAnswer:",
+      "options": {
+        "A": "Hon July Moyo",
+        "B": "Abraham",
+        "C": "Augustus Waters",
+        "D": "July 14, 2016"
+      },
+      "correct_answer": "Hon July Moyo",
+      "correct_letter": "A",
+      "distractors": [
+        "Augustus Waters",
+        "Abraham",
+        "July 14, 2016"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_84",
+      "question": "what was the initial effect of the transition from command to market economies in eastern europe",
+      "mcq_prompt": "Question: what was the initial effect of the transition from command to market economies in eastern europe\nA. Bart Millard\nB. Inequality of opportunity\nC. James Brown\nD. on the microscope's stage\nAnswer:",
+      "options": {
+        "A": "Bart Millard",
+        "B": "Inequality of opportunity",
+        "C": "James Brown",
+        "D": "on the microscope's stage"
+      },
+      "correct_answer": "Inequality of opportunity",
+      "correct_letter": "B",
+      "distractors": [
+        "James Brown",
+        "Bart Millard",
+        "on the microscope's stage"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_85",
+      "question": "when did toyota start making cars in the us",
+      "mcq_prompt": "Question: when did toyota start making cars in the us\nA. by the early 1980s\nB. negotiates treaties with foreign nations\nC. Llanrhaeadr-ym-Mochnant\nD. 14 December 1972 UTC\nAnswer:",
+      "options": {
+        "A": "by the early 1980s",
+        "B": "negotiates treaties with foreign nations",
+        "C": "Llanrhaeadr-ym-Mochnant",
+        "D": "14 December 1972 UTC"
+      },
+      "correct_answer": "by the early 1980s",
+      "correct_letter": "A",
+      "distractors": [
+        "Llanrhaeadr-ym-Mochnant",
+        "14 December 1972 UTC",
+        "negotiates treaties with foreign nations"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_86",
+      "question": "how many pieces in a terry's chocolate orange",
+      "mcq_prompt": "Question: how many pieces in a terry's chocolate orange\nA. six\nB. the duodenum\nC. Donna\nD. the Chernobyl Nuclear Power Plant\nAnswer:",
+      "options": {
+        "A": "six",
+        "B": "the duodenum",
+        "C": "Donna",
+        "D": "the Chernobyl Nuclear Power Plant"
+      },
+      "correct_answer": "six",
+      "correct_letter": "A",
+      "distractors": [
+        "the Chernobyl Nuclear Power Plant",
+        "the duodenum",
+        "Donna"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_87",
+      "question": "who plays the saint of killers on preacher",
+      "mcq_prompt": "Question: who plays the saint of killers on preacher\nA. Graham McTavish\nB. October 5, 1968\nC. following the 2017 season\nD. 291 episodes\nAnswer:",
+      "options": {
+        "A": "Graham McTavish",
+        "B": "October 5, 1968",
+        "C": "following the 2017 season",
+        "D": "291 episodes"
+      },
+      "correct_answer": "Graham McTavish",
+      "correct_letter": "A",
+      "distractors": [
+        "October 5, 1968",
+        "291 episodes",
+        "following the 2017 season"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_88",
+      "question": "when did the royal proclamation of 1763 end",
+      "mcq_prompt": "Question: when did the royal proclamation of 1763 end\nA. Judy Garland\nB. chemicals\nC. eight\nD. the American Revolutionary War\nAnswer:",
+      "options": {
+        "A": "Judy Garland",
+        "B": "chemicals",
+        "C": "eight",
+        "D": "the American Revolutionary War"
+      },
+      "correct_answer": "the American Revolutionary War",
+      "correct_letter": "D",
+      "distractors": [
+        "eight",
+        "Judy Garland",
+        "chemicals"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_89",
+      "question": "who is playing the halftime show at super bowl 2016",
+      "mcq_prompt": "Question: who is playing the halftime show at super bowl 2016\nA. seven\nB. 111 straight wins\nC. Beyonc\u00e9\nD. 8 September 2010\nAnswer:",
+      "options": {
+        "A": "seven",
+        "B": "111 straight wins",
+        "C": "Beyonc\u00e9",
+        "D": "8 September 2010"
+      },
+      "correct_answer": "Beyonc\u00e9",
+      "correct_letter": "C",
+      "distractors": [
+        "seven",
+        "111 straight wins",
+        "8 September 2010"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_90",
+      "question": "jonny cash one piece at a time car",
+      "mcq_prompt": "Question: jonny cash one piece at a time car\nA. Cadillac\nB. P. Subbarayan\nC. Jewel Akens\nD. Canada\nAnswer:",
+      "options": {
+        "A": "Cadillac",
+        "B": "P. Subbarayan",
+        "C": "Jewel Akens",
+        "D": "Canada"
+      },
+      "correct_answer": "Cadillac",
+      "correct_letter": "A",
+      "distractors": [
+        "Canada",
+        "P. Subbarayan",
+        "Jewel Akens"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_91",
+      "question": "what is the minimum wage in france per hour",
+      "mcq_prompt": "Question: what is the minimum wage in france per hour\nA. P. Subbarayan\nB. 11.16\nC. Army\nD. season two\nAnswer:",
+      "options": {
+        "A": "P. Subbarayan",
+        "B": "11.16",
+        "C": "Army",
+        "D": "season two"
+      },
+      "correct_answer": "11.16",
+      "correct_letter": "B",
+      "distractors": [
+        "Army",
+        "P. Subbarayan",
+        "season two"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_92",
+      "question": "describe the three phases of the normal blood clotting process",
+      "mcq_prompt": "Question: describe the three phases of the normal blood clotting process\nA. smoking\nB. Christian rock band MercyMe\nC. blood coagulation\nD. Democratic\nAnswer:",
+      "options": {
+        "A": "smoking",
+        "B": "Christian rock band MercyMe",
+        "C": "blood coagulation",
+        "D": "Democratic"
+      },
+      "correct_answer": "blood coagulation",
+      "correct_letter": "C",
+      "distractors": [
+        "smoking",
+        "Democratic",
+        "Christian rock band MercyMe"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_93",
+      "question": "when did amnesia the dark descent come out",
+      "mcq_prompt": "Question: when did amnesia the dark descent come out\nA. Orange Juice\nB. Bob Russell\nC. 8 September 2010\nD. a biocidal effect of metals\nAnswer:",
+      "options": {
+        "A": "Orange Juice",
+        "B": "Bob Russell",
+        "C": "8 September 2010",
+        "D": "a biocidal effect of metals"
+      },
+      "correct_answer": "8 September 2010",
+      "correct_letter": "C",
+      "distractors": [
+        "a biocidal effect of metals",
+        "Bob Russell",
+        "Orange Juice"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_94",
+      "question": "what is the oldest street in the philippines",
+      "mcq_prompt": "Question: what is the oldest street in the philippines\nA. Justin Bieber\nB. King Willem-Alexander\nC. West Bengal\nD. Cebu City\nAnswer:",
+      "options": {
+        "A": "Justin Bieber",
+        "B": "King Willem-Alexander",
+        "C": "West Bengal",
+        "D": "Cebu City"
+      },
+      "correct_answer": "Cebu City",
+      "correct_letter": "D",
+      "distractors": [
+        "Justin Bieber",
+        "West Bengal",
+        "King Willem-Alexander"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_95",
+      "question": "where is the tibia and fibula bone located",
+      "mcq_prompt": "Question: where is the tibia and fibula bone located\nA. alcohol\nB. leg\nC. fur\nD. Graham McTavish\nAnswer:",
+      "options": {
+        "A": "alcohol",
+        "B": "leg",
+        "C": "fur",
+        "D": "Graham McTavish"
+      },
+      "correct_answer": "leg",
+      "correct_letter": "B",
+      "distractors": [
+        "Graham McTavish",
+        "fur",
+        "alcohol"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_96",
+      "question": "who played bat masterson in the tv series",
+      "mcq_prompt": "Question: who played bat masterson in the tv series\nA. Todd Bridges\nB. inorganic molecules such as water\nC. 9\nD. Gene Barry\nAnswer:",
+      "options": {
+        "A": "Todd Bridges",
+        "B": "inorganic molecules such as water",
+        "C": "9",
+        "D": "Gene Barry"
+      },
+      "correct_answer": "Gene Barry",
+      "correct_letter": "D",
+      "distractors": [
+        "9",
+        "inorganic molecules such as water",
+        "Todd Bridges"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_97",
+      "question": "who sings sugar sugar you are my candy girl",
+      "mcq_prompt": "Question: who sings sugar sugar you are my candy girl\nA. Eda Reiss Merin\nB. Melvil Dewey\nC. the Archies\nD. 17.32%\nAnswer:",
+      "options": {
+        "A": "Eda Reiss Merin",
+        "B": "Melvil Dewey",
+        "C": "the Archies",
+        "D": "17.32%"
+      },
+      "correct_answer": "the Archies",
+      "correct_letter": "C",
+      "distractors": [
+        "17.32%",
+        "Eda Reiss Merin",
+        "Melvil Dewey"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_98",
+      "question": "types of skiing in the winter olympics 2018",
+      "mcq_prompt": "Question: types of skiing in the winter olympics 2018\nA. Slalom\nB. Richard Gere\nC. The Vamps\nD. February 4, 2018\nAnswer:",
+      "options": {
+        "A": "Slalom",
+        "B": "Richard Gere",
+        "C": "The Vamps",
+        "D": "February 4, 2018"
+      },
+      "correct_answer": "Slalom",
+      "correct_letter": "A",
+      "distractors": [
+        "Richard Gere",
+        "The Vamps",
+        "February 4, 2018"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_99",
+      "question": "who plays noah newman on the young and the restless",
+      "mcq_prompt": "Question: who plays noah newman on the young and the restless\nA. J. Jayalalithaa\nB. 4\nC. 15th century\nD. Robert Gillespie Adamson IV\nAnswer:",
+      "options": {
+        "A": "J. Jayalalithaa",
+        "B": "4",
+        "C": "15th century",
+        "D": "Robert Gillespie Adamson IV"
+      },
+      "correct_answer": "Robert Gillespie Adamson IV",
+      "correct_letter": "D",
+      "distractors": [
+        "15th century",
+        "4",
+        "J. Jayalalithaa"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_100",
+      "question": "who has won the most games in nfl 2017",
+      "mcq_prompt": "Question: who has won the most games in nfl 2017\nA. 53\nB. Dallas Cowboys\nC. in the duodenum\nD. Carbon copy to secondary recipients\nAnswer:",
+      "options": {
+        "A": "53",
+        "B": "Dallas Cowboys",
+        "C": "in the duodenum",
+        "D": "Carbon copy to secondary recipients"
+      },
+      "correct_answer": "Dallas Cowboys",
+      "correct_letter": "B",
+      "distractors": [
+        "53",
+        "in the duodenum",
+        "Carbon copy to secondary recipients"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_101",
+      "question": "under article 1 what is the minimum age required to serve in the house of representatives",
+      "mcq_prompt": "Question: under article 1 what is the minimum age required to serve in the house of representatives\nA. 25\nB. Mary Rose Foster\nC. The Lightning Thief\nD. feathers\nAnswer:",
+      "options": {
+        "A": "25",
+        "B": "Mary Rose Foster",
+        "C": "The Lightning Thief",
+        "D": "feathers"
+      },
+      "correct_answer": "25",
+      "correct_letter": "A",
+      "distractors": [
+        "Mary Rose Foster",
+        "feathers",
+        "The Lightning Thief"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_102",
+      "question": "who has the most catches in nfl history",
+      "mcq_prompt": "Question: who has the most catches in nfl history\nA. Graham McTavish\nB. Slalom \u2013 (SC)\nC. Jerry Rice\nD. the beginning\nAnswer:",
+      "options": {
+        "A": "Graham McTavish",
+        "B": "Slalom \u2013 (SC)",
+        "C": "Jerry Rice",
+        "D": "the beginning"
+      },
+      "correct_answer": "Jerry Rice",
+      "correct_letter": "C",
+      "distractors": [
+        "Graham McTavish",
+        "the beginning",
+        "Slalom \u2013 (SC)"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_103",
+      "question": "when does the dlc for rainbow six siege come out",
+      "mcq_prompt": "Question: when does the dlc for rainbow six siege come out\nA. January 2018\nB. Norm Van Brocklin\nC. 2004\nD. state ownership\nAnswer:",
+      "options": {
+        "A": "January 2018",
+        "B": "Norm Van Brocklin",
+        "C": "2004",
+        "D": "state ownership"
+      },
+      "correct_answer": "January 2018",
+      "correct_letter": "A",
+      "distractors": [
+        "Norm Van Brocklin",
+        "2004",
+        "state ownership"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_104",
+      "question": "who was the great wall of china built to defend against",
+      "mcq_prompt": "Question: who was the great wall of china built to defend against\nA. fourth\nB. Atomic Power\nC. nomads from Inner Asia\nD. 291 episodes\nAnswer:",
+      "options": {
+        "A": "fourth",
+        "B": "Atomic Power",
+        "C": "nomads from Inner Asia",
+        "D": "291 episodes"
+      },
+      "correct_answer": "nomads from Inner Asia",
+      "correct_letter": "C",
+      "distractors": [
+        "Atomic Power",
+        "291 episodes",
+        "fourth"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_105",
+      "question": "where does the last name galvez come from",
+      "mcq_prompt": "Question: where does the last name galvez come from\nA. Spanish surname\nB. United States Oath of Allegiance\nC. on CBS\nD. a Scottish surname\nAnswer:",
+      "options": {
+        "A": "Spanish surname",
+        "B": "United States Oath of Allegiance",
+        "C": "on CBS",
+        "D": "a Scottish surname"
+      },
+      "correct_answer": "Spanish surname",
+      "correct_letter": "A",
+      "distractors": [
+        "on CBS",
+        "a Scottish surname",
+        "United States Oath of Allegiance"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_106",
+      "question": "who opens the church of the holy sepulchre",
+      "mcq_prompt": "Question: who opens the church of the holy sepulchre\nA. she who brings victory\nB. 3\u20134 April 2018\nC. 2016\nD. the Sunni Muslim family\nAnswer:",
+      "options": {
+        "A": "she who brings victory",
+        "B": "3\u20134 April 2018",
+        "C": "2016",
+        "D": "the Sunni Muslim family"
+      },
+      "correct_answer": "the Sunni Muslim family",
+      "correct_letter": "D",
+      "distractors": [
+        "3\u20134 April 2018",
+        "she who brings victory",
+        "2016"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_107",
+      "question": "when does season 5 of the blacklist resume",
+      "mcq_prompt": "Question: when does season 5 of the blacklist resume\nA. Austria-Hungary\nB. January\u00a031,\u00a02018\nC. 11 p.m. to 3 a.m.\nD. at sign\nAnswer:",
+      "options": {
+        "A": "Austria-Hungary",
+        "B": "January\u00a031,\u00a02018",
+        "C": "11 p.m. to 3 a.m.",
+        "D": "at sign"
+      },
+      "correct_answer": "January\u00a031,\u00a02018",
+      "correct_letter": "B",
+      "distractors": [
+        "11 p.m. to 3 a.m.",
+        "Austria-Hungary",
+        "at sign"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_108",
+      "question": "the chinese dragons are protectors of how many seas diggy",
+      "mcq_prompt": "Question: the chinese dragons are protectors of how many seas diggy\nA. the Italian Campaign\nB. Four Seas\nC. Newark Penn Station\nD. \"Fix You\"\nAnswer:",
+      "options": {
+        "A": "the Italian Campaign",
+        "B": "Four Seas",
+        "C": "Newark Penn Station",
+        "D": "\"Fix You\""
+      },
+      "correct_answer": "Four Seas",
+      "correct_letter": "B",
+      "distractors": [
+        "the Italian Campaign",
+        "Newark Penn Station",
+        "\"Fix You\""
+      ]
+    },
+    {
+      "id": "nq_open_mcq_109",
+      "question": "how much money did it cost to make gta v",
+      "mcq_prompt": "Question: how much money did it cost to make gta v\nA. 137\nB. King Willem-Alexander\nC. 2014\nD. alcohol\nAnswer:",
+      "options": {
+        "A": "137",
+        "B": "King Willem-Alexander",
+        "C": "2014",
+        "D": "alcohol"
+      },
+      "correct_answer": "137",
+      "correct_letter": "A",
+      "distractors": [
+        "2014",
+        "alcohol",
+        "King Willem-Alexander"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_110",
+      "question": "what is the angle of the tower of pisa",
+      "mcq_prompt": "Question: what is the angle of the tower of pisa\nA. CBS\nB. about 3.99 degrees\nC. 1960 and 1980\nD. suprachiasmatic nucleus\nAnswer:",
+      "options": {
+        "A": "CBS",
+        "B": "about 3.99 degrees",
+        "C": "1960 and 1980",
+        "D": "suprachiasmatic nucleus"
+      },
+      "correct_answer": "about 3.99 degrees",
+      "correct_letter": "B",
+      "distractors": [
+        "1960 and 1980",
+        "suprachiasmatic nucleus",
+        "CBS"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_111",
+      "question": "what is the share of agriculture in indian economy",
+      "mcq_prompt": "Question: what is the share of agriculture in indian economy\nA. Richard Gere\nB. 2005\nC. January 12, 2017\nD. 17.32%\nAnswer:",
+      "options": {
+        "A": "Richard Gere",
+        "B": "2005",
+        "C": "January 12, 2017",
+        "D": "17.32%"
+      },
+      "correct_answer": "17.32%",
+      "correct_letter": "D",
+      "distractors": [
+        "Richard Gere",
+        "January 12, 2017",
+        "2005"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_112",
+      "question": "who does demetrius love in a midsummer night dream",
+      "mcq_prompt": "Question: who does demetrius love in a midsummer night dream\nA. Helena\nB. never made\nC. Rachel Sarah Bilson\nD. Lynne\nAnswer:",
+      "options": {
+        "A": "Helena",
+        "B": "never made",
+        "C": "Rachel Sarah Bilson",
+        "D": "Lynne"
+      },
+      "correct_answer": "Helena",
+      "correct_letter": "A",
+      "distractors": [
+        "never made",
+        "Lynne",
+        "Rachel Sarah Bilson"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_113",
+      "question": "when did the movie varsity blues come out",
+      "mcq_prompt": "Question: when did the movie varsity blues come out\nA. In the 1920s\nB. 1999\nC. Dwayne Johnson\nD. W. Edwards Deming\nAnswer:",
+      "options": {
+        "A": "In the 1920s",
+        "B": "1999",
+        "C": "Dwayne Johnson",
+        "D": "W. Edwards Deming"
+      },
+      "correct_answer": "1999",
+      "correct_letter": "B",
+      "distractors": [
+        "W. Edwards Deming",
+        "In the 1920s",
+        "Dwayne Johnson"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_114",
+      "question": "when does the champions league quarter finals start",
+      "mcq_prompt": "Question: when does the champions league quarter finals start\nA. V.R. Nedunchezhiyan\nB. 16 March 2018\nC. September 8, 2017\nD. Gwendoline Christie\nAnswer:",
+      "options": {
+        "A": "V.R. Nedunchezhiyan",
+        "B": "16 March 2018",
+        "C": "September 8, 2017",
+        "D": "Gwendoline Christie"
+      },
+      "correct_answer": "16 March 2018",
+      "correct_letter": "B",
+      "distractors": [
+        "Gwendoline Christie",
+        "V.R. Nedunchezhiyan",
+        "September 8, 2017"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_115",
+      "question": "who was the famous scientist that ran the research lab moseley went to in manchester",
+      "mcq_prompt": "Question: who was the famous scientist that ran the research lab moseley went to in manchester\nA. David Keith\nB. defendants\nC. Sir Ernest Rutherford\nD. West Bengal\nAnswer:",
+      "options": {
+        "A": "David Keith",
+        "B": "defendants",
+        "C": "Sir Ernest Rutherford",
+        "D": "West Bengal"
+      },
+      "correct_answer": "Sir Ernest Rutherford",
+      "correct_letter": "C",
+      "distractors": [
+        "David Keith",
+        "defendants",
+        "West Bengal"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_116",
+      "question": "where do you get a cashiers check from",
+      "mcq_prompt": "Question: where do you get a cashiers check from\nA. Zoe Badwi\nB. a bank\nC. 1169\u00a0cc\nD. Matt Flinders\nAnswer:",
+      "options": {
+        "A": "Zoe Badwi",
+        "B": "a bank",
+        "C": "1169\u00a0cc",
+        "D": "Matt Flinders"
+      },
+      "correct_answer": "a bank",
+      "correct_letter": "B",
+      "distractors": [
+        "1169\u00a0cc",
+        "Zoe Badwi",
+        "Matt Flinders"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_117",
+      "question": "who does stefan marry in the vampire diaries",
+      "mcq_prompt": "Question: who does stefan marry in the vampire diaries\nA. October 24, 2006\nB. Keith Coogan\nC. capillaries\nD. Caroline Forbes\nAnswer:",
+      "options": {
+        "A": "October 24, 2006",
+        "B": "Keith Coogan",
+        "C": "capillaries",
+        "D": "Caroline Forbes"
+      },
+      "correct_answer": "Caroline Forbes",
+      "correct_letter": "D",
+      "distractors": [
+        "Keith Coogan",
+        "October 24, 2006",
+        "capillaries"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_118",
+      "question": "what is the meaning of cc and bcc",
+      "mcq_prompt": "Question: what is the meaning of cc and bcc\nA. Colon Street\nB. Honor\u00e9 Mirabeau\nC. Carbon copy\nD. Thomas Jefferson\nAnswer:",
+      "options": {
+        "A": "Colon Street",
+        "B": "Honor\u00e9 Mirabeau",
+        "C": "Carbon copy",
+        "D": "Thomas Jefferson"
+      },
+      "correct_answer": "Carbon copy",
+      "correct_letter": "C",
+      "distractors": [
+        "Thomas Jefferson",
+        "Colon Street",
+        "Honor\u00e9 Mirabeau"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_119",
+      "question": "hazels boyfriend in the fault in our stars",
+      "mcq_prompt": "Question: hazels boyfriend in the fault in our stars\nA. the President\nB. Augustus Waters\nC. A'ja Wilson\nD. Andrew Johnson\nAnswer:",
+      "options": {
+        "A": "the President",
+        "B": "Augustus Waters",
+        "C": "A'ja Wilson",
+        "D": "Andrew Johnson"
+      },
+      "correct_answer": "Augustus Waters",
+      "correct_letter": "B",
+      "distractors": [
+        "the President",
+        "A'ja Wilson",
+        "Andrew Johnson"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_120",
+      "question": "when does the day of the dead end",
+      "mcq_prompt": "Question: when does the day of the dead end\nA. November 2\nB. Llanrhaeadr-ym-Mochnant\nC. Jharkhand\nD. 2004\nAnswer:",
+      "options": {
+        "A": "November 2",
+        "B": "Llanrhaeadr-ym-Mochnant",
+        "C": "Jharkhand",
+        "D": "2004"
+      },
+      "correct_answer": "November 2",
+      "correct_letter": "A",
+      "distractors": [
+        "Jharkhand",
+        "Llanrhaeadr-ym-Mochnant",
+        "2004"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_121",
+      "question": "when do you celebrate birthday if born on feb 29",
+      "mcq_prompt": "Question: when do you celebrate birthday if born on feb 29\nA. Bruno Mars\nB. February 29\nC. Slalom\nD. Scottish post-punk band Orange Juice\nAnswer:",
+      "options": {
+        "A": "Bruno Mars",
+        "B": "February 29",
+        "C": "Slalom",
+        "D": "Scottish post-punk band Orange Juice"
+      },
+      "correct_answer": "February 29",
+      "correct_letter": "B",
+      "distractors": [
+        "Scottish post-punk band Orange Juice",
+        "Slalom",
+        "Bruno Mars"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_122",
+      "question": "where does new york drinking water come from",
+      "mcq_prompt": "Question: where does new york drinking water come from\nA. M. Karunanidhi\nB. Shenzi\nC. the eastern Catskill Mountains\nD. 1966\nAnswer:",
+      "options": {
+        "A": "M. Karunanidhi",
+        "B": "Shenzi",
+        "C": "the eastern Catskill Mountains",
+        "D": "1966"
+      },
+      "correct_answer": "the eastern Catskill Mountains",
+      "correct_letter": "C",
+      "distractors": [
+        "1966",
+        "Shenzi",
+        "M. Karunanidhi"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_123",
+      "question": "where is the citrus bowl held this year",
+      "mcq_prompt": "Question: where is the citrus bowl held this year\nA. Camping World Stadium\nB. M. Karunanidhi\nC. 20 November 1989\nD. nomads from Inner Asia\nAnswer:",
+      "options": {
+        "A": "Camping World Stadium",
+        "B": "M. Karunanidhi",
+        "C": "20 November 1989",
+        "D": "nomads from Inner Asia"
+      },
+      "correct_answer": "Camping World Stadium",
+      "correct_letter": "A",
+      "distractors": [
+        "M. Karunanidhi",
+        "20 November 1989",
+        "nomads from Inner Asia"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_124",
+      "question": "what year does the quiet man take place",
+      "mcq_prompt": "Question: what year does the quiet man take place\nA. the 1920s\nB. 7\nC. disease conditions in defined populations\nD. pretectal nucleus\nAnswer:",
+      "options": {
+        "A": "the 1920s",
+        "B": "7",
+        "C": "disease conditions in defined populations",
+        "D": "pretectal nucleus"
+      },
+      "correct_answer": "the 1920s",
+      "correct_letter": "A",
+      "distractors": [
+        "7",
+        "pretectal nucleus",
+        "disease conditions in defined populations"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_125",
+      "question": "how many seasons of rules of engagement is there",
+      "mcq_prompt": "Question: how many seasons of rules of engagement is there\nA. suprachiasmatic nucleus\nB. 7\nC. Guwahati\nD. Michael Madhusudan Dutta\nAnswer:",
+      "options": {
+        "A": "suprachiasmatic nucleus",
+        "B": "7",
+        "C": "Guwahati",
+        "D": "Michael Madhusudan Dutta"
+      },
+      "correct_answer": "7",
+      "correct_letter": "B",
+      "distractors": [
+        "suprachiasmatic nucleus",
+        "Michael Madhusudan Dutta",
+        "Guwahati"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_126",
+      "question": "who plays alec ramsay in the black stallion",
+      "mcq_prompt": "Question: who plays alec ramsay in the black stallion\nA. Kansas City Chiefs\nB. Kelly Reno\nC. 90\nD. the Archies\nAnswer:",
+      "options": {
+        "A": "Kansas City Chiefs",
+        "B": "Kelly Reno",
+        "C": "90",
+        "D": "the Archies"
+      },
+      "correct_answer": "Kelly Reno",
+      "correct_letter": "B",
+      "distractors": [
+        "the Archies",
+        "Kansas City Chiefs",
+        "90"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_127",
+      "question": "who plays dusty in the movie pure country",
+      "mcq_prompt": "Question: who plays dusty in the movie pure country\nA. George Strait\nB. K. Palaniswami\nC. eight\nD. Slalom\nAnswer:",
+      "options": {
+        "A": "George Strait",
+        "B": "K. Palaniswami",
+        "C": "eight",
+        "D": "Slalom"
+      },
+      "correct_answer": "George Strait",
+      "correct_letter": "A",
+      "distractors": [
+        "K. Palaniswami",
+        "Slalom",
+        "eight"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_128",
+      "question": "how many episodes of greys anatomy season 14",
+      "mcq_prompt": "Question: how many episodes of greys anatomy season 14\nA. 24\nB. 3 to 6%\nC. Raja of Panagal\nD. Debbie Gibson\nAnswer:",
+      "options": {
+        "A": "24",
+        "B": "3 to 6%",
+        "C": "Raja of Panagal",
+        "D": "Debbie Gibson"
+      },
+      "correct_answer": "24",
+      "correct_letter": "A",
+      "distractors": [
+        "3 to 6%",
+        "Debbie Gibson",
+        "Raja of Panagal"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_129",
+      "question": "who is currently serving as president of the senate",
+      "mcq_prompt": "Question: who is currently serving as president of the senate\nA. Tanguturi Prakasam\nB. 1938\nC. Orrin Hatch\nD. 1783\nAnswer:",
+      "options": {
+        "A": "Tanguturi Prakasam",
+        "B": "1938",
+        "C": "Orrin Hatch",
+        "D": "1783"
+      },
+      "correct_answer": "Orrin Hatch",
+      "correct_letter": "C",
+      "distractors": [
+        "Tanguturi Prakasam",
+        "1938",
+        "1783"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_130",
+      "question": "what percentage of sunlight is captured by plants to convert it into food energy",
+      "mcq_prompt": "Question: what percentage of sunlight is captured by plants to convert it into food energy\nA. lateral geniculate nucleus\nB. Sir Ernest Rutherford\nC. her abusive husband\nD. 45%\nAnswer:",
+      "options": {
+        "A": "lateral geniculate nucleus",
+        "B": "Sir Ernest Rutherford",
+        "C": "her abusive husband",
+        "D": "45%"
+      },
+      "correct_answer": "45%",
+      "correct_letter": "D",
+      "distractors": [
+        "lateral geniculate nucleus",
+        "Sir Ernest Rutherford",
+        "her abusive husband"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_131",
+      "question": "what type of economic system was utilized in the soviet union",
+      "mcq_prompt": "Question: what type of economic system was utilized in the soviet union\nA. communism\nB. 24 episodes\nC. a biocidal effect of metals\nD. Laura Brent\nAnswer:",
+      "options": {
+        "A": "communism",
+        "B": "24 episodes",
+        "C": "a biocidal effect of metals",
+        "D": "Laura Brent"
+      },
+      "correct_answer": "communism",
+      "correct_letter": "A",
+      "distractors": [
+        "Laura Brent",
+        "24 episodes",
+        "a biocidal effect of metals"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_132",
+      "question": "how many gold medals did australia win in the 2000 olympics",
+      "mcq_prompt": "Question: how many gold medals did australia win in the 2000 olympics\nA. Omar Khayyam\nB. season two\nC. 16\nD. the beginning\nAnswer:",
+      "options": {
+        "A": "Omar Khayyam",
+        "B": "season two",
+        "C": "16",
+        "D": "the beginning"
+      },
+      "correct_answer": "16",
+      "correct_letter": "C",
+      "distractors": [
+        "season two",
+        "Omar Khayyam",
+        "the beginning"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_133",
+      "question": "who started ww2 and how did it start",
+      "mcq_prompt": "Question: who started ww2 and how did it start\nA. 25 years old\nB. Nazi Germany\nC. V8-engine\nD. nomads from Inner Asia\nAnswer:",
+      "options": {
+        "A": "25 years old",
+        "B": "Nazi Germany",
+        "C": "V8-engine",
+        "D": "nomads from Inner Asia"
+      },
+      "correct_answer": "Nazi Germany",
+      "correct_letter": "B",
+      "distractors": [
+        "25 years old",
+        "nomads from Inner Asia",
+        "V8-engine"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_134",
+      "question": "when did the royal mint move to wales",
+      "mcq_prompt": "Question: when did the royal mint move to wales\nA. 1968\nB. wool\nC. the Saudi Arab kingdom\nD. Roddy McDowall\nAnswer:",
+      "options": {
+        "A": "1968",
+        "B": "wool",
+        "C": "the Saudi Arab kingdom",
+        "D": "Roddy McDowall"
+      },
+      "correct_answer": "1968",
+      "correct_letter": "A",
+      "distractors": [
+        "the Saudi Arab kingdom",
+        "wool",
+        "Roddy McDowall"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_135",
+      "question": "when did bird is the word come out",
+      "mcq_prompt": "Question: when did bird is the word come out\nA. 1963\nB. a bank\nC. 2001\nD. Marvel's Jessica Jones\nAnswer:",
+      "options": {
+        "A": "1963",
+        "B": "a bank",
+        "C": "2001",
+        "D": "Marvel's Jessica Jones"
+      },
+      "correct_answer": "1963",
+      "correct_letter": "A",
+      "distractors": [
+        "2001",
+        "Marvel's Jessica Jones",
+        "a bank"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_136",
+      "question": "how tall is the actor who plays hagrid in harry potter",
+      "mcq_prompt": "Question: how tall is the actor who plays hagrid in harry potter\nA. bank\nB. Lord Irwin\nC. Kelly Reno\nD. 6ft 1in\nAnswer:",
+      "options": {
+        "A": "bank",
+        "B": "Lord Irwin",
+        "C": "Kelly Reno",
+        "D": "6ft 1in"
+      },
+      "correct_answer": "6ft 1in",
+      "correct_letter": "D",
+      "distractors": [
+        "Lord Irwin",
+        "Kelly Reno",
+        "bank"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_137",
+      "question": "who is opening for little mix glory days tour",
+      "mcq_prompt": "Question: who is opening for little mix glory days tour\nA. Sheppard\nB. Cebu City\nC. silk\nD. David Keith\nAnswer:",
+      "options": {
+        "A": "Sheppard",
+        "B": "Cebu City",
+        "C": "silk",
+        "D": "David Keith"
+      },
+      "correct_answer": "Sheppard",
+      "correct_letter": "A",
+      "distractors": [
+        "Cebu City",
+        "David Keith",
+        "silk"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_138",
+      "question": "who performed the first c section in 1794",
+      "mcq_prompt": "Question: who performed the first c section in 1794\nA. George Young\nB. Dr. Jesse Bennett\nC. Carbon copy\nD. Keith Coogan\nAnswer:",
+      "options": {
+        "A": "George Young",
+        "B": "Dr. Jesse Bennett",
+        "C": "Carbon copy",
+        "D": "Keith Coogan"
+      },
+      "correct_answer": "Dr. Jesse Bennett",
+      "correct_letter": "B",
+      "distractors": [
+        "George Young",
+        "Keith Coogan",
+        "Carbon copy"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_139",
+      "question": "who voices randy in f is for family",
+      "mcq_prompt": "Question: who voices randy in f is for family\nA. The Impalas\nB. 20\nC. Marvel's Luke Cage\nD. T.J. Miller\nAnswer:",
+      "options": {
+        "A": "The Impalas",
+        "B": "20",
+        "C": "Marvel's Luke Cage",
+        "D": "T.J. Miller"
+      },
+      "correct_answer": "T.J. Miller",
+      "correct_letter": "D",
+      "distractors": [
+        "The Impalas",
+        "20",
+        "Marvel's Luke Cage"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_140",
+      "question": "bible verse taking the lord's name in vain",
+      "mcq_prompt": "Question: bible verse taking the lord's name in vain\nA. 1980\nB. inorganic molecules such as water\nC. Exodus 20:7\nD. V.R. Nedunchezhiyan\nAnswer:",
+      "options": {
+        "A": "1980",
+        "B": "inorganic molecules such as water",
+        "C": "Exodus 20:7",
+        "D": "V.R. Nedunchezhiyan"
+      },
+      "correct_answer": "Exodus 20:7",
+      "correct_letter": "C",
+      "distractors": [
+        "1980",
+        "inorganic molecules such as water",
+        "V.R. Nedunchezhiyan"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_141",
+      "question": "who controlled the house and the senate in 2012",
+      "mcq_prompt": "Question: who controlled the house and the senate in 2012\nA. Republican\nB. aorta\nC. 1997\nD. Donald O'Connor\nAnswer:",
+      "options": {
+        "A": "Republican",
+        "B": "aorta",
+        "C": "1997",
+        "D": "Donald O'Connor"
+      },
+      "correct_answer": "Republican",
+      "correct_letter": "A",
+      "distractors": [
+        "Donald O'Connor",
+        "aorta",
+        "1997"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_142",
+      "question": "when's the last time army won the army navy game",
+      "mcq_prompt": "Question: when's the last time army won the army navy game\nA. 1994\nB. 2017\nC. pools campaign contributions from members\nD. James Brown\nAnswer:",
+      "options": {
+        "A": "1994",
+        "B": "2017",
+        "C": "pools campaign contributions from members",
+        "D": "James Brown"
+      },
+      "correct_answer": "2017",
+      "correct_letter": "B",
+      "distractors": [
+        "pools campaign contributions from members",
+        "1994",
+        "James Brown"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_143",
+      "question": "when does thomas rhett's new album come out",
+      "mcq_prompt": "Question: when does thomas rhett's new album come out\nA. David Duchovny\nB. September 8, 2017\nC. Four\nD. photoreceptor cells\nAnswer:",
+      "options": {
+        "A": "David Duchovny",
+        "B": "September 8, 2017",
+        "C": "Four",
+        "D": "photoreceptor cells"
+      },
+      "correct_answer": "September 8, 2017",
+      "correct_letter": "B",
+      "distractors": [
+        "photoreceptor cells",
+        "Four",
+        "David Duchovny"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_144",
+      "question": "who won the champions league final in 2016",
+      "mcq_prompt": "Question: who won the champions league final in 2016\nA. Real Madrid\nB. The aorta\nC. July 14, 2016\nD. commemorating fealty and filial piety\nAnswer:",
+      "options": {
+        "A": "Real Madrid",
+        "B": "The aorta",
+        "C": "July 14, 2016",
+        "D": "commemorating fealty and filial piety"
+      },
+      "correct_answer": "Real Madrid",
+      "correct_letter": "A",
+      "distractors": [
+        "The aorta",
+        "commemorating fealty and filial piety",
+        "July 14, 2016"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_145",
+      "question": "who is the real killer in basic instinct 2",
+      "mcq_prompt": "Question: who is the real killer in basic instinct 2\nA. the Elkia Federation\nB. 20 November 1989\nC. Catherine Tramell\nD. 11.16\nAnswer:",
+      "options": {
+        "A": "the Elkia Federation",
+        "B": "20 November 1989",
+        "C": "Catherine Tramell",
+        "D": "11.16"
+      },
+      "correct_answer": "Catherine Tramell",
+      "correct_letter": "C",
+      "distractors": [
+        "20 November 1989",
+        "the Elkia Federation",
+        "11.16"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_146",
+      "question": "who does the voice of mickey mouse on mickey mouse clubhouse",
+      "mcq_prompt": "Question: who does the voice of mickey mouse on mickey mouse clubhouse\nA. Bret Iwan\nB. adenine (A)\nC. Rachel Sarah Bilson\nD. T.J. Miller\nAnswer:",
+      "options": {
+        "A": "Bret Iwan",
+        "B": "adenine (A)",
+        "C": "Rachel Sarah Bilson",
+        "D": "T.J. Miller"
+      },
+      "correct_answer": "Bret Iwan",
+      "correct_letter": "A",
+      "distractors": [
+        "Rachel Sarah Bilson",
+        "adenine (A)",
+        "T.J. Miller"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_147",
+      "question": "when was the last episode of vampire diaries aired",
+      "mcq_prompt": "Question: when was the last episode of vampire diaries aired\nA. Justin Bieber\nB. March\u00a010,\u00a02017\nC. David Duchovny\nD. December 1985\nAnswer:",
+      "options": {
+        "A": "Justin Bieber",
+        "B": "March\u00a010,\u00a02017",
+        "C": "David Duchovny",
+        "D": "December 1985"
+      },
+      "correct_answer": "March\u00a010,\u00a02017",
+      "correct_letter": "B",
+      "distractors": [
+        "December 1985",
+        "Justin Bieber",
+        "David Duchovny"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_148",
+      "question": "where did the dewey decimal system come from",
+      "mcq_prompt": "Question: where did the dewey decimal system come from\nA. January 2018\nB. Melvil Dewey\nC. King Willem-Alexander\nD. 554\nAnswer:",
+      "options": {
+        "A": "January 2018",
+        "B": "Melvil Dewey",
+        "C": "King Willem-Alexander",
+        "D": "554"
+      },
+      "correct_answer": "Melvil Dewey",
+      "correct_letter": "B",
+      "distractors": [
+        "January 2018",
+        "King Willem-Alexander",
+        "554"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_149",
+      "question": "where did the jungle book story come from",
+      "mcq_prompt": "Question: where did the jungle book story come from\nA. West Bengal\nB. Category 4\nC. English author Rudyard Kipling\nD. 2001\nAnswer:",
+      "options": {
+        "A": "West Bengal",
+        "B": "Category 4",
+        "C": "English author Rudyard Kipling",
+        "D": "2001"
+      },
+      "correct_answer": "English author Rudyard Kipling",
+      "correct_letter": "C",
+      "distractors": [
+        "Category 4",
+        "2001",
+        "West Bengal"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_150",
+      "question": "derek and meredith get back together season 3",
+      "mcq_prompt": "Question: derek and meredith get back together season 3\nA. W. Edwards Deming\nB. photoreceptor cells\nC. capillary action\nD. Staring at the Sun\nAnswer:",
+      "options": {
+        "A": "W. Edwards Deming",
+        "B": "photoreceptor cells",
+        "C": "capillary action",
+        "D": "Staring at the Sun"
+      },
+      "correct_answer": "Staring at the Sun",
+      "correct_letter": "D",
+      "distractors": [
+        "W. Edwards Deming",
+        "capillary action",
+        "photoreceptor cells"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_151",
+      "question": "who did america declare war on in ww1",
+      "mcq_prompt": "Question: who did america declare war on in ww1\nA. Austria-Hungary\nB. 2008\nC. Proposition 103 in 1988\nD. vasoconstriction,\nAnswer:",
+      "options": {
+        "A": "Austria-Hungary",
+        "B": "2008",
+        "C": "Proposition 103 in 1988",
+        "D": "vasoconstriction,"
+      },
+      "correct_answer": "Austria-Hungary",
+      "correct_letter": "A",
+      "distractors": [
+        "Proposition 103 in 1988",
+        "2008",
+        "vasoconstriction,"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_152",
+      "question": "who played zoe hart on hart of dixie",
+      "mcq_prompt": "Question: who played zoe hart on hart of dixie\nA. Rachel Sarah Bilson\nB. 5778\nC. Vancouver\nD. Sheppard\nAnswer:",
+      "options": {
+        "A": "Rachel Sarah Bilson",
+        "B": "5778",
+        "C": "Vancouver",
+        "D": "Sheppard"
+      },
+      "correct_answer": "Rachel Sarah Bilson",
+      "correct_letter": "A",
+      "distractors": [
+        "Vancouver",
+        "5778",
+        "Sheppard"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_153",
+      "question": "what was tom hanks character name in castaway",
+      "mcq_prompt": "Question: what was tom hanks character name in castaway\nA. Moira Kelly\nB. Dan Castellaneta (voice)\nC. Chuck Noland\nD. 15th century\nAnswer:",
+      "options": {
+        "A": "Moira Kelly",
+        "B": "Dan Castellaneta (voice)",
+        "C": "Chuck Noland",
+        "D": "15th century"
+      },
+      "correct_answer": "Chuck Noland",
+      "correct_letter": "C",
+      "distractors": [
+        "Moira Kelly",
+        "15th century",
+        "Dan Castellaneta (voice)"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_154",
+      "question": "what engine is in a holden v8 supercar",
+      "mcq_prompt": "Question: what engine is in a holden v8 supercar\nA. B. Munuswamy Naidu\nB. 2017\nC. V8-engine\nD. W. Edwards Deming\nAnswer:",
+      "options": {
+        "A": "B. Munuswamy Naidu",
+        "B": "2017",
+        "C": "V8-engine",
+        "D": "W. Edwards Deming"
+      },
+      "correct_answer": "V8-engine",
+      "correct_letter": "C",
+      "distractors": [
+        "2017",
+        "B. Munuswamy Naidu",
+        "W. Edwards Deming"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_155",
+      "question": "when did the sat become out of 1600",
+      "mcq_prompt": "Question: when did the sat become out of 1600\nA. Camping World Stadium\nB. stage\nC. 291 episodes\nD. March 2016\nAnswer:",
+      "options": {
+        "A": "Camping World Stadium",
+        "B": "stage",
+        "C": "291 episodes",
+        "D": "March 2016"
+      },
+      "correct_answer": "March 2016",
+      "correct_letter": "D",
+      "distractors": [
+        "291 episodes",
+        "stage",
+        "Camping World Stadium"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_156",
+      "question": "when was the minimum wage established in the united states",
+      "mcq_prompt": "Question: when was the minimum wage established in the united states\nA. 1938\nB. barrel vaults\nC. Confederate\nD. Marvel's Iron Fist\nAnswer:",
+      "options": {
+        "A": "1938",
+        "B": "barrel vaults",
+        "C": "Confederate",
+        "D": "Marvel's Iron Fist"
+      },
+      "correct_answer": "1938",
+      "correct_letter": "A",
+      "distractors": [
+        "Marvel's Iron Fist",
+        "Confederate",
+        "barrel vaults"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_157",
+      "question": "when did the rational dress society begin to work",
+      "mcq_prompt": "Question: when did the rational dress society begin to work\nA. at symbol\nB. Mariah Carey\nC. 2003\nD. 1881\nAnswer:",
+      "options": {
+        "A": "at symbol",
+        "B": "Mariah Carey",
+        "C": "2003",
+        "D": "1881"
+      },
+      "correct_answer": "1881",
+      "correct_letter": "D",
+      "distractors": [
+        "Mariah Carey",
+        "2003",
+        "at symbol"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_158",
+      "question": "what is the baby elephants name in jungle book",
+      "mcq_prompt": "Question: what is the baby elephants name in jungle book\nA. Hathi Jr.\nB. about 3.99 degrees\nC. glomeruli\nD. Austria-Hungary\nAnswer:",
+      "options": {
+        "A": "Hathi Jr.",
+        "B": "about 3.99 degrees",
+        "C": "glomeruli",
+        "D": "Austria-Hungary"
+      },
+      "correct_answer": "Hathi Jr.",
+      "correct_letter": "A",
+      "distractors": [
+        "Austria-Hungary",
+        "about 3.99 degrees",
+        "glomeruli"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_159",
+      "question": "where is fe best absorbed in the body",
+      "mcq_prompt": "Question: where is fe best absorbed in the body\nA. Rajasthan\nB. in the duodenum\nC. Pyotr Ilyich Tchaikovsky\nD. 26,000 years\nAnswer:",
+      "options": {
+        "A": "Rajasthan",
+        "B": "in the duodenum",
+        "C": "Pyotr Ilyich Tchaikovsky",
+        "D": "26,000 years"
+      },
+      "correct_answer": "in the duodenum",
+      "correct_letter": "B",
+      "distractors": [
+        "Pyotr Ilyich Tchaikovsky",
+        "Rajasthan",
+        "26,000 years"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_160",
+      "question": "who is the biggest selling female group of all time",
+      "mcq_prompt": "Question: who is the biggest selling female group of all time\nA. Spice Girls\nB. Colon Street\nC. adenine (A)\nD. George Young\nAnswer:",
+      "options": {
+        "A": "Spice Girls",
+        "B": "Colon Street",
+        "C": "adenine (A)",
+        "D": "George Young"
+      },
+      "correct_answer": "Spice Girls",
+      "correct_letter": "A",
+      "distractors": [
+        "Colon Street",
+        "George Young",
+        "adenine (A)"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_161",
+      "question": "epidemiologists attempt to explain the link between health and variables such as",
+      "mcq_prompt": "Question: epidemiologists attempt to explain the link between health and variables such as\nA. biological agents\nB. photoreceptor cells\nC. Gwendoline Christie\nD. her abusive husband\nAnswer:",
+      "options": {
+        "A": "biological agents",
+        "B": "photoreceptor cells",
+        "C": "Gwendoline Christie",
+        "D": "her abusive husband"
+      },
+      "correct_answer": "biological agents",
+      "correct_letter": "A",
+      "distractors": [
+        "her abusive husband",
+        "photoreceptor cells",
+        "Gwendoline Christie"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_162",
+      "question": "who won the mens single ice skating 2018",
+      "mcq_prompt": "Question: who won the mens single ice skating 2018\nA. Yuzuru Hanyu\nB. stress\nC. 554\nD. A. Subbarayalu Reddiar\nAnswer:",
+      "options": {
+        "A": "Yuzuru Hanyu",
+        "B": "stress",
+        "C": "554",
+        "D": "A. Subbarayalu Reddiar"
+      },
+      "correct_answer": "Yuzuru Hanyu",
+      "correct_letter": "A",
+      "distractors": [
+        "stress",
+        "A. Subbarayalu Reddiar",
+        "554"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_163",
+      "question": "where is the boy who played charlie in willy wonka",
+      "mcq_prompt": "Question: where is the boy who played charlie in willy wonka\nA. Orrin Hatch\nB. uracil (U)\nC. Peter Gardner[4] Ostrum\nD. January 2017\nAnswer:",
+      "options": {
+        "A": "Orrin Hatch",
+        "B": "uracil (U)",
+        "C": "Peter Gardner[4] Ostrum",
+        "D": "January 2017"
+      },
+      "correct_answer": "Peter Gardner[4] Ostrum",
+      "correct_letter": "C",
+      "distractors": [
+        "Orrin Hatch",
+        "January 2017",
+        "uracil (U)"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_164",
+      "question": "where was the first session of the assam association held in1905",
+      "mcq_prompt": "Question: where was the first session of the assam association held in1905\nA. Benedict Samuel\nB. Lead\nC. Guwahati\nD. Jamaican reggae band Inner Circle\nAnswer:",
+      "options": {
+        "A": "Benedict Samuel",
+        "B": "Lead",
+        "C": "Guwahati",
+        "D": "Jamaican reggae band Inner Circle"
+      },
+      "correct_answer": "Guwahati",
+      "correct_letter": "C",
+      "distractors": [
+        "Benedict Samuel",
+        "Jamaican reggae band Inner Circle",
+        "Lead"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_165",
+      "question": "who played ice queen in chronicles of narnia",
+      "mcq_prompt": "Question: who played ice queen in chronicles of narnia\nA. October 2004\nB. 1968\nC. her abusive husband\nD. Tilda Swinton\nAnswer:",
+      "options": {
+        "A": "October 2004",
+        "B": "1968",
+        "C": "her abusive husband",
+        "D": "Tilda Swinton"
+      },
+      "correct_answer": "Tilda Swinton",
+      "correct_letter": "D",
+      "distractors": [
+        "her abusive husband",
+        "1968",
+        "October 2004"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_166",
+      "question": "when is season 2 of jessica jones being released",
+      "mcq_prompt": "Question: when is season 2 of jessica jones being released\nA. Kimmy Robertson\nB. Queen M\u00e1xima of the Netherlands\nC. Ricky Nelson\nD. March 8, 2018\nAnswer:",
+      "options": {
+        "A": "Kimmy Robertson",
+        "B": "Queen M\u00e1xima of the Netherlands",
+        "C": "Ricky Nelson",
+        "D": "March 8, 2018"
+      },
+      "correct_answer": "March 8, 2018",
+      "correct_letter": "D",
+      "distractors": [
+        "Ricky Nelson",
+        "Queen M\u00e1xima of the Netherlands",
+        "Kimmy Robertson"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_167",
+      "question": "when was united nations convention on the rights of the child created",
+      "mcq_prompt": "Question: when was united nations convention on the rights of the child created\nA. 20 November 1989\nB. George David Weiss\nC. at symbol\nD. James Brown\nAnswer:",
+      "options": {
+        "A": "20 November 1989",
+        "B": "George David Weiss",
+        "C": "at symbol",
+        "D": "James Brown"
+      },
+      "correct_answer": "20 November 1989",
+      "correct_letter": "A",
+      "distractors": [
+        "James Brown",
+        "at symbol",
+        "George David Weiss"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_168",
+      "question": "swan lake the sleeping beauty and the nutcracker are three famous ballets by",
+      "mcq_prompt": "Question: swan lake the sleeping beauty and the nutcracker are three famous ballets by\nA. Pyotr Ilyich Tchaikovsky\nB. Yuzuru Hanyu\nC. 1994\nD. 9 seasons\nAnswer:",
+      "options": {
+        "A": "Pyotr Ilyich Tchaikovsky",
+        "B": "Yuzuru Hanyu",
+        "C": "1994",
+        "D": "9 seasons"
+      },
+      "correct_answer": "Pyotr Ilyich Tchaikovsky",
+      "correct_letter": "A",
+      "distractors": [
+        "9 seasons",
+        "Yuzuru Hanyu",
+        "1994"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_169",
+      "question": "what type of database is library literature and information science",
+      "mcq_prompt": "Question: what type of database is library literature and information science\nA. Orrin Hatch\nB. approximately 26,000 years\nC. bibliographic database\nD. Kansas City Chiefs\nAnswer:",
+      "options": {
+        "A": "Orrin Hatch",
+        "B": "approximately 26,000 years",
+        "C": "bibliographic database",
+        "D": "Kansas City Chiefs"
+      },
+      "correct_answer": "bibliographic database",
+      "correct_letter": "C",
+      "distractors": [
+        "Orrin Hatch",
+        "approximately 26,000 years",
+        "Kansas City Chiefs"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_170",
+      "question": "when did the united states start using the death penalty",
+      "mcq_prompt": "Question: when did the united states start using the death penalty\nA. 17.32%\nB. Bronnie\nC. English\nD. the beginning\nAnswer:",
+      "options": {
+        "A": "17.32%",
+        "B": "Bronnie",
+        "C": "English",
+        "D": "the beginning"
+      },
+      "correct_answer": "the beginning",
+      "correct_letter": "D",
+      "distractors": [
+        "English",
+        "17.32%",
+        "Bronnie"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_171",
+      "question": "when was coffee first made into a drink",
+      "mcq_prompt": "Question: when was coffee first made into a drink\nA. 15th century\nB. revolution or orbital revolution\nC. 1966\nD. IV\nAnswer:",
+      "options": {
+        "A": "15th century",
+        "B": "revolution or orbital revolution",
+        "C": "1966",
+        "D": "IV"
+      },
+      "correct_answer": "15th century",
+      "correct_letter": "A",
+      "distractors": [
+        "1966",
+        "revolution or orbital revolution",
+        "IV"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_172",
+      "question": "who is jared on the bold and the beautiful",
+      "mcq_prompt": "Question: who is jared on the bold and the beautiful\nA. 137\nB. Andrew Collins\nC. Todd Bridges\nD. 554\nAnswer:",
+      "options": {
+        "A": "137",
+        "B": "Andrew Collins",
+        "C": "Todd Bridges",
+        "D": "554"
+      },
+      "correct_answer": "Andrew Collins",
+      "correct_letter": "B",
+      "distractors": [
+        "554",
+        "137",
+        "Todd Bridges"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_173",
+      "question": "who wrote knock knock knocking on heavens door",
+      "mcq_prompt": "Question: who wrote knock knock knocking on heavens door\nA. Bob Dylan\nB. Jewel Akens\nC. \"Fix You\"\nD. Chhattisgarh\nAnswer:",
+      "options": {
+        "A": "Bob Dylan",
+        "B": "Jewel Akens",
+        "C": "\"Fix You\"",
+        "D": "Chhattisgarh"
+      },
+      "correct_answer": "Bob Dylan",
+      "correct_letter": "A",
+      "distractors": [
+        "Jewel Akens",
+        "\"Fix You\"",
+        "Chhattisgarh"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_174",
+      "question": "when did the movie napoleon dynamite come out",
+      "mcq_prompt": "Question: when did the movie napoleon dynamite come out\nA. guanine (G)\nB. nomads from Inner Asia\nC. 6ft 1in\nD. June\u00a011,\u00a02004\nAnswer:",
+      "options": {
+        "A": "guanine (G)",
+        "B": "nomads from Inner Asia",
+        "C": "6ft 1in",
+        "D": "June\u00a011,\u00a02004"
+      },
+      "correct_answer": "June\u00a011,\u00a02004",
+      "correct_letter": "D",
+      "distractors": [
+        "nomads from Inner Asia",
+        "guanine (G)",
+        "6ft 1in"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_175",
+      "question": "who starred in an officer and a gentleman",
+      "mcq_prompt": "Question: who starred in an officer and a gentleman\nA. October 2004\nB. Richard Gere\nC. Lord Irwin\nD. Harry Vanda\nAnswer:",
+      "options": {
+        "A": "October 2004",
+        "B": "Richard Gere",
+        "C": "Lord Irwin",
+        "D": "Harry Vanda"
+      },
+      "correct_answer": "Richard Gere",
+      "correct_letter": "B",
+      "distractors": [
+        "Harry Vanda",
+        "Lord Irwin",
+        "October 2004"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_176",
+      "question": "who plays chummy's mother in call the midwife",
+      "mcq_prompt": "Question: who plays chummy's mother in call the midwife\nA. the disputed 1824 presidential election\nB. Cheryl Campbell\nC. suprachiasmatic nucleus\nD. February 1834\nAnswer:",
+      "options": {
+        "A": "the disputed 1824 presidential election",
+        "B": "Cheryl Campbell",
+        "C": "suprachiasmatic nucleus",
+        "D": "February 1834"
+      },
+      "correct_answer": "Cheryl Campbell",
+      "correct_letter": "B",
+      "distractors": [
+        "the disputed 1824 presidential election",
+        "suprachiasmatic nucleus",
+        "February 1834"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_177",
+      "question": "name two fibres which are made of proteins",
+      "mcq_prompt": "Question: name two fibres which are made of proteins\nA. Bruno Mars\nB. feathers\nC. July 14, 2016\nD. Spanish surname\nAnswer:",
+      "options": {
+        "A": "Bruno Mars",
+        "B": "feathers",
+        "C": "July 14, 2016",
+        "D": "Spanish surname"
+      },
+      "correct_answer": "feathers",
+      "correct_letter": "B",
+      "distractors": [
+        "July 14, 2016",
+        "Bruno Mars",
+        "Spanish surname"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_178",
+      "question": "how many super bowl games has the patriots played in",
+      "mcq_prompt": "Question: how many super bowl games has the patriots played in\nA. Marvel's Daredevil\nB. February 1834\nC. 10\nD. 25\nAnswer:",
+      "options": {
+        "A": "Marvel's Daredevil",
+        "B": "February 1834",
+        "C": "10",
+        "D": "25"
+      },
+      "correct_answer": "10",
+      "correct_letter": "C",
+      "distractors": [
+        "February 1834",
+        "Marvel's Daredevil",
+        "25"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_179",
+      "question": "where do they put the tomb vampires in order to burn them during founders day",
+      "mcq_prompt": "Question: where do they put the tomb vampires in order to burn them during founders day\nA. Bobby Scott\nB. imperial rule\nC. Bruno Mars\nD. the Gilbert building\nAnswer:",
+      "options": {
+        "A": "Bobby Scott",
+        "B": "imperial rule",
+        "C": "Bruno Mars",
+        "D": "the Gilbert building"
+      },
+      "correct_answer": "the Gilbert building",
+      "correct_letter": "D",
+      "distractors": [
+        "Bruno Mars",
+        "imperial rule",
+        "Bobby Scott"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_180",
+      "question": "who is the king and queen of the netherlands",
+      "mcq_prompt": "Question: who is the king and queen of the netherlands\nA. 16 March 2018\nB. Marvel's Jessica Jones\nC. the 1960s\nD. Queen M\u00e1xima of the Netherlands\nAnswer:",
+      "options": {
+        "A": "16 March 2018",
+        "B": "Marvel's Jessica Jones",
+        "C": "the 1960s",
+        "D": "Queen M\u00e1xima of the Netherlands"
+      },
+      "correct_answer": "Queen M\u00e1xima of the Netherlands",
+      "correct_letter": "D",
+      "distractors": [
+        "16 March 2018",
+        "the 1960s",
+        "Marvel's Jessica Jones"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_181",
+      "question": "where is gall bladder situated in human body",
+      "mcq_prompt": "Question: where is gall bladder situated in human body\nA. V8-engine\nB. outer layer of skin\nC. beneath the liver\nD. Laura Brent\nAnswer:",
+      "options": {
+        "A": "V8-engine",
+        "B": "outer layer of skin",
+        "C": "beneath the liver",
+        "D": "Laura Brent"
+      },
+      "correct_answer": "beneath the liver",
+      "correct_letter": "C",
+      "distractors": [
+        "Laura Brent",
+        "outer layer of skin",
+        "V8-engine"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_182",
+      "question": "what is the current population of bora bora",
+      "mcq_prompt": "Question: what is the current population of bora bora\nA. white\nB. 10,605\nC. Lynne\nD. 15th century\nAnswer:",
+      "options": {
+        "A": "white",
+        "B": "10,605",
+        "C": "Lynne",
+        "D": "15th century"
+      },
+      "correct_answer": "10,605",
+      "correct_letter": "B",
+      "distractors": [
+        "15th century",
+        "white",
+        "Lynne"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_183",
+      "question": "where does tropic of cancer pass in india",
+      "mcq_prompt": "Question: where does tropic of cancer pass in india\nA. Chhattisgarh\nB. Four\nC. Billie Jean King\nD. 20 November 1989\nAnswer:",
+      "options": {
+        "A": "Chhattisgarh",
+        "B": "Four",
+        "C": "Billie Jean King",
+        "D": "20 November 1989"
+      },
+      "correct_answer": "Chhattisgarh",
+      "correct_letter": "A",
+      "distractors": [
+        "20 November 1989",
+        "Billie Jean King",
+        "Four"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_184",
+      "question": "who made the song falling in love with you",
+      "mcq_prompt": "Question: who made the song falling in love with you\nA. Peter Gardner[4] Ostrum\nB. 1976\nC. Hugo Peretti\nD. Kurma Venkata Reddy Naidu\nAnswer:",
+      "options": {
+        "A": "Peter Gardner[4] Ostrum",
+        "B": "1976",
+        "C": "Hugo Peretti",
+        "D": "Kurma Venkata Reddy Naidu"
+      },
+      "correct_answer": "Hugo Peretti",
+      "correct_letter": "C",
+      "distractors": [
+        "Kurma Venkata Reddy Naidu",
+        "Peter Gardner[4] Ostrum",
+        "1976"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_185",
+      "question": "which is produced in plants of narora kakrapar tarapur",
+      "mcq_prompt": "Question: which is produced in plants of narora kakrapar tarapur\nA. Tom Selleck\nB. Atomic Power\nC. State of Tripura\nD. radians\nAnswer:",
+      "options": {
+        "A": "Tom Selleck",
+        "B": "Atomic Power",
+        "C": "State of Tripura",
+        "D": "radians"
+      },
+      "correct_answer": "Atomic Power",
+      "correct_letter": "B",
+      "distractors": [
+        "radians",
+        "Tom Selleck",
+        "State of Tripura"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_186",
+      "question": "what is the first book of percy jackson",
+      "mcq_prompt": "Question: what is the first book of percy jackson\nA. West Bengal\nB. capillary action\nC. mountainous shrubland\nD. The Lightning Thief\nAnswer:",
+      "options": {
+        "A": "West Bengal",
+        "B": "capillary action",
+        "C": "mountainous shrubland",
+        "D": "The Lightning Thief"
+      },
+      "correct_answer": "The Lightning Thief",
+      "correct_letter": "D",
+      "distractors": [
+        "West Bengal",
+        "mountainous shrubland",
+        "capillary action"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_187",
+      "question": "who was originally cast to play indiana jones",
+      "mcq_prompt": "Question: who was originally cast to play indiana jones\nA. October 18, 2003\nB. Carbon copy to secondary recipients\nC. at sign\nD. Tom Selleck\nAnswer:",
+      "options": {
+        "A": "October 18, 2003",
+        "B": "Carbon copy to secondary recipients",
+        "C": "at sign",
+        "D": "Tom Selleck"
+      },
+      "correct_answer": "Tom Selleck",
+      "correct_letter": "D",
+      "distractors": [
+        "at sign",
+        "October 18, 2003",
+        "Carbon copy to secondary recipients"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_188",
+      "question": "what proposition made the insurance commissioner an elected position",
+      "mcq_prompt": "Question: what proposition made the insurance commissioner an elected position\nA. Geoffrey Zakarian\nB. Proposition 103\nC. Karl Malone\nD. 1901\nAnswer:",
+      "options": {
+        "A": "Geoffrey Zakarian",
+        "B": "Proposition 103",
+        "C": "Karl Malone",
+        "D": "1901"
+      },
+      "correct_answer": "Proposition 103",
+      "correct_letter": "B",
+      "distractors": [
+        "Geoffrey Zakarian",
+        "Karl Malone",
+        "1901"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_189",
+      "question": "who played amy grant i i can only imagine",
+      "mcq_prompt": "Question: who played amy grant i i can only imagine\nA. Llansilin in Powys\nB. Nicole DuPort\nC. Matt Flinders\nD. Ella Eyre\nAnswer:",
+      "options": {
+        "A": "Llansilin in Powys",
+        "B": "Nicole DuPort",
+        "C": "Matt Flinders",
+        "D": "Ella Eyre"
+      },
+      "correct_answer": "Nicole DuPort",
+      "correct_letter": "B",
+      "distractors": [
+        "Llansilin in Powys",
+        "Matt Flinders",
+        "Ella Eyre"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_190",
+      "question": "who sings the song only in my dreams",
+      "mcq_prompt": "Question: who sings the song only in my dreams\nA. 25\nB. Colon Street\nC. Luke Bryan\nD. Debbie Gibson\nAnswer:",
+      "options": {
+        "A": "25",
+        "B": "Colon Street",
+        "C": "Luke Bryan",
+        "D": "Debbie Gibson"
+      },
+      "correct_answer": "Debbie Gibson",
+      "correct_letter": "D",
+      "distractors": [
+        "Luke Bryan",
+        "25",
+        "Colon Street"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_191",
+      "question": "who appoints the chair of the federal reserve system",
+      "mcq_prompt": "Question: who appoints the chair of the federal reserve system\nA. President of the United States\nB. Corinth, Mississippi\nC. Lowville, New York\nD. West Bengal\nAnswer:",
+      "options": {
+        "A": "President of the United States",
+        "B": "Corinth, Mississippi",
+        "C": "Lowville, New York",
+        "D": "West Bengal"
+      },
+      "correct_answer": "President of the United States",
+      "correct_letter": "A",
+      "distractors": [
+        "Lowville, New York",
+        "West Bengal",
+        "Corinth, Mississippi"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_192",
+      "question": "who wins the next iron chef super chefs",
+      "mcq_prompt": "Question: who wins the next iron chef super chefs\nA. suprachiasmatic nucleus\nB. nearby objects\nC. Audley Harrison\nD. Zakarian\nAnswer:",
+      "options": {
+        "A": "suprachiasmatic nucleus",
+        "B": "nearby objects",
+        "C": "Audley Harrison",
+        "D": "Zakarian"
+      },
+      "correct_answer": "Zakarian",
+      "correct_letter": "D",
+      "distractors": [
+        "suprachiasmatic nucleus",
+        "Audley Harrison",
+        "nearby objects"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_193",
+      "question": "when does body temperature tend to be lowest",
+      "mcq_prompt": "Question: when does body temperature tend to be lowest\nA. 11 p.m. to 3 a.m.\nB. nearby objects\nC. Chernobyl\nD. Kryptonite\nAnswer:",
+      "options": {
+        "A": "11 p.m. to 3 a.m.",
+        "B": "nearby objects",
+        "C": "Chernobyl",
+        "D": "Kryptonite"
+      },
+      "correct_answer": "11 p.m. to 3 a.m.",
+      "correct_letter": "A",
+      "distractors": [
+        "Kryptonite",
+        "nearby objects",
+        "Chernobyl"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_194",
+      "question": "who sings the whiskey ain't workin anymore",
+      "mcq_prompt": "Question: who sings the whiskey ain't workin anymore\nA. James Brown\nB. January\u00a031,\u00a02018\nC. suprachiasmatic nucleus\nD. Dennis Locorriere\nAnswer:",
+      "options": {
+        "A": "James Brown",
+        "B": "January\u00a031,\u00a02018",
+        "C": "suprachiasmatic nucleus",
+        "D": "Dennis Locorriere"
+      },
+      "correct_answer": "Dennis Locorriere",
+      "correct_letter": "D",
+      "distractors": [
+        "suprachiasmatic nucleus",
+        "January\u00a031,\u00a02018",
+        "James Brown"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_195",
+      "question": "what year is it for the jewish calendar",
+      "mcq_prompt": "Question: what year is it for the jewish calendar\nA. AM 5778\nB. Marvel's Iron Fist\nC. Rajasthan\nD. Cheryl Campbell\nAnswer:",
+      "options": {
+        "A": "AM 5778",
+        "B": "Marvel's Iron Fist",
+        "C": "Rajasthan",
+        "D": "Cheryl Campbell"
+      },
+      "correct_answer": "AM 5778",
+      "correct_letter": "A",
+      "distractors": [
+        "Cheryl Campbell",
+        "Rajasthan",
+        "Marvel's Iron Fist"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_196",
+      "question": "chief ministers of tamil nadu mentioned on wikipedia",
+      "mcq_prompt": "Question: chief ministers of tamil nadu mentioned on wikipedia\nA. Fifty Shades Freed\nB. the President\nC. Debbie Reynolds\nD. Ramakrishna Ranga Rao\nAnswer:",
+      "options": {
+        "A": "Fifty Shades Freed",
+        "B": "the President",
+        "C": "Debbie Reynolds",
+        "D": "Ramakrishna Ranga Rao"
+      },
+      "correct_answer": "Ramakrishna Ranga Rao",
+      "correct_letter": "D",
+      "distractors": [
+        "Debbie Reynolds",
+        "Fifty Shades Freed",
+        "the President"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_197",
+      "question": "what is the function of a political action committee (pac)",
+      "mcq_prompt": "Question: what is the function of a political action committee (pac)\nA. the 15th century\nB. pools campaign contributions from members\nC. Slalom\nD. P. S. Kumaraswamy Raja\nAnswer:",
+      "options": {
+        "A": "the 15th century",
+        "B": "pools campaign contributions from members",
+        "C": "Slalom",
+        "D": "P. S. Kumaraswamy Raja"
+      },
+      "correct_answer": "pools campaign contributions from members",
+      "correct_letter": "B",
+      "distractors": [
+        "the 15th century",
+        "P. S. Kumaraswamy Raja",
+        "Slalom"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_198",
+      "question": "who has the most followers in the world on instagram",
+      "mcq_prompt": "Question: who has the most followers in the world on instagram\nA. Jerry Rice\nB. Beyonc\u00e9\nC. South Carolina\nD. Instagram's own account\nAnswer:",
+      "options": {
+        "A": "Jerry Rice",
+        "B": "Beyonc\u00e9",
+        "C": "South Carolina",
+        "D": "Instagram's own account"
+      },
+      "correct_answer": "Instagram's own account",
+      "correct_letter": "D",
+      "distractors": [
+        "South Carolina",
+        "Beyonc\u00e9",
+        "Jerry Rice"
+      ]
+    },
+    {
+      "id": "nq_open_mcq_199",
+      "question": "what type of political system does el salvador have",
+      "mcq_prompt": "Question: what type of political system does el salvador have\nA. Rihanna\nB. October 3, 1970\nC. a presidential representative democratic republic\nD. 1960 and 1980\nAnswer:",
+      "options": {
+        "A": "Rihanna",
+        "B": "October 3, 1970",
+        "C": "a presidential representative democratic republic",
+        "D": "1960 and 1980"
+      },
+      "correct_answer": "a presidential representative democratic republic",
+      "correct_letter": "C",
+      "distractors": [
+        "1960 and 1980",
+        "Rihanna",
+        "October 3, 1970"
+      ]
+    }
+  ]
+}
