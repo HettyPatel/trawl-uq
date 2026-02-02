@@ -88,6 +88,7 @@ def run_mcq_entropy_svd_truncation(
     target_layer: int = 6,
     matrix_type: str = "mlp_out",
     reduction_percentages: list = None,
+    component_counts: list = None,
     device: str = "cuda",
     checkpoint_every: int = 5
 ):
@@ -176,6 +177,20 @@ def run_mcq_entropy_svd_truncation(
     print("\nPerforming SVD decomposition...")
     U, S, Vh = decompose_weight_svd(original_weight, device)
     print(f"SVD complete: {len(S)} singular values")
+
+    # If component_counts specified, convert to reduction percentages
+    if component_counts is not None:
+        total = len(S)
+        reduction_percentages = []
+        for k in component_counts:
+            if k > total:
+                print(f"  Warning: requested {k} components but only {total} available, skipping")
+                continue
+            pct = (1.0 - k / total) * 100.0
+            reduction_percentages.append(pct)
+            print(f"  {k} components → {pct:.4f}% reduction")
+        config['component_counts'] = component_counts
+        config['reduction_percentages'] = reduction_percentages
 
     # ========== Phase 1: Baseline ==========
     print("\n" + "=" * 70)
@@ -315,6 +330,7 @@ if __name__ == "__main__":
     parser.add_argument("--matrix", type=str, default="mlp_out", choices=["mlp_in", "mlp_out"])
     parser.add_argument("--checkpoint-every", type=int, default=5)
     parser.add_argument("--test", action="store_true", help="Quick test with fewer reduction levels")
+    parser.add_argument("--components", type=int, nargs="+", help="Exact component counts to test (e.g. --components 10 5 3 2 1)")
 
     args = parser.parse_args()
 
@@ -328,6 +344,16 @@ if __name__ == "__main__":
             matrix_type=args.matrix,
             reduction_percentages=[10, 50, 90],
             checkpoint_every=1
+        )
+    elif args.components:
+        run_mcq_entropy_svd_truncation(
+            model_name=args.model,
+            model_type=args.model_type,
+            eval_set_path=args.eval_set,
+            target_layer=args.layer,
+            matrix_type=args.matrix,
+            component_counts=sorted(args.components, reverse=True),
+            checkpoint_every=args.checkpoint_every
         )
     else:
         run_mcq_entropy_svd_truncation(
