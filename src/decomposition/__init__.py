@@ -19,6 +19,7 @@ from .svd import (
     decompose_weight_svd,
     reconstruct_from_svd,
     truncate_svd,
+    select_svd_components,
     low_rank_approximation,
     compute_energy_retention,
     compute_reconstruction_error_svd,

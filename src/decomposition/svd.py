@@ -104,6 +104,54 @@ def truncate_svd(
     return U_truncated, S_truncated, Vh_truncated
 
 
+def select_svd_components(
+        U: torch.Tensor,
+        S: torch.Tensor,
+        Vh: torch.Tensor,
+        keep_ratio: float,
+        mode: str = "top",
+        seed: Optional[int] = None
+) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+    """
+    Select SVD components using different strategies.
+
+    Args:
+        U: Left singular vectors [m, k]
+        S: Singular values [k] (sorted descending)
+        Vh: Right singular vectors transposed [k, n]
+        keep_ratio: Fraction of singular values to keep (0.0 to 1.0)
+        mode: Selection strategy:
+              - "top": keep largest singular values (default)
+              - "bottom": keep smallest singular values
+              - "random": keep randomly selected singular values
+        seed: Random seed for "random" mode (ignored for top/bottom)
+
+    Returns:
+        Tuple of (U_selected, S_selected, Vh_selected, indices)
+    """
+    total_components = len(S)
+    k_keep = max(1, int(total_components * keep_ratio))
+
+    if mode == "top":
+        indices = torch.arange(k_keep)
+    elif mode == "bottom":
+        indices = torch.arange(total_components - k_keep, total_components)
+    elif mode == "random":
+        generator = torch.Generator()
+        if seed is not None:
+            generator.manual_seed(seed)
+        perm = torch.randperm(total_components, generator=generator)
+        indices = perm[:k_keep].sort().values
+    else:
+        raise ValueError(f"Unknown mode: {mode}. Must be 'top', 'bottom', or 'random'.")
+
+    U_selected = U[:, indices]
+    S_selected = S[indices]
+    Vh_selected = Vh[indices, :]
+
+    return U_selected, S_selected, Vh_selected, indices
+
+
 def low_rank_approximation(
         weight: torch.Tensor,
         keep_ratio: float,

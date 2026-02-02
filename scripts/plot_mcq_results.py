@@ -26,11 +26,13 @@ def load_results(results_path: str):
 
 
 def detect_experiment_type(results: dict) -> str:
-    """Detect whether this is noise_removal or svd_truncation."""
+    """Detect whether this is noise_removal, svd_truncation, or random_matrix_control."""
     if 'component_results' in results:
         return 'noise_removal'
     elif 'truncation_results' in results:
         return 'svd_truncation'
+    elif results.get('config', {}).get('experiment_type') == 'random_matrix_control':
+        return 'random_matrix_control'
     else:
         raise ValueError("Unknown experiment type")
 
@@ -326,6 +328,113 @@ def plot_svd_truncation(results: dict, output_dir: Path):
     print(f"\nMCQ SVD truncation plots saved to: {output_dir}")
 
 
+def plot_random_matrix_control(results: dict, output_dir: Path):
+    """Plot random matrix replacement control experiment results."""
+    output_dir = Path(output_dir) / 'figures'
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    config = results['config']
+    baseline = results['baseline']
+    trial_results = results['trial_results']
+    aggregated = results['aggregated']
+
+    model_name = config['model_name'].split('/')[-1]
+    layer = config['target_layer']
+    matrix = config['matrix_type']
+    num_trials = config['num_trials']
+
+    baseline_entropy = baseline['avg_entropy']
+    baseline_accuracy = baseline['accuracy']
+
+    trial_accuracies = [t['accuracy'] * 100 for t in trial_results]
+    trial_entropies = [t['avg_entropy'] for t in trial_results]
+    trial_indices = list(range(1, num_trials + 1))
+
+    # Plot 1: Accuracy across trials vs baseline
+    fig, ax = plt.subplots(figsize=(12, 6))
+
+    ax.bar(trial_indices, trial_accuracies, color='steelblue', alpha=0.7, label='Random Matrix Trials')
+    ax.axhline(y=baseline_accuracy * 100, color='red', linestyle='--', linewidth=2,
+               label=f'Baseline ({baseline_accuracy*100:.1f}%)')
+    ax.axhline(y=25, color='gray', linestyle=':', linewidth=1, alpha=0.5,
+               label='Random Chance (25%)')
+
+    ax.set_xlabel('Trial', fontsize=12)
+    ax.set_ylabel('Accuracy (%)', fontsize=12)
+    ax.set_title(f'{model_name} Layer {layer} {matrix}: Random Matrix Replacement - Accuracy\n'
+                 f'Mean: {aggregated["accuracy_mean"]*100:.1f}% (±{aggregated["accuracy_std"]*100:.1f}pp)',
+                 fontsize=14)
+    ax.legend(fontsize=10)
+    ax.grid(alpha=0.3, axis='y')
+    ax.set_ylim(0, 100)
+    ax.set_xticks(trial_indices)
+    plt.tight_layout()
+    plt.savefig(output_dir / 'accuracy_by_trial.png', dpi=300, bbox_inches='tight')
+    print(f"Saved: {output_dir / 'accuracy_by_trial.png'}")
+    plt.close()
+
+    # Plot 2: Entropy across trials vs baseline
+    fig, ax = plt.subplots(figsize=(12, 6))
+
+    ax.bar(trial_indices, trial_entropies, color='coral', alpha=0.7, label='Random Matrix Trials')
+    ax.axhline(y=baseline_entropy, color='blue', linestyle='--', linewidth=2,
+               label=f'Baseline ({baseline_entropy:.4f})')
+    ax.axhline(y=1.386, color='gray', linestyle=':', linewidth=1, alpha=0.5,
+               label='Max Entropy (1.386)')
+
+    ax.set_xlabel('Trial', fontsize=12)
+    ax.set_ylabel('Average Entropy', fontsize=12)
+    ax.set_title(f'{model_name} Layer {layer} {matrix}: Random Matrix Replacement - Entropy\n'
+                 f'Mean: {aggregated["avg_entropy_mean"]:.4f} (±{aggregated["avg_entropy_std"]:.4f})',
+                 fontsize=14)
+    ax.legend(fontsize=10)
+    ax.grid(alpha=0.3, axis='y')
+    ax.set_ylim(0, 1.5)
+    ax.set_xticks(trial_indices)
+    plt.tight_layout()
+    plt.savefig(output_dir / 'entropy_by_trial.png', dpi=300, bbox_inches='tight')
+    print(f"Saved: {output_dir / 'entropy_by_trial.png'}")
+    plt.close()
+
+    # Plot 3: Summary comparison (baseline vs random)
+    fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+
+    # Accuracy comparison
+    ax = axes[0]
+    bars = ax.bar(['Baseline', 'Random\n(mean)'],
+                  [baseline_accuracy * 100, aggregated['accuracy_mean'] * 100],
+                  color=['green', 'steelblue'], alpha=0.7)
+    ax.errorbar(1, aggregated['accuracy_mean'] * 100, yerr=aggregated['accuracy_std'] * 100,
+                fmt='none', color='black', capsize=10, linewidth=2)
+    ax.axhline(y=25, color='gray', linestyle=':', linewidth=1, alpha=0.5)
+    ax.set_ylabel('Accuracy (%)', fontsize=12)
+    ax.set_title('Accuracy', fontsize=14)
+    ax.set_ylim(0, 100)
+    ax.grid(alpha=0.3, axis='y')
+
+    # Entropy comparison
+    ax = axes[1]
+    ax.bar(['Baseline', 'Random\n(mean)'],
+           [baseline_entropy, aggregated['avg_entropy_mean']],
+           color=['green', 'coral'], alpha=0.7)
+    ax.errorbar(1, aggregated['avg_entropy_mean'], yerr=aggregated['avg_entropy_std'],
+                fmt='none', color='black', capsize=10, linewidth=2)
+    ax.axhline(y=1.386, color='gray', linestyle=':', linewidth=1, alpha=0.5)
+    ax.set_ylabel('Average Entropy', fontsize=12)
+    ax.set_title('Entropy', fontsize=14)
+    ax.set_ylim(0, 1.5)
+    ax.grid(alpha=0.3, axis='y')
+
+    fig.suptitle(f'{model_name} Layer {layer} {matrix}: Baseline vs Random Matrix ({num_trials} trials)',
+                 fontsize=14)
+    plt.tight_layout()
+    plt.savefig(output_dir / 'baseline_vs_random_summary.png', dpi=300, bbox_inches='tight')
+    print(f"Saved: {output_dir / 'baseline_vs_random_summary.png'}")
+    plt.close()
+
+    print(f"\nMCQ random matrix control plots saved to: {output_dir}")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Plot MCQ entropy experiment results")
     parser.add_argument("--results", type=str, required=True,
@@ -344,8 +453,10 @@ def main():
 
     if exp_type == 'noise_removal':
         plot_noise_removal(results, output_dir)
-    else:
+    elif exp_type == 'svd_truncation':
         plot_svd_truncation(results, output_dir)
+    elif exp_type == 'random_matrix_control':
+        plot_random_matrix_control(results, output_dir)
 
     print("\nPlotting complete!")
 
