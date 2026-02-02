@@ -30,6 +30,7 @@ from src.evaluation.metrics import compute_mcq_entropy_and_nll
 from src.decomposition.svd import (
     decompose_weight_svd,
     truncate_svd,
+    select_svd_components,
     reconstruct_from_svd,
     get_svd_stats,
     update_layer_with_svd,
@@ -89,6 +90,9 @@ def run_mcq_entropy_svd_truncation(
     matrix_type: str = "mlp_out",
     reduction_percentages: list = None,
     component_counts: list = None,
+    mode: str = "top",
+    num_trials: int = 5,
+    random_seed_start: int = 100,
     device: str = "cuda",
     checkpoint_every: int = 5
 ):
@@ -102,6 +106,9 @@ def run_mcq_entropy_svd_truncation(
         target_layer: Which layer to apply SVD
         matrix_type: 'mlp_in' or 'mlp_out'
         reduction_percentages: List of reduction percentages to test
+        mode: Component selection mode ('top', 'bottom', 'random')
+        num_trials: Number of trials for random mode
+        random_seed_start: Starting seed for random trials
         device: Device for computation
         checkpoint_every: Save checkpoint every N reduction levels
     """
@@ -113,7 +120,8 @@ def run_mcq_entropy_svd_truncation(
     # Setup output directory
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     model_short = model_name.split("/")[-1]
-    output_dir = Path(f"results/mcq_entropy_svd/{model_short}_layer{target_layer}_{matrix_type}_{timestamp}")
+    mode_suffix = f"_{mode}" if mode != "top" else ""
+    output_dir = Path(f"results/mcq_entropy_svd/{model_short}_layer{target_layer}_{matrix_type}{mode_suffix}_{timestamp}")
     output_dir.mkdir(parents=True, exist_ok=True)
 
     print("=" * 70)
@@ -122,7 +130,10 @@ def run_mcq_entropy_svd_truncation(
     print(f"Model: {model_name}")
     print(f"Layer: {target_layer}")
     print(f"Matrix: {matrix_type}")
+    print(f"Mode: {mode}")
     print(f"Reduction levels: {len(reduction_percentages)}")
+    if mode == "random":
+        print(f"Random trials: {num_trials}")
     print(f"Output: {output_dir}")
     print("=" * 70)
 
@@ -139,7 +150,10 @@ def run_mcq_entropy_svd_truncation(
         'matrix_type': matrix_type,
         'reduction_percentages': reduction_percentages,
         'num_samples': len(samples),
-        'timestamp': timestamp
+        'timestamp': timestamp,
+        'mode': mode,
+        'num_trials': num_trials if mode == 'random' else 1,
+        'random_seed_start': random_seed_start if mode == 'random' else None
     }
 
     # Load model
@@ -209,55 +223,123 @@ def run_mcq_entropy_svd_truncation(
 
     # ========== Phase 2: Truncation Sweep ==========
     print("\n" + "=" * 70)
-    print(f"PHASE 2: TRUNCATION SWEEP ({len(reduction_percentages)} levels)")
+    print(f"PHASE 2: TRUNCATION SWEEP ({len(reduction_percentages)} levels, mode={mode})")
     print("=" * 70)
 
     truncation_results = []
 
     for i, reduction_pct in enumerate(tqdm(reduction_percentages, desc="Testing reductions")):
         keep_ratio = reduction_to_keep_ratio(reduction_pct)
-        components_kept = int(len(S) * keep_ratio)
+        components_kept = max(1, int(len(S) * keep_ratio))
 
-        print(f"\nReduction {reduction_pct}% (keep {components_kept}/{len(S)} components)")
+        print(f"\nReduction {reduction_pct}% (keep {components_kept}/{len(S)} components, mode={mode})")
 
-        # Truncate
-        U_trunc, S_trunc, Vh_trunc = truncate_svd(U, S, Vh, keep_ratio)
-        weight_lr = reconstruct_from_svd(U_trunc, S_trunc, Vh_trunc)
-        energy_retention = compute_energy_retention(S, S_trunc)
+        if mode in ("top", "bottom"):
+            # Single pass for top/bottom
+            U_sel, S_sel, Vh_sel, indices = select_svd_components(U, S, Vh, keep_ratio, mode=mode)
+            weight_lr = reconstruct_from_svd(U_sel, S_sel, Vh_sel)
+            energy_retention = compute_energy_retention(S, S_sel)
 
-        # Update model
-        update_layer_with_svd(model, target_layer, weight_lr, matrix_type, model_type)
+            update_layer_with_svd(model, target_layer, weight_lr, matrix_type, model_type)
+            trunc_eval = evaluate_mcq_on_samples(model, tokenizer, samples, device)
 
-        # Evaluate
-        trunc_eval = evaluate_mcq_on_samples(model, tokenizer, samples, device)
+            avg_entropy = np.mean([r['entropy'] for r in trunc_eval])
+            avg_nll = np.mean([r['nll'] for r in trunc_eval])
+            accuracy = np.mean([r['is_correct'] for r in trunc_eval])
+            entropy_change = avg_entropy - baseline_avg_entropy
+            nll_change = avg_nll - baseline_avg_nll
+            accuracy_change = accuracy - baseline_accuracy
 
-        avg_entropy = np.mean([r['entropy'] for r in trunc_eval])
-        avg_nll = np.mean([r['nll'] for r in trunc_eval])
-        accuracy = np.mean([r['is_correct'] for r in trunc_eval])
-        entropy_change = avg_entropy - baseline_avg_entropy
-        nll_change = avg_nll - baseline_avg_nll
-        accuracy_change = accuracy - baseline_accuracy
+            truncation_results.append({
+                'reduction_percent': reduction_pct,
+                'keep_ratio': keep_ratio,
+                'components_kept': components_kept,
+                'total_components': len(S),
+                'energy_retention': energy_retention,
+                'avg_entropy': avg_entropy,
+                'avg_nll': avg_nll,
+                'accuracy': accuracy,
+                'entropy_change': entropy_change,
+                'nll_change': nll_change,
+                'accuracy_change': accuracy_change,
+                'per_sample': trunc_eval,
+                'mode': mode,
+                'selected_indices': indices.tolist()
+            })
 
-        truncation_results.append({
-            'reduction_percent': reduction_pct,
-            'keep_ratio': keep_ratio,
-            'components_kept': components_kept,
-            'total_components': len(S),
-            'energy_retention': energy_retention,
-            'avg_entropy': avg_entropy,
-            'avg_nll': avg_nll,
-            'accuracy': accuracy,
-            'entropy_change': entropy_change,
-            'nll_change': nll_change,
-            'accuracy_change': accuracy_change,
-            'per_sample': trunc_eval
-        })
+            print(f"  Entropy: {avg_entropy:.4f} ({entropy_change:+.4f})")
+            print(f"  Accuracy: {accuracy*100:.1f}% ({accuracy_change*100:+.1f}pp)")
+            print(f"  Energy retention: {energy_retention*100:.2f}%")
 
-        print(f"  Entropy: {avg_entropy:.4f} ({entropy_change:+.4f})")
-        print(f"  Accuracy: {accuracy*100:.1f}% ({accuracy_change*100:+.1f}pp)")
+            restore_original_weight(model, target_layer, original_weight, matrix_type, model_type)
 
-        # Restore original weight
-        restore_original_weight(model, target_layer, original_weight, matrix_type, model_type)
+        elif mode == "random":
+            # Multiple trials for random mode
+            trial_results = []
+
+            for trial_idx in range(num_trials):
+                trial_seed = random_seed_start + trial_idx
+
+                U_sel, S_sel, Vh_sel, indices = select_svd_components(
+                    U, S, Vh, keep_ratio, mode="random", seed=trial_seed
+                )
+                weight_lr = reconstruct_from_svd(U_sel, S_sel, Vh_sel)
+                energy_retention = compute_energy_retention(S, S_sel)
+
+                update_layer_with_svd(model, target_layer, weight_lr, matrix_type, model_type)
+                trunc_eval = evaluate_mcq_on_samples(model, tokenizer, samples, device)
+
+                avg_entropy = np.mean([r['entropy'] for r in trunc_eval])
+                avg_nll = np.mean([r['nll'] for r in trunc_eval])
+                accuracy = np.mean([r['is_correct'] for r in trunc_eval])
+
+                trial_results.append({
+                    'trial_idx': trial_idx,
+                    'seed': trial_seed,
+                    'energy_retention': energy_retention,
+                    'avg_entropy': avg_entropy,
+                    'avg_nll': avg_nll,
+                    'accuracy': accuracy,
+                    'entropy_change': avg_entropy - baseline_avg_entropy,
+                    'nll_change': avg_nll - baseline_avg_nll,
+                    'accuracy_change': accuracy - baseline_accuracy,
+                    'selected_indices': indices.tolist(),
+                    'per_sample': trunc_eval
+                })
+
+                print(f"  Trial {trial_idx+1}/{num_trials}: acc={accuracy*100:.1f}% entropy={avg_entropy:.4f}")
+
+                restore_original_weight(model, target_layer, original_weight, matrix_type, model_type)
+
+            # Aggregate across trials
+            agg_entropy = np.mean([t['avg_entropy'] for t in trial_results])
+            agg_nll = np.mean([t['avg_nll'] for t in trial_results])
+            agg_accuracy = np.mean([t['accuracy'] for t in trial_results])
+            agg_energy = np.mean([t['energy_retention'] for t in trial_results])
+
+            truncation_results.append({
+                'reduction_percent': reduction_pct,
+                'keep_ratio': keep_ratio,
+                'components_kept': components_kept,
+                'total_components': len(S),
+                'mode': 'random',
+                'num_trials': num_trials,
+                'energy_retention': agg_energy,
+                'avg_entropy': agg_entropy,
+                'avg_nll': agg_nll,
+                'accuracy': agg_accuracy,
+                'entropy_change': agg_entropy - baseline_avg_entropy,
+                'nll_change': agg_nll - baseline_avg_nll,
+                'accuracy_change': agg_accuracy - baseline_accuracy,
+                'entropy_std': np.std([t['avg_entropy'] for t in trial_results]),
+                'nll_std': np.std([t['avg_nll'] for t in trial_results]),
+                'accuracy_std': np.std([t['accuracy'] for t in trial_results]),
+                'energy_std': np.std([t['energy_retention'] for t in trial_results]),
+                'trial_results': trial_results,
+                'per_sample': None
+            })
+
+            print(f"  Aggregated: acc={agg_accuracy*100:.1f}% (±{np.std([t['accuracy'] for t in trial_results])*100:.1f}pp) entropy={agg_entropy:.4f}")
 
         # Checkpoint
         if (i + 1) % checkpoint_every == 0:
@@ -331,36 +413,36 @@ if __name__ == "__main__":
     parser.add_argument("--checkpoint-every", type=int, default=5)
     parser.add_argument("--test", action="store_true", help="Quick test with fewer reduction levels")
     parser.add_argument("--components", type=int, nargs="+", help="Exact component counts to test (e.g. --components 10 5 3 2 1)")
+    parser.add_argument("--mode", type=str, default="top", choices=["top", "bottom", "random"],
+                        help="SVD component selection mode: top (largest SV), bottom (smallest SV), random")
+    parser.add_argument("--num-trials", type=int, default=5,
+                        help="Number of random trials for mode=random (ignored for top/bottom)")
+    parser.add_argument("--random-seed-start", type=int, default=100,
+                        help="Starting seed for random trials")
 
     args = parser.parse_args()
 
+    kwargs = dict(
+        model_name=args.model,
+        model_type=args.model_type,
+        eval_set_path=args.eval_set,
+        target_layer=args.layer,
+        matrix_type=args.matrix,
+        mode=args.mode,
+        num_trials=args.num_trials,
+        random_seed_start=args.random_seed_start,
+        checkpoint_every=args.checkpoint_every
+    )
+
     if args.test:
         print("Running quick test...")
-        run_mcq_entropy_svd_truncation(
-            model_name=args.model,
-            model_type=args.model_type,
-            eval_set_path=args.eval_set,
-            target_layer=args.layer,
-            matrix_type=args.matrix,
-            reduction_percentages=[10, 50, 90],
-            checkpoint_every=1
-        )
+        kwargs['reduction_percentages'] = [10, 50, 90]
+        kwargs['checkpoint_every'] = 1
+        if args.mode == 'random':
+            kwargs['num_trials'] = 2
+        run_mcq_entropy_svd_truncation(**kwargs)
     elif args.components:
-        run_mcq_entropy_svd_truncation(
-            model_name=args.model,
-            model_type=args.model_type,
-            eval_set_path=args.eval_set,
-            target_layer=args.layer,
-            matrix_type=args.matrix,
-            component_counts=sorted(args.components, reverse=True),
-            checkpoint_every=args.checkpoint_every
-        )
+        kwargs['component_counts'] = sorted(args.components, reverse=True)
+        run_mcq_entropy_svd_truncation(**kwargs)
     else:
-        run_mcq_entropy_svd_truncation(
-            model_name=args.model,
-            model_type=args.model_type,
-            eval_set_path=args.eval_set,
-            target_layer=args.layer,
-            matrix_type=args.matrix,
-            checkpoint_every=args.checkpoint_every
-        )
+        run_mcq_entropy_svd_truncation(**kwargs)
