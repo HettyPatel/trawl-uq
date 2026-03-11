@@ -366,6 +366,16 @@ def update_layer_with_svd(
             target = model.model.layers[layer_idx].mlp.up_proj.weight
         elif matrix_type == "mlp_out":
             target = model.model.layers[layer_idx].mlp.down_proj.weight
+        elif matrix_type == "gate_proj":
+            target = model.model.layers[layer_idx].mlp.gate_proj.weight
+        elif matrix_type == "attn_q":
+            target = model.model.layers[layer_idx].self_attn.q_proj.weight
+        elif matrix_type == "attn_k":
+            target = model.model.layers[layer_idx].self_attn.k_proj.weight
+        elif matrix_type == "attn_v":
+            target = model.model.layers[layer_idx].self_attn.v_proj.weight
+        elif matrix_type == "attn_o":
+            target = model.model.layers[layer_idx].self_attn.o_proj.weight
         else:
             raise ValueError(f"Unknown matrix_type: {matrix_type}")
     elif model_type == "gpt2":
@@ -374,14 +384,14 @@ def update_layer_with_svd(
         elif matrix_type == "mlp_out":
             target = model.transformer.h[layer_idx].mlp.c_proj.weight
         else:
-            raise ValueError(f"Unknown matrix_type: {matrix_type}")
+            raise ValueError(f"Unknown matrix_type: {matrix_type} (gate_proj only supported for llama)")
     elif model_type == "gptj":
         if matrix_type == "mlp_in":
             target = model.transformer.h[layer_idx].mlp.fc_in.weight
         elif matrix_type == "mlp_out":
             target = model.transformer.h[layer_idx].mlp.fc_out.weight
         else:
-            raise ValueError(f"Unknown matrix_type: {matrix_type}")
+            raise ValueError(f"Unknown matrix_type: {matrix_type} (gate_proj only supported for llama)")
     else:
         raise ValueError(f"Unsupported model_type: {model_type}")
 

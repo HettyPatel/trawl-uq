@@ -32,6 +32,16 @@ for results_file in results/mcq_entropy_svd/*/results.pkl; do
     fi
 done
 
+# MCQ Combined SVD Truncation results
+echo "--- MCQ Combined SVD Truncation Results ---"
+for results_file in results/mcq_combined_svd/*/results.pkl; do
+    if [ -f "$results_file" ]; then
+        echo "Processing: $results_file"
+        python scripts/plot_mcq_results.py --results "$results_file"
+        echo ""
+    fi
+done
+
 # MCQ Random Matrix Control results
 echo "--- MCQ Random Matrix Control Results ---"
 for results_file in results/mcq_random_control/*/results.pkl; do

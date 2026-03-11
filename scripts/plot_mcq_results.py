@@ -26,13 +26,16 @@ def load_results(results_path: str):
 
 
 def detect_experiment_type(results: dict) -> str:
-    """Detect whether this is noise_removal, svd_truncation, or random_matrix_control."""
-    if 'component_results' in results:
+    """Detect whether this is noise_removal, svd_truncation, combined_svd, or random_matrix_control."""
+    config = results.get('config', {})
+    if config.get('experiment_type') == 'random_matrix_control':
+        return 'random_matrix_control'
+    elif config.get('experiment_type') == 'combined_svd_truncation':
+        return 'combined_svd_truncation'
+    elif 'component_results' in results:
         return 'noise_removal'
     elif 'truncation_results' in results:
         return 'svd_truncation'
-    elif results.get('config', {}).get('experiment_type') == 'random_matrix_control':
-        return 'random_matrix_control'
     else:
         raise ValueError("Unknown experiment type")
 
@@ -435,6 +438,141 @@ def plot_random_matrix_control(results: dict, output_dir: Path):
     print(f"\nMCQ random matrix control plots saved to: {output_dir}")
 
 
+def plot_combined_svd_truncation(results: dict, output_dir: Path):
+    """Plot MCQ combined SVD truncation experiment results."""
+    output_dir = Path(output_dir) / 'figures'
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    config = results['config']
+    baseline = results['baseline']
+    truncation_results = results['truncation_results']
+
+    model_name = config['model_name'].split('/')[-1]
+    layer = config['target_layer']
+
+    baseline_entropy = baseline['avg_entropy']
+    baseline_accuracy = baseline['accuracy']
+
+    # Extract data
+    reductions = [r['reduction_percent'] for r in truncation_results]
+    entropies = [r['avg_entropy'] for r in truncation_results]
+    accuracies = [r['accuracy'] * 100 for r in truncation_results]
+    energy_retentions = [r['energy_retention'] * 100 for r in truncation_results]
+
+    # Plot 1: Entropy vs Reduction %
+    fig, ax = plt.subplots(figsize=(12, 6))
+
+    ax.axhline(y=baseline_entropy, color='red', linestyle='--', linewidth=2,
+               alpha=0.7, label=f'Baseline ({baseline_entropy:.4f})')
+    ax.plot(reductions, entropies, 'b-o', linewidth=2, markersize=6, label='After Combined Truncation')
+
+    ax.fill_between(reductions, entropies, baseline_entropy,
+                    where=[e < baseline_entropy for e in entropies],
+                    alpha=0.3, color='green', label='Lower Entropy')
+
+    ax.set_xlabel('Reduction % (Components Removed)', fontsize=12)
+    ax.set_ylabel('Average Entropy (max=1.386)', fontsize=12)
+    ax.set_title(f'{model_name} Layer {layer} Combined (mlp_in + mlp_out): Entropy vs SVD Reduction', fontsize=14)
+    ax.legend(fontsize=10)
+    ax.grid(alpha=0.3)
+    ax.set_ylim(0, 1.5)
+    plt.tight_layout()
+    plt.savefig(output_dir / 'entropy_vs_reduction.png', dpi=300, bbox_inches='tight')
+    print(f"Saved: {output_dir / 'entropy_vs_reduction.png'}")
+    plt.close()
+
+    # Plot 2: Accuracy vs Reduction %
+    fig, ax = plt.subplots(figsize=(12, 6))
+
+    ax.axhline(y=baseline_accuracy * 100, color='red', linestyle='--', linewidth=2,
+               alpha=0.7, label=f'Baseline ({baseline_accuracy*100:.1f}%)')
+    ax.plot(reductions, accuracies, 'g-o', linewidth=2, markersize=6, label='After Combined Truncation')
+    ax.axhline(y=25, color='gray', linestyle=':', linewidth=1, alpha=0.5,
+               label='Random Chance (25%)')
+
+    ax.set_xlabel('Reduction % (Components Removed)', fontsize=12)
+    ax.set_ylabel('Accuracy (%)', fontsize=12)
+    ax.set_title(f'{model_name} Layer {layer} Combined (mlp_in + mlp_out): Accuracy vs SVD Reduction', fontsize=14)
+    ax.legend(fontsize=10)
+    ax.grid(alpha=0.3)
+    ax.set_ylim(0, 100)
+    plt.tight_layout()
+    plt.savefig(output_dir / 'accuracy_vs_reduction.png', dpi=300, bbox_inches='tight')
+    print(f"Saved: {output_dir / 'accuracy_vs_reduction.png'}")
+    plt.close()
+
+    # Plot 3: Entropy vs Accuracy Tradeoff (dual axis)
+    fig, ax1 = plt.subplots(figsize=(14, 6))
+
+    ax1.set_xlabel('Reduction % (Components Removed)', fontsize=12)
+    ax1.set_ylabel('Entropy', fontsize=12, color='blue')
+    line1 = ax1.plot(reductions, entropies, 'b-o', linewidth=2, markersize=6, label='Entropy')
+    ax1.axhline(y=baseline_entropy, color='blue', linestyle='--', alpha=0.5)
+    ax1.tick_params(axis='y', labelcolor='blue')
+    ax1.set_ylim(0, 1.5)
+
+    ax2 = ax1.twinx()
+    ax2.set_ylabel('Accuracy (%)', fontsize=12, color='green')
+    line2 = ax2.plot(reductions, accuracies, 'g-s', linewidth=2, markersize=6, label='Accuracy')
+    ax2.axhline(y=baseline_accuracy * 100, color='green', linestyle='--', alpha=0.5)
+    ax2.tick_params(axis='y', labelcolor='green')
+    ax2.set_ylim(0, 100)
+
+    lines = line1 + line2
+    labels = [l.get_label() for l in lines]
+    ax1.legend(lines, labels, loc='best', fontsize=10)
+
+    ax1.set_title(f'{model_name} Layer {layer} Combined (mlp_in + mlp_out): Entropy vs Accuracy Tradeoff', fontsize=14)
+    ax1.grid(alpha=0.3)
+    plt.tight_layout()
+    plt.savefig(output_dir / 'entropy_accuracy_tradeoff.png', dpi=300, bbox_inches='tight')
+    print(f"Saved: {output_dir / 'entropy_accuracy_tradeoff.png'}")
+    plt.close()
+
+    # Plot 4: Per-matrix energy retention
+    has_per_matrix = 'energy_retention_in' in truncation_results[0]
+    if has_per_matrix:
+        energy_in = [r['energy_retention_in'] * 100 for r in truncation_results]
+        energy_out = [r['energy_retention_out'] * 100 for r in truncation_results]
+
+        fig, ax = plt.subplots(figsize=(12, 6))
+        ax.plot(reductions, energy_in, 'c-o', linewidth=2, markersize=5, label='mlp_in')
+        ax.plot(reductions, energy_out, 'm-s', linewidth=2, markersize=5, label='mlp_out')
+        ax.plot(reductions, energy_retentions, 'k--^', linewidth=1.5, markersize=5, alpha=0.7, label='Average')
+        ax.set_xlabel('Reduction % (Components Removed)', fontsize=12)
+        ax.set_ylabel('Energy Retention (%)', fontsize=12)
+        ax.set_title(f'{model_name} Layer {layer} Combined: Per-Matrix Energy Retention', fontsize=14)
+        ax.legend(fontsize=10)
+        ax.grid(alpha=0.3)
+        plt.tight_layout()
+        plt.savefig(output_dir / 'energy_retention_per_matrix.png', dpi=300, bbox_inches='tight')
+        print(f"Saved: {output_dir / 'energy_retention_per_matrix.png'}")
+        plt.close()
+
+    # Plot 5: All metrics normalized
+    fig, ax = plt.subplots(figsize=(12, 6))
+
+    entropy_norm = [(e - min(entropies)) / (max(entropies) - min(entropies) + 1e-10) for e in entropies]
+    accuracy_norm = [a / 100 for a in accuracies]
+    energy_norm = [e / 100 for e in energy_retentions]
+
+    ax.plot(reductions, entropy_norm, 'b-o', linewidth=2, markersize=5, label='Entropy (normalized)')
+    ax.plot(reductions, accuracy_norm, 'g-s', linewidth=2, markersize=5, label='Accuracy')
+    ax.plot(reductions, energy_norm, 'c-^', linewidth=2, markersize=5, label='Energy Retention')
+
+    ax.set_xlabel('Reduction % (Components Removed)', fontsize=12)
+    ax.set_ylabel('Normalized Value (0-1)', fontsize=12)
+    ax.set_title(f'{model_name} Layer {layer} Combined (mlp_in + mlp_out): All Metrics vs Reduction', fontsize=14)
+    ax.legend(fontsize=10)
+    ax.grid(alpha=0.3)
+    plt.tight_layout()
+    plt.savefig(output_dir / 'all_metrics_normalized.png', dpi=300, bbox_inches='tight')
+    print(f"Saved: {output_dir / 'all_metrics_normalized.png'}")
+    plt.close()
+
+    print(f"\nMCQ combined SVD truncation plots saved to: {output_dir}")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Plot MCQ entropy experiment results")
     parser.add_argument("--results", type=str, required=True,
@@ -455,6 +593,8 @@ def main():
         plot_noise_removal(results, output_dir)
     elif exp_type == 'svd_truncation':
         plot_svd_truncation(results, output_dir)
+    elif exp_type == 'combined_svd_truncation':
+        plot_combined_svd_truncation(results, output_dir)
     elif exp_type == 'random_matrix_control':
         plot_random_matrix_control(results, output_dir)
 

@@ -166,18 +166,26 @@ def run_mcq_entropy_svd_truncation(
     if model_type == "llama":
         if matrix_type == "mlp_in":
             original_weight = model.model.layers[target_layer].mlp.up_proj.weight.data.clone()
-        else:
+        elif matrix_type == "mlp_out":
             original_weight = model.model.layers[target_layer].mlp.down_proj.weight.data.clone()
+        elif matrix_type == "gate_proj":
+            original_weight = model.model.layers[target_layer].mlp.gate_proj.weight.data.clone()
+        else:
+            raise ValueError(f"Unknown matrix_type: {matrix_type}")
     elif model_type == "gpt2":
         if matrix_type == "mlp_in":
             original_weight = model.transformer.h[target_layer].mlp.c_fc.weight.data.clone()
-        else:
+        elif matrix_type == "mlp_out":
             original_weight = model.transformer.h[target_layer].mlp.c_proj.weight.data.clone()
+        else:
+            raise ValueError(f"Unknown matrix_type: {matrix_type} (gate_proj only supported for llama)")
     elif model_type == "gptj":
         if matrix_type == "mlp_in":
             original_weight = model.transformer.h[target_layer].mlp.fc_in.weight.data.clone()
-        else:
+        elif matrix_type == "mlp_out":
             original_weight = model.transformer.h[target_layer].mlp.fc_out.weight.data.clone()
+        else:
+            raise ValueError(f"Unknown matrix_type: {matrix_type} (gate_proj only supported for llama)")
     else:
         raise ValueError(f"Unsupported model type: {model_type}")
 
@@ -409,7 +417,7 @@ if __name__ == "__main__":
     parser.add_argument("--model-type", type=str, default="llama", choices=["llama", "gpt2", "gptj"])
     parser.add_argument("--eval-set", type=str, default="data/eval_sets/eval_set_mcq_nq_open_200.json")
     parser.add_argument("--layer", type=int, default=6)
-    parser.add_argument("--matrix", type=str, default="mlp_out", choices=["mlp_in", "mlp_out"])
+    parser.add_argument("--matrix", type=str, default="mlp_out", choices=["mlp_in", "mlp_out", "gate_proj"])
     parser.add_argument("--checkpoint-every", type=int, default=5)
     parser.add_argument("--test", action="store_true", help="Quick test with fewer reduction levels")
     parser.add_argument("--components", type=int, nargs="+", help="Exact component counts to test (e.g. --components 10 5 3 2 1)")
