@@ -94,7 +94,9 @@ def create_mmlu_eval_set(
         print(s['mcq_prompt'])
         print(f"Correct: {s['correct_letter']} ({s['correct_answer']})")
 
-    output_file = output_dir / f"eval_set_mcq_mmlu_{num_samples}.json"
+    split_tag = split if split != "validation" else ""
+    split_prefix = f"_{split_tag}" if split_tag else ""
+    output_file = output_dir / f"eval_set_mcq_mmlu{split_prefix}_{num_samples}.json"
     with open(output_file, "w") as f:
         json.dump({
             "metadata": {

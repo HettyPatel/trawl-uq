@@ -1,0 +1,4 @@
+condition,category,layer,scale,n_features,features,accuracy,acc_delta,mean_entropy,n_flipped_to_correct,n_flipped_to_incorrect
+baseline,,,,0,,0.6239851872952571,0.0,0.8231365405004328,0,0
+L20_pure_uncertainty,pure_uncertainty,20,0.0,5,"[12536, 17104, 11280, 6692, 32434]",0.6256943455348241,0.17091582395669658,0.7291297997156533,104,80
+L20_pure_incorrectness,pure_incorrectness,20,0.0,5,"[10149, 30003, 16986, 16200, 24673]",0.6237003275886626,-0.02848597065945313,0.8228708463089572,17,21

@@ -1,0 +1,10 @@
+layer,original_incorrectness,original_entropy,original_overlap,pure_uncertainty,pure_incorrectness,pure_uncertainty_only,pure_incorrectness_only,both_confounded,interaction
+0,4,6,1,7,8,7,8,0,7
+4,2,2,0,3,3,3,3,0,3
+8,3,9,2,10,3,10,3,0,8
+12,7,12,6,12,4,12,4,0,11
+16,16,19,11,20,7,17,4,3,20
+20,13,16,12,16,4,15,3,1,14
+24,13,14,13,13,6,10,3,3,14
+28,14,17,14,16,2,15,1,1,17
+31,31,37,30,38,11,31,4,7,39
