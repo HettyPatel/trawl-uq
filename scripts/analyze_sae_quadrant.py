@@ -116,6 +116,10 @@ def main():
     parser.add_argument('--top-k', type=int, default=50,
                         help='Top features to report per comparison')
     parser.add_argument('--p-threshold', type=float, default=0.05)
+    parser.add_argument('--entropy-percentile', type=float, default=None,
+                        help='Use top/bottom N%% for grouping instead of median split. '
+                             'E.g. 10 means bottom 10%% = confident, top 10%% = uncertain. '
+                             'Questions in the middle are excluded.')
     args = parser.parse_args()
 
     output_dir = Path(args.output_dir)
@@ -128,11 +132,25 @@ def main():
     sae_layers = data['config']['sae_layers']
     n_total = len(per_question)
 
-    # Compute median entropy for splitting
+    # Compute entropy thresholds for splitting
     all_entropies = [d['entropy'] for d in per_question]
-    median_entropy = np.median(all_entropies)
     print(f"Total questions: {n_total}")
-    print(f"Median entropy: {median_entropy:.4f}")
+
+    if args.entropy_percentile is not None:
+        pct = args.entropy_percentile
+        low_thresh  = np.percentile(all_entropies, pct)
+        high_thresh = np.percentile(all_entropies, 100 - pct)
+        print(f"Entropy percentile split: bottom {pct}% (<{low_thresh:.4f}) "
+              f"vs top {pct}% (>{high_thresh:.4f})")
+        def is_confident(entropy):  return entropy <= low_thresh
+        def is_uncertain(entropy):  return entropy >= high_thresh
+        def include(entropy):       return is_confident(entropy) or is_uncertain(entropy)
+    else:
+        median_entropy = np.median(all_entropies)
+        print(f"Median entropy: {median_entropy:.4f}")
+        def is_confident(entropy):  return entropy < median_entropy
+        def is_uncertain(entropy):  return entropy >= median_entropy
+        def include(entropy):       return True
 
     # Build the 4 quadrants
     group_A = []  # correct + confident (low entropy)
@@ -141,26 +159,27 @@ def main():
     group_D = []  # incorrect + uncertain
 
     for d in per_question:
+        if not include(d['entropy']):
+            continue  # exclude middle band when using percentile split
         is_correct = d['correct']
-        is_uncertain = d['entropy'] >= median_entropy
+        conf = is_confident(d['entropy'])
+        unc  = is_uncertain(d['entropy'])
 
-        if is_correct and not is_uncertain:
+        if is_correct and conf:
             group_A.append(d)
-        elif not is_correct and not is_uncertain:
+        elif not is_correct and conf:
             group_B.append(d)
-        elif is_correct and is_uncertain:
+        elif is_correct and unc:
             group_C.append(d)
-        else:  # incorrect and uncertain
+        else:
             group_D.append(d)
 
-    print(f"\nQuadrant sizes:")
+    n_used = len(group_A) + len(group_B) + len(group_C) + len(group_D)
+    print(f"\nQuadrant sizes (using {n_used}/{n_total} questions):")
     print(f"  A (correct + confident):   {len(group_A)}")
     print(f"  B (incorrect + confident): {len(group_B)}")
     print(f"  C (correct + uncertain):   {len(group_C)}")
     print(f"  D (incorrect + uncertain): {len(group_D)}")
-
-    # Verify
-    assert len(group_A) + len(group_B) + len(group_C) + len(group_D) == n_total
 
     # Accuracy within quadrants
     n_correct = len(group_A) + len(group_C)
@@ -339,7 +358,7 @@ def main():
         pickle.dump({
             'config': {
                 'source_pickle': args.pickle,
-                'median_entropy': float(median_entropy),
+                'entropy_percentile': args.entropy_percentile,
                 'p_threshold': args.p_threshold,
                 'quadrant_sizes': {
                     'A_correct_confident': len(group_A),
